@@ -1,4 +1,5 @@
-.deploy_git/
+.deploy*/
 node_modules/
 public/
 themes/
+db.json
