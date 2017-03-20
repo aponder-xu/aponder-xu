@@ -3,9 +3,6 @@ title: doctrine2 tutorial
 date: 2017-03-11 12:39:26
 tags:
 ---
-# doctrine2-tutorial
-
----
 
 ## Getting Started with Doctrine
 
@@ -149,34 +146,36 @@ The updating of databases uses a Diff Algorithm for a given Database Schema, a c
 
 We start with the simplest entity, the Product. Create a `src/Product.php` file to contain the **Product** entity definition:
 
-    <?php
-    // src/Product.php
-    class Product
+```PHP
+<?php
+// src/Product.php
+class Product
+{
+    /**
+     * @var int
+     */
+    protected $id;
+    /**
+     * @var string
+     */
+    protected $name;
+
+    public function getId()
     {
-        /**
-         * @var int
-         */
-        protected $id;
-        /**
-         * @var string
-         */
-        protected $name;
-    
-        public function getId()
-        {
-            return $this->id;
-        }
-    
-        public function getName()
-        {
-            return $this->name;
-        }
-    
-        public function setName($name)
-        {
-            $this->name = $name;
-        }
+        return $this->id;
     }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+}
+```
 Note that all fields are set to protected (not public) with a mutator (getter and setter) defined for every field except $id. The use of mutators allows Doctrine to hook into calls which manipulate the entities in ways that it could not if you just directly set the values with `entity#field = foo`;
 
 The id field has no setter since, generally speaking, your code should not set this value since it represents a database id value. (Note that Doctrine itself can still set the value using the Reflection API instead of a defined setter function)
@@ -217,7 +216,7 @@ Product:
       type: string
 ```
 
-```php
+```PHP
 <?php
 // src/Product.php
 /**
@@ -265,10 +264,12 @@ Call this script from the command-line to see how new products are created:
     php create_product.php ORM
     php create_product.php DBAL
 
-----------
+---
+
 *Here I got some errors:*
 
-> $ php create_product.php ORM
+> 
+> `$ php create_product.php ORM`
 > 
 > Fatal error: Uncaught exception 'Doctrine\ORM\Mapping\MappingException' with message 'Class "Product" is not a valid entity or mapped super class.' in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php:336
 > Stack trace:
