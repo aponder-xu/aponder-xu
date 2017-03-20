@@ -5,7 +5,7 @@
 # Site
 title: xiyusullos's blog
 subtitle:
-description:
+description: from 0 to 1
 author: xiyusullos
 language: en
 timezone: Asia/Shanghai
@@ -70,5 +70,12 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:xiyusullos/xiyusullos.github.io.git
-  branch: master
+  repo: 
+    github: git@github.com:xiyusullos/xiyusullos.github.io.git,master
+    coding: git@git.coding.net:xiyusullos/xiyusullos.git,master
+
+# Seo
+sitemap: 
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
