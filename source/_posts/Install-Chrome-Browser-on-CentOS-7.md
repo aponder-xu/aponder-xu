@@ -1,7 +1,12 @@
 ---
 title: Install Chrome Browser on CentOS 7
 date: 2017-03-05 21:56:26
+categories:
+- Linux
+    - CentOS
+        - CentOS 7
 tags:
+- CentOS
 ---
 
 ## Step 1: add a new repo named `google-chrome.repo` in /etc/yum.repos.d/
