@@ -1,7 +1,12 @@
 ---
 title: doctrine2 tutorial
 date: 2017-03-11 12:39:26
-tags:
+categories:
+- PHP
+    - Doctrine
+tags: 
+- PHP
+- Doctrine
 ---
 
 ## Getting Started with Doctrine
@@ -34,6 +39,8 @@ Entities are PHP Objects that can be identified over many requests by a unique i
 
 An entity contains persistable properties. A persistable property is an instance variable of the entity that is saved into and retrieved from the database by Doctrine’s data mapping capabilities.
 
+<!-- more -->
+
 ## An Example Model: Bug Tracker
 
 For this Getting Started Guide for Doctrine we will implement the Bug Tracker domain model from the [Zend_Db_Table ](http://framework.zend.com/manual/1.12/en/zend.db.adapter.html)documentation. Reading their documentation we can extract the requirements:
@@ -51,57 +58,64 @@ For this Getting Started Guide for Doctrine we will implement the Bug Tracker do
 
 Create a new empty folder for this tutorial project, for example **doctrine2-tutorial** and create a new file `composer.json` with the following contents:
 
-    {
-        "require": {
-            "doctrine/orm": "2.4.*",
-            "symfony/yaml": "2.*"
-        },
-        "autoload": {
-            "psr-0": {"": "src/"}
-        }
+```JSON
+{
+    "require": {
+        "doctrine/orm": "2.4.*",
+        "symfony/yaml": "2.*"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
     }
-
+}
+```
 
 Install Doctrine using the Composer Dependency Management tool, by calling:
 
-    composer install
+```bash
+composer install
+```
 
 This will install the packages Doctrine Common, Doctrine DBAL, Doctrine ORM, Symfony YAML and Symfony Console into the vendor directory. The Symfony dependencies are not required by Doctrine but will be used in this tutorial.
 
 Add the following directories:
 
-    doctrine2-tutorial
-    |-- config
-    |   |-- xml
-    |   `-- yaml
-    `-- src
-    
+```
+doctrine2-tutorial
+|-- config
+|   |-- xml
+|   `-- yaml
+`-- src
+```
+
 ## Obtaining the EntityManager
 
 Doctrine’s public interface is the EntityManager, it provides the access point to the complete lifecycle management of your entities and transforms entities from and back to persistence. You have to configure and create it to use your entities with Doctrine 2. I will show the configuration steps and then discuss them step by step:
     
-    <?php
-    // bootstrap.php
-    use Doctrine\ORM\Tools\Setup;
-    use Doctrine\ORM\EntityManager;
-    
-    require_once "vendor/autoload.php";
-    
-    // Create a simple "default" Doctrine ORM configuration for Annotations
-    $isDevMode = true;
-    $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
-    // or if you prefer yaml or XML
-    //$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
-    //$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
-    
-    // database configuration parameters
-    $conn = array(
-        'driver' => 'pdo_sqlite',
-        'path' => __DIR__ . '/db.sqlite',
-    );
-    
-    // obtaining the entity manager
-    $entityManager = EntityManager::create($conn, $config);
+```php
+<?php
+// bootstrap.php
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+
+require_once "vendor/autoload.php";
+
+// Create a simple "default" Doctrine ORM configuration for Annotations
+$isDevMode = true;
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
+// or if you prefer yaml or XML
+//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
+
+// database configuration parameters
+$conn = array(
+    'driver' => 'pdo_sqlite',
+    'path' => __DIR__ . '/db.sqlite',
+);
+
+// obtaining the entity manager
+$entityManager = EntityManager::create($conn, $config);
+```
 
 The first require statement sets up the autoloading capabilities of Doctrine using the Composer autoload.
 
@@ -117,29 +131,38 @@ Now that we have defined the Metadata mappings and bootstrapped the EntityManage
 
 For the command-line tool to work a `cli-config.php` file has to be present in the project root directory, where you will execute the doctrine command. Its a fairly simple file:
 
-    <?php
-    // cli-config.php
-    require_once "bootstrap.php";
-    
-    return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+```php
+<?php
+// cli-config.php
+require_once "bootstrap.php";
+
+return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+```
 
 You can then change into your project directory and call the Doctrine command-line tool:
 
-    cd project/
-    vendor/bin/doctrine orm:schema-tool:create
+```bash
+cd project/
+vendor/bin/doctrine orm:schema-tool:create
+```
 
-At this point no entity metadata exists in src so you will see a message like “No Metadata Classes to process.” Don’t worry, we’ll create a Product entity and corresponding metadata in the next section.
+At this point no entity metadata exists in src so you will see a message like "No Metadata Classes to process". Don't worry, we’ll create a Product entity and corresponding metadata in the next section.
 
 You should be aware that during the development process you’ll periodically need to update your database schema to be in sync with your Entities metadata.
 
 You can easily recreate the database:
 
-    vendor/bin/doctrine orm:schema-tool:drop --force
-    vendor/bin/doctrine orm:schema-tool:create
+```bash
+vendor/bin/doctrine orm:schema-tool:drop --force
+vendor/bin/doctrine orm:schema-tool:create
+```
 
 Or use the update functionality:
 
-    vendor/bin/doctrine orm:schema-tool:update --force
+```bash
+vendor/bin/doctrine orm:schema-tool:update --force
+```
+
 The updating of databases uses a Diff Algorithm for a given Database Schema, a cornerstone of the **Doctrine\DBAL** package, which can even be used without the Doctrine ORM package.
 
 ## Starting with the Product
@@ -269,14 +292,15 @@ Call this script from the command-line to see how new products are created:
 *Here I got some errors:*
 
 > 
-> `$ php create_product.php ORM`
-> 
-> Fatal error: Uncaught exception 'Doctrine\ORM\Mapping\MappingException' with message 'Class "Product" is not a valid entity or mapped super class.' in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php:336
-> Stack trace:
-> \#0 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\Driver\AnnotationDriver.php(89): Doctrine\ORM\Mapping\MappingException::classIsNotAValidEntityOrMappedSuperClass('Product')
-> \#1 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\ClassMetadataFactory.php(116): Doctrine\ORM\Mapping\Driver\AnnotationDriver->loadMetadataForClass('Product', Object(Doctrine\ORM\Mapping\ClassMetadata))
-> \#2 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\common\lib\Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory.php(332): Doctrine\ORM\Mapping\ClassMetadataFactory->doLoadMetadata(Object(Doctrine\ORM\Mapping\ClassMetadata), NULL, false, Array)
-> \#3 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\common\lib\Doctrine\Common\Pe in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php on line 336
+```bash
+$ php create_product.php ORM
+Fatal error: Uncaught exception 'Doctrine\ORM\Mapping\MappingException' with message 'Class "Product" is not a valid entity or mapped super class.' in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php:336
+Stack trace:
+#0 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\Driver\AnnotationDriver.php(89): Doctrine\ORM\Mapping\MappingException::classIsNotAValidEntityOrMappedSuperClass('Product')
+#1 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\ClassMetadataFactory.php(116): Doctrine\ORM\Mapping\Driver\AnnotationDriver->loadMetadataForClass('Product', Object(Doctrine\ORM\Mapping\ClassMetadata))
+#2 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\common\lib\Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory.php(332): Doctrine\ORM\Mapping\ClassMetadataFactory->doLoadMetadata(Object(Doctrine\ORM\Mapping\ClassMetadata), NULL, false, Array)
+#3 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\common\lib\Doctrine\Common\Pe in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php on line 336
+```
 > 
 
 *Reasons*:
@@ -313,7 +337,8 @@ Call this script from the command-line to see how new products are created:
     }
     ```
 - One more important is that only double quote works. This `@Table(name='products')` doesn't work. Make sure change the **'** to **"** like  `@Table(name="products")`
-----------
+
+---
 
 What is happening here? Using the Product is pretty standard OOP. The interesting bits are the use of the EntityManager service. To notify the EntityManager that a new entity should be inserted into the database you have to call persist(). To initiate a transaction to actually perform the insertion, You have to explicitly call flush() on the EntityManager.
 
@@ -531,7 +556,7 @@ class User
 }
 ```
 
-You use Doctrine’s ArrayCollections in your Doctrine models, rather than plain PHP arrays, so that Doctrine can watch what happens with them and act appropriately. Note that if you dump your entities, you’ll see a “PersistentCollection” in place of your ArrayCollection, which is just an internal Doctrine class with the same interface.
+You use Doctrine’s ArrayCollections in your Doctrine models, rather than plain PHP arrays, so that Doctrine can watch what happens with them and act appropriately. Note that if you dump your entities, you’ll see a "PersistentCollection" in place of your ArrayCollection, which is just an internal Doctrine class with the same interface.
 
 > Lazy load proxies always contain an instance of Doctrine’s EntityManager and all its dependencies. Therefore a `var_dump()` will possibly dump a very large recursive structure which is impossible to render and read. You have to use **`Doctrine\Common\Util\Debug::dump()`** to restrict the dumping to a human readable level. Additionally you should be aware that dumping the EntityManager to a Browser may take several minutes, and the `Debug::dump()` method just ignores any occurrences of it in Proxy instances.
 
@@ -735,7 +760,7 @@ Bug:
       targetEntity: Product
 ```
 
-Here we have the entity, id and primitive type definitions. For the “created” field we have used the datetime type, which translates the YYYY-mm-dd HH:mm:ss database format into a PHP DateTime instance and back.
+Here we have the entity, id and primitive type definitions. For the "created" field we have used the datetime type, which translates the YYYY-mm-dd HH:mm:ss database format into a PHP DateTime instance and back.
 
 After the field definitions the two qualified references to the user entity are defined. They are created by the **many-to-one** tag. The class name of the related entity has to be specified with the **target-entity** attribute, which is enough information for the database mapper to access the foreign-table. Since **reporter** and **engineer** are on the owning side of a bi-directional relation we also have to specify the **inversed-by** attribute. They have to point to the field names on the inverse side of the relationship. We will see in the next example that the **inversed-by** attribute has a counterpart **mapped-by** which makes that the inverse side.
 
@@ -827,7 +852,9 @@ This example has a fair overview of the most basic features of the metadata defi
 
 Update your database running:
 
-    vendor/bin/doctrine orm:schema-tool:update --force
+```bash
+vendor/bin/doctrine orm:schema-tool:update --force
+```
 
 ## Implementing more Requirements
 
@@ -851,7 +878,9 @@ echo "Created User with ID " . $user->getId() . "\n";
 
 Now call:
 
-    php create_user.php xiyusullos
+```bash
+php create_user.php xiyusullos
+```
 
 We now have the data to create a bug and the code for this scenario may look like this:
 
@@ -893,18 +922,25 @@ echo "Your new Bug Id: ".$bug->getId()."\n";
 
 Since we only have one user and product, probably with the ID of 1, we can call this script with:
 
-    php create_bug.php 1 1 1
-
+```bash
+php create_bug.php 1 1 1
+```
 
 ----------
+
 *Here I got some errors.*
 
-> $ php create_bug.php 1 1 1
 > 
-> Catchable fatal error: Argument 1 passed to Doctrine\Common\Collections\ArrayCollection::__construct() must be of the type array, object given, called in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\UnitOfWork.php on line 555 and defined in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\collections\lib\Doctrine\Common\Collections\ArrayCollection.php on line 53
- 
+```bash
+$ php create_bug.php 1 1 1
+
+Catchable fatal error: Argument 1 passed to Doctrine\Common\Collections\ArrayCollection::__construct() must be of the type array, object given, called in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\UnitOfWork.php on line 555 and defined in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\collections\lib\Doctrine\Common\Collections\ArrayCollection.php on line 53
+```
+
 Resons:
-- Carelessly wrote this:  
+> 
+> - Carelessly wrote this:  
+>
 ```PHP
  /**
  * @ManyToMany(targetEntity="User", inversedBy="reportedBugs")
@@ -912,7 +948,9 @@ Resons:
  */
 protected $reporter;
 ```
-Should be this:
+
+> - Should be this:
+> 
 ```php
  /**
  * @ManyToOne(targetEntity="User", inversedBy="reportedBugs")
@@ -920,13 +958,18 @@ Should be this:
  */
 protected $reporter;
 ```
-- Then recall this `vendor/bin/doctrine orm:schema-tool:update --force` 
-----------
 
+> - Then recall this
+>
+```bash
+vendor/bin/doctrine orm:schema-tool:update --force
+```
+
+---
 
 This is the first contact with the read API of the EntityManager, showing that a call to `EntityManager#find($name, $id)` returns a single instance of an entity queried by primary key. Besides this we see the persist + flush pattern again to save the Bug into the database.
 
-See how simple relating Bug, Reporter, Engineer and Products is done by using the discussed methods in the “A first prototype” section. The UnitOfWork will detect this relationship when flush is called and relate them in the database appropriately.
+See how simple relating Bug, Reporter, Engineer and Products is done by using the discussed methods in the "A first prototype" section. The UnitOfWork will detect this relationship when flush is called and relate them in the database appropriately.
 
 ## Queries for Application Use-Cases
 
@@ -1097,7 +1140,7 @@ You have created or assigned to 1 open bugs:
 
 ## Number of Bugs
 
-Until now we only retrieved entities or their array representation. Doctrine also supports the retrieval of non-entities through DQL. These values are called “scalar result values” and may even be aggregate values using COUNT, SUM, MIN, MAX or AVG functions.
+Until now we only retrieved entities or their array representation. Doctrine also supports the retrieval of non-entities through DQL. These values are called "scalar result values" and may even be aggregate values using COUNT, SUM, MIN, MAX or AVG functions.
 
 We will need this knowledge to retrieve the number of open bugs grouped by product:
 
@@ -1262,7 +1305,7 @@ Bug:
   repositoryClass: BugRepository
 ```
 
-Now we can remove our query logic in all the places and instead use them through the EntityRepository. As an example here is the code of the first use case “List of Bugs”:
+Now we can remove our query logic in all the places and instead use them through the EntityRepository. As an example here is the code of the first use case "List of Bugs":
 
 ```PHP
 <?php
