@@ -42,7 +42,7 @@ menu:
   about: /about
   archives: /archives
   tags: /tags
-  # sitemap: /sitemap.xml
+  sitemap: /sitemap.xml
   commonweal: /404.html
 
 
@@ -335,7 +335,7 @@ changyan:
 #google_site_verification:
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-94056112-1
 
 # Yandex Webmaster tools verification setting
 # See: https://webmaster.yandex.ru/
