@@ -1,20 +1,30 @@
 ---
 title: install redis on centos 7
 date: 2017-03-20 12:51:24
+categories:
+- Linux
+    - CentOS
+        - CentOS 7
 tags:
+- CentOS
 ---
 
 ## Step 1: [download the package](http://download.redis.io/releases/redis-3.2.8.tar.gz)
 
-`wget http://download.redis.io/releases/redis-3.2.8.tar.gz`
+```bash
+wget http://download.redis.io/releases/redis-3.2.8.tar.gz
+```
 
 ## Step 2: extract it
 
-`tar xzf redis-3.2.8.tar.gz`
+```bash
+tar xzf redis-3.2.8.tar.gz
+```
 
 ## Step 3: compile it
 
 make sure you have gcc installed
+
 ```bash
 cd redis-3.2.8
 make
@@ -30,8 +40,11 @@ replace `#requirepass foobared` to `requirepass yourpassword`
 
 ## Step 5: Start it
 
-`src/redis-server /etc/redis.conf &`
+```bash
+src/redis-server /etc/redis.conf &
+```
 
+<!-- more -->
 
 ----------
 
