@@ -1,9 +1,13 @@
 ---
-title: design patterns implemented by PHP
+title: Design Patterns Implemented in PHP
 date: 2017-03-21 20:31:17
+keywords: 
+  - xiyusullos
+  - "Design Patterns Implemented in PHP"
+  - Design Pattern
 tags: 
-- PHP
-- Design Pattern
+  - PHP
+  - Design Pattern
 ---
 
 ## Creational (创建型模式)
@@ -16,7 +20,7 @@ To create series of related or dependent objects without specifying their concre
 
 提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。
 
-[Example Codes](http://github.con/xiyusullos/design-pattern/)
+[Example Codes](https://github.com/xiyusullos/design-pattern/)
 
 ### Builder (建造者模式)
 
@@ -30,7 +34,7 @@ Note: Builders have often a fluent interface, see the mock builder of PHPUnit fo
 
 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
 
-[Example Codes](http://github.con/xiyusullos/design-pattern/)
+[Example Codes](https://github.com/xiyusullos/design-pattern/)
 
 ###  Factory Method (工厂模式)
 
