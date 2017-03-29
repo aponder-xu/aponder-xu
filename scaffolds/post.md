@@ -2,6 +2,7 @@
 title: {{ title }}
 date: {{ date }}
 keywords:
-description:
+  - xiyusullos
+  - {{ title }}
 tags:
 ---
