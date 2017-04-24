@@ -27,7 +27,7 @@ make sure you have gcc installed
 
 ```bash
 cd redis-3.2.8
-make
+make && make install
 ```
 
 ## Step 4: edit the `redis.conf` locating in `redis-3.2.8/redis.conf`
