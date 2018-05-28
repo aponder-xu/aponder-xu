@@ -6,6 +6,7 @@ date: 2017-03-21 00:38:41
 ## 自我介绍
 
 - 本科4年一直在实验室活动，独立开发过许多项目。对许多技术都有涉猎，诸如 PHP、MySQL、Git、Linux、HTML5、JavaScript
+- I have an experience of 3-years web development(PHP), 1-year python development and 1-year wechat microprogram development. I have taken part in 3 Android APP developments which are uwindow-book, uwindow-g&g,  iyuyun, 2 hardware API developments which are child-watch and aibrush and maintained a medical projects which recode some core modules.
 
 ## 考研经历
 
@@ -30,7 +31,7 @@ date: 2017-03-21 00:38:41
 
 - 硬件：非本人开发
 - 软件：以下所述均为本人开发
-    + 微信公众号： zepto
+    + 微信端： zepto.js
     + 后端：Python、Flask、Redis
 
 ### 医疗有关（维护）（2017/05 - 2017/06）
