@@ -46,6 +46,10 @@ sudo docker load -i images/laradock_workspace-latest.tar
 
 ## Step 5: prepare your application code
 
+If `unzip` is not installed, you can `yum install unzip-6.0-15.1.el7.x86_64.rpm
+`
+
+
 ```bash
 unzip dgiot.xy-jit.cc.zip
 cd dgiot.xy-jit.cc
