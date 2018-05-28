@@ -63,5 +63,5 @@ cp env-example .env
 ## Step 6: start your application
 
 ```bash
-sudo docker-compose up -d nginx
+docker-compose up -d nginx
 ```
