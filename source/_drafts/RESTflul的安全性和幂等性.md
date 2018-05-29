@@ -1,6 +1,7 @@
----
 title: RESTflul的安全性和幂等性
-tags:
+tags: []
+categories: []
+date: 2018-03-01 13:41:00
 ---
 
 | 方法 | 安全 | 幂等 |
