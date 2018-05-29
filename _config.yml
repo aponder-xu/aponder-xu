@@ -80,3 +80,10 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+# hexo-admin authentification
+admin:
+  username: root
+  password_hash: $2a$10$v6j6xpW0zM561LCzupXZ7eRR33ZKEzAGJgwfDaq/HOftqAsY3D4sq
+  secret: xiyusullos_secret
+  deployCommand: './admin/deploy_command.sh'
