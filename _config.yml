@@ -94,3 +94,10 @@ symbols_count_time:
   time: true
   total_symbols: true
   total_time: true
+
+# Algolia Search
+algolia:
+  applicationID: 'PLAJ325ZJQ'
+  apiKey: 'ae9a53d026a058d73e422d44eb0bce08'
+  indexName: 'hexo'
+  chunkSize: 5000
