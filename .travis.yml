@@ -28,9 +28,9 @@ install:
   npm install
 
 script:
-  - export HEXO_ALGOLIA_INDEXING_KEY=ae9a53d026a058d73e422d44eb0bce08
   - hexo clean
-  - hexo algolia
+  # - export HEXO_ALGOLIA_INDEXING_KEY=ae9a53d026a058d73e422d44eb0bce08
+  # - hexo algolia
   - hexo generate
 
 after_script:
