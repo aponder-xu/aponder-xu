@@ -4,7 +4,7 @@
 
 # Site
 title: xiyusullos's blog
-subtitle:
+subtitle: dig world
 description: from 0 to 1
 author: xiyusullos
 language: en
@@ -15,7 +15,7 @@ timezone: Asia/Shanghai
 url: http://blog.xy-jit.cc
 root: /
 # permalink: :year/:month/:day/:title/
-permalink: :title-:year-:month-:day/
+permalink: :year/:month/:title/
 permalink_defaults:
 
 # Directory
@@ -87,3 +87,10 @@ admin:
   password_hash: $2a$10$v6j6xpW0zM561LCzupXZ7eRR33ZKEzAGJgwfDaq/HOftqAsY3D4sq
   secret: xiyusullos_secret
   deployCommand: './admin/deploy_command.sh'
+
+# hexo-symbols-count-time
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
