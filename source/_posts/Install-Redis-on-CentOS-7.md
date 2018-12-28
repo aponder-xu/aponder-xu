@@ -15,6 +15,8 @@ tags:
 wget http://download.redis.io/releases/redis-3.2.8.tar.gz
 ```
 
+<!-- more -->
+
 ## Step 2: extract it
 
 ```bash
@@ -43,8 +45,6 @@ replace `#requirepass foobared` to `requirepass yourpassword`
 ```bash
 src/redis-server /etc/redis.conf &
 ```
-
-<!-- more -->
 
 ----------
 

@@ -14,6 +14,8 @@ tags:
 
 In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.
 
+<!-- more -->
+
 ### Abstract Factory (抽象工厂模式)
 
 To create series of related or dependent objects without specifying their concrete classes. Usually the created classes all implement the same interface. The client of the abstract factory does not care about how these objects are created, he just knows how they go together.
@@ -64,8 +66,6 @@ It means the FactoryMethod class depends on abstractions, not concrete classes. 
 ### Singleton (单例模式)
 
 ### Static Factory (静态工厂模式)
-
-<!-- more -->
 
 ## Structural (结构型模式)
 

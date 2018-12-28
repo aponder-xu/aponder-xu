@@ -15,6 +15,8 @@ tags:
 cd /ect/yum.repos.d/ && vim google-chrome.repo
 ```
 
+<!-- more -->
+
 ## Step 2: the file centent of `google-chrome.repo` is like following:
 
 ```

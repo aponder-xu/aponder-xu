@@ -15,6 +15,8 @@ tags:
 - download [laradock images](https://pan.baidu.com/s/1bptNEk3)
 - your application code, for example, **dgiot.xy-jit.cc.zip**
 
+<!-- more -->
+
 ## Step 1: install docker
 
 ```bash

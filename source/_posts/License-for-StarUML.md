@@ -9,7 +9,7 @@ tags:
 ## Override `function validate(PK, name, product, licenseKey)`
 
 Find where is your StarUML installed and edit the `LicenseManagerDomain.js` file whicd locates in  `{INSTALL_PATH}/www/license/node/`. For instance, `C:\Program Files (x86)\StarUML\www\license\node\LicenseManagerDomain.js`
-
+<!-- more -->
 Then let `function validate(PK, name, product, licenseKey)` return something like this:
 
 ```js

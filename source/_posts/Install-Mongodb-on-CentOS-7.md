@@ -15,6 +15,8 @@ tags:
 wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz
 ```
 
+<!-- more -->
+
 ## Step 2: extract it
 
 ```bash

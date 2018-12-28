@@ -18,6 +18,8 @@ This guide covers getting started with the Doctrine ORM. After working through t
 - Generating a database schema from PHP objects
 - Using the `EntityManager` to insert, update, delete and find objects in the database.
 
+<!-- more -->
+
 ## Guide Assumptions
 
 This guide is designed for beginners that haven’t worked with Doctrine ORM before. There are some prerequesites for the tutorial that have to be installed:
@@ -38,8 +40,6 @@ The benefit of Doctrine for the programmer is the ability to focus on the object
 Entities are PHP Objects that can be identified over many requests by a unique identifier or primary key. These classes don’t need to extend any abstract base class or interface. An entity class must not be final or contain final methods. Additionally it must not implement **clone** nor **wakeup**, unless it [does so safely](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/cookbook/implementing-wakeup-or-clone.html).
 
 An entity contains persistable properties. A persistable property is an instance variable of the entity that is saved into and retrieved from the database by Doctrine’s data mapping capabilities.
-
-<!-- more -->
 
 ## An Example Model: Bug Tracker
 
