@@ -6,15 +6,19 @@ keywords:
   - Speed up Homestead on Windows 7
 date: 2018-05-30 10:56:39
 tags:
+  - Laravel
+  - Homestead
 ---
 
 ## Install vagrant-winnfsd plugin
 
-See [detail](https://github.com/winnfsd/vagrant-winnfsd) about vagrant-winnfsd
+See [vagrant-winnfsd detail](https://github.com/winnfsd/vagrant-winnfsd) about vagrant-winnfsd
 
 ```bash
 vagrant plugin install vagrant-winnfsd
 ```
+
+<!-- more -->
 
 ## Enable 'nfs' in the `Homestead.yaml`
 
