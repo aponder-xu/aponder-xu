@@ -8,14 +8,14 @@ date: 2017-03-21 00:38:41
 - 本科4年一直在实验室活动，独立开发过许多项目。对许多技术都有涉猎，诸如 PHP、MySQL、Git、Linux、HTML5、JavaScript
 - I have an experience of 3-years web development(PHP), 1-year python development and 1-year wechat microprogram development. I have taken part in 3 Android APP developments which are uwindow-book, uwindow-g&g,  iyuyun, 2 hardware API developments which are child-watch and aibrush and maintained a medical projects which recode some core modules.
 
-## 考研经历
+<!-- ## 考研经历
 
 - 期望方向：人工智能应用、机器学习、数据挖掘
 - 成绩（2017年）
 
 | 考生编号 | 姓名 | 报考院校 | 报考院系 | 报考专业 | 考试方式 | 报考类别 | 思想政治理论 | 英语一 | 数学一 | 计算机专业基础 | 总分 | 专业排名 | 
 |:--------:|:----:|:--------:|:--------:|:--------:|:--------:|:--------:|:------------:|:------:|:------:|:--------------:|:----:|:--------:|
-|102867322209335 | 徐勇 | 东南大学 | 计算机科学与工程学院 | 计算机科学与技术 | 全国统考 | 非定向 | 58 | 62 | 116 | 70 | 306 | 193 | 
+|102867322209335 | 徐勇 | 东南大学 | 计算机科学与工程学院 | 计算机科学与技术 | 全国统考 | 非定向 | 58 | 62 | 116 | 70 | 306 | 193 |  -->
 
 ## 本科简历（2012年09月 ~ 2016年07月）
 
