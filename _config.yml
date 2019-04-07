@@ -75,7 +75,7 @@ deploy:
   type: git
   repo: 
     github: git@github.com:xiyusullos/xiyusullos.github.io.git,master
-    coding: git@git.coding.net:xiyusullos/xiyusullos.git,master
+    # coding: git@git.coding.net:xiyusullos/xiyusullos.git,master
 
 # Seo
 sitemap: 
