@@ -3,14 +3,13 @@ title: RESTflul的安全性和幂等性
 keywords:
   - xiyusullos
   - RESTflul的安全性和幂等性
-  - 安全性
-  - 幂等性
-tags: 
-    - API
-categories: 
-    - 
+tags:
+  - API
+categories:
+  - null
 date: 2018-03-01 13:41:00
 ---
+
 
 |  方法   | 安全 | 幂等 |
 | :-----: | :--: | :--: |
@@ -20,6 +19,8 @@ date: 2018-03-01 13:41:00
 |   PUT   |  ×   |  √   |
 | DELETE  |  ×   |  √   |
 |  POST   |  ×   |  ×   |
+
+
 
 ## 安全性
 
