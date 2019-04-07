@@ -63,6 +63,8 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins:
+  # - hexo-algoliasearch
 ## Themes: https://hexo.io/themes/
 # theme: landscape
 theme: next
@@ -97,7 +99,17 @@ symbols_count_time:
 
 # Algolia Search
 algolia:
-  applicationID: 'PLAJ325ZJQ'
-  apiKey: 'ae9a53d026a058d73e422d44eb0bce08'
-  indexName: 'hexo'
+  applicationID: '17P8IIYLYC'
+  apiKey: '9846c7615cc932fcbafe390a4e311374'
+  adminApiKey: 
   chunkSize: 5000
+  indexName: "hexo"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title
