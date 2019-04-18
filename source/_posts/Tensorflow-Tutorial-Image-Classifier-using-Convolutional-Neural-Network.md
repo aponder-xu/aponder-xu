@@ -13,7 +13,7 @@ tags:
 在这个Tensorflow教程中，我们将使用Tensorflow构建一个基于卷积神经网络的图像分类器。如果您刚刚开始使用Tensorflow，那么最好[阅读这里的Tensorflow基本教程](https://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow/tensorflow-tutorial/)。
 
 为了演示如何构建基于卷积神经网络的图像分类器，我们将构建一个6层神经网络来识别和分离狗和猫的图像。我们将要构建的这个网络是一个非常小的网络，可以在CPU上运行它。传统的神经网络在图像分类中有较多的参数，如果在CPU上进行训练，会花费大量的时间。然而，在本文中，我是向您展示的是如何使用Tensorflow而不是参与[ILSVRC](http://image-net.org/challenges/LSVRC/)来构建一个真实的卷积神经网络。在开始学习Tensorflow教程之前，让我们先介绍一下卷积神经网络的基础知识。如果您已经熟悉卷积神经网（conv-nets），您可以转到第2部分，即Tensorflow教程。
-
+<!-- more -->
 ## 第1部分：卷积神经网络（CNN）基础
 
 神经网络本质上是求解优化问题的数学模型。它们由神经元构成，神经元是神经网络的基本计算单元。一个神经元接受一个输入（比方说：$x$），对它做一些计算（比方说：用一个变量$w$乘以它，再加上另一个变量$b$）来产生一个值（比方说：$z = wx + b$）。这个值被传递给一个叫做**激活函数f（activation function）**的非线性函数，以产生神经元的最终输出（激活）。激活函数有很多种，**Sigmoid**是常用的激活函数之一，数学公式为：
