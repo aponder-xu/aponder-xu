@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/han-css@3/dist/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '17P8IIYLYC',
+      apiKey: '9846c7615cc932fcbafe390a4e311374',
+      indexName: 'hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Mostly Used Linux Commands cd cd命令用来切换工作目录至dirname。 其中dirName表示法可为绝对路径或相对路径。若目录名称省略，则变换至使用者的home directory(也就是刚login时所在的目录)。另外，~也表示为home directory的意思，.则是表示目前所在的目录，..则表示目前目录位置的上一层目录。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mostly Used Linux Commands">
+<meta property="og:url" content="http://blog.aponder.top/2018/05/Mostly-Used-Linux-Commands/index.html">
+<meta property="og:site_name" content="aponder&#39;s blog">
+<meta property="og:description" content="Mostly Used Linux Commands cd cd命令用来切换工作目录至dirname。 其中dirName表示法可为绝对路径或相对路径。若目录名称省略，则变换至使用者的home directory(也就是刚login时所在的目录)。另外，~也表示为home directory的意思，.则是表示目前所在的目录，..则表示目前目录位置的上一层目录。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-02-02T05:23:00.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mostly Used Linux Commands">
+<meta name="twitter:description" content="Mostly Used Linux Commands cd cd命令用来切换工作目录至dirname。 其中dirName表示法可为绝对路径或相对路径。若目录名称省略，则变换至使用者的home directory(也就是刚login时所在的目录)。另外，~也表示为home directory的意思，.则是表示目前所在的目录，..则表示目前目录位置的上一层目录。">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://blog.aponder.top/2018/05/Mostly-Used-Linux-Commands/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mostly Used Linux Commands | aponder's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">aponder's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">dig world</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">10</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">3</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">19</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>Commonweal 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.aponder.top/2018/05/Mostly-Used-Linux-Commands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="aponder">
+      <meta itemprop="description" content="from 0 to 1">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="aponder's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Mostly Used Linux Commands
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-30 22:09:00" itemprop="dateCreated datePublished" datetime="2018-05-30T22:09:00+08:00">2018-05-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-02-02 13:23:00" itemprop="dateModified" datetime="2020-02-02T13:23:00+08:00">2020-02-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2018/05/Mostly-Used-Linux-Commands/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/Mostly-Used-Linux-Commands/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/05/Mostly-Used-Linux-Commands/" class="leancloud_visitors" data-flag-title="Mostly Used Linux Commands">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">34k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">42 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="mostly-used-linux-commands">Mostly Used Linux Commands</h1>
+<h2 id="cd">cd</h2>
+<p>cd命令用来切换工作目录至dirname。 其中dirName表示法可为绝对路径或相对路径。若目录名称省略，则变换至使用者的home directory(也就是刚login时所在的目录)。另外，~也表示为home directory的意思，.则是表示目前所在的目录，..则表示目前目录位置的上一层目录。 <a id="more"></a> ### 语法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> (选项) (参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-p 如果要切换到的目标目录是一个符号连接，直接切换到符号连接指向的目标目录</span><br><span class="line">-L 如果要切换的目标目录是一个符号的连接，直接切换到字符连接名代表的目录，而非符号连接所指向的目标目录。</span><br><span class="line">- 当仅实用<span class="string">"-"</span>一个选项时，当前工作目录将被切换到环境变量<span class="string">"OLDPWD"</span>所表示的目录。</span><br></pre></td></tr></table></figure>
+<h3 id="实例">实例</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>    进入用户主目录；</span><br><span class="line"><span class="built_in">cd</span> ~  进入用户主目录；</span><br><span class="line"><span class="built_in">cd</span> -  返回进入此目录之前所在的目录；</span><br><span class="line"><span class="built_in">cd</span> ..  返回上级目录（若当前目录为“/“，则执行完后还在“/<span class="string">"；"</span>..<span class="string">"为上级目录的意思）；</span></span><br><span class="line"><span class="string">cd ../..  返回上两级目录；</span></span><br><span class="line"><span class="string">cd !$  把上个命令的参数作为cd参数使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="ls">ls</h2>
+<p>ls命令用来显示目标列表，在Linux中是使用率较高的命令。ls命令的输出信息可以进行彩色加亮显示，以分区不同类型的文件。</p>
+<h3 id="语法">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls（选项）（参数）</span><br></pre></td></tr></table></figure>
+<h3 id="选项-1">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-a</span>：显示所有档案及目录（ls内定将档案名或目录名称为“.”的视为影藏，不会列出）；</span><br><span class="line">-A：显示除影藏文件“.”和“..”以外的所有文件列表；</span><br><span class="line">-C：多列显示输出结果。这是默认选项；</span><br><span class="line"><span class="_">-l</span>：与“-C”选项功能相反，所有输出信息用单列格式输出，不输出为多列；</span><br><span class="line">-F：在每个输出项后追加文件的类型标识符，具体含义：“*”表示具有可执行权限的普通文件，“/”表示目录，“@”表示符号链接，“|”表示命令管道FIFO，“=”表示sockets套接字。当文件为普通文件时，不输出任何标识符；</span><br><span class="line">-b：将文件中的不可输出的字符以反斜线“”加字符编码的方式输出；</span><br><span class="line">-c：与“<span class="_">-lt</span>”选项连用时，按照文件状态时间排序输出目录内容，排序的依据是文件的索引节点中的ctime字段。与“<span class="_">-l</span>”选项连用时，则排序的一句是文件的状态改变时间；</span><br><span class="line"><span class="_">-d</span>：仅显示目录名，而不显示目录下的内容列表。显示符号链接文件本身，而不显示其所指向的目录列表；</span><br><span class="line"><span class="_">-f</span>：此参数的效果和同时指定“aU”参数相同，并关闭“lst”参数的效果；</span><br><span class="line">-i：显示文件索引节点号（inode）。一个索引节点代表一个文件；</span><br><span class="line">--file-type：与“-F”选项的功能相同，但是不显示“*”；</span><br><span class="line">-k：以KB（千字节）为单位显示文件大小；</span><br><span class="line"><span class="_">-l</span>：以长格式显示目录下的内容列表。输出的信息从左到右依次包括文件名，文件类型、权限模式、硬连接数、所有者、组、文件大小和文件的最后修改时间等；</span><br><span class="line">-m：用“,”号区隔每个文件和目录的名称；</span><br><span class="line">-n：以用户识别码和群组识别码替代其名称；</span><br><span class="line">-r：以文件名反序排列并输出目录内容列表；</span><br><span class="line"><span class="_">-s</span>：显示文件和目录的大小，以区块为单位；</span><br><span class="line">-t：用文件和目录的更改时间排序；</span><br><span class="line">-L：如果遇到性质为符号链接的文件或目录，直接列出该链接所指向的原始文件或目录；</span><br><span class="line">-R：递归处理，将指定目录下的所有文件及子目录一并处理；</span><br><span class="line">--full-time：列出完整的日期与时间；</span><br><span class="line">--color[=WHEN]：使用不同的颜色高亮显示不同类型的。</span><br></pre></td></tr></table></figure>
+<h3 id="参数">参数</h3>
+<p>目录：指定要显示列表的目录，也可以是具体的文件。</p>
+<h3 id="实例-1">实例</h3>
+<p>显示当前目录下非影藏文件与目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">anaconda-ks.cfg  install.log  install.log.syslog  satools</span><br></pre></td></tr></table></figure>
+<p>显示当前目录下包括影藏文件在内的所有文件列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls -a</span></span><br><span class="line">.   anaconda-ks.cfg  .bash_logout   .bashrc  install.log         .mysql_history  satools  .tcshrc   .vimrc</span><br><span class="line">..  .bash_history    .bash_profile  .cshrc   install.log.syslog  .rnd            .ssh     .viminfo</span><br></pre></td></tr></table></figure>
+<p>输出长格式列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls -1</span></span><br><span class="line"></span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">install.log</span><br><span class="line">install.log.syslog</span><br><span class="line">satools</span><br></pre></td></tr></table></figure>
+<p>显示文件的inode信息</p>
+<p>索引节点（index inode简称为“inode”）是Linux中一个特殊的概念，具有相同的索引节点号的两个文本本质上是同一个文件（除文件名不同外）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls -i -l anaconda-ks.cfg install.log</span></span><br><span class="line">2345481 -rw------- 1 root root   859 Jun 11 22:49 anaconda-ks.cfg</span><br><span class="line">2345474 -rw-r--r-- 1 root root 13837 Jun 11 22:49 install.log</span><br></pre></td></tr></table></figure>
+<p>水平输出文件列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -m</span></span><br><span class="line"></span><br><span class="line">bin, boot, data, dev, etc, home, lib, lost+found, media, misc, mnt, opt, proc, root, sbin, selinux, srv, sys, tmp, usr, var</span><br></pre></td></tr></table></figure>
+<p>修改最后一次编辑的文件</p>
+<p>最近修改的文件显示在最上面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -t</span></span><br><span class="line"></span><br><span class="line">tmp  root  etc  dev  lib  boot  sys  proc  data  home  bin  sbin  usr  var  lost+found  media  mnt  opt  selinux  srv  misc</span><br></pre></td></tr></table></figure>
+<p>显示递归文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls -R</span></span><br><span class="line">.:</span><br><span class="line">anaconda-ks.cfg  install.log  install.log.syslog  satools</span><br><span class="line"></span><br><span class="line">./satools:</span><br><span class="line">black.txt  freemem.sh  iptables.sh  lnmp.sh  mysql  php502_check.sh  ssh_safe.sh</span><br></pre></td></tr></table></figure>
+<p>打印文件的UID和GID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -n</span></span><br><span class="line"></span><br><span class="line">total 254</span><br><span class="line">drwxr-xr-x   2 0 0  4096 Jun 12 04:03 bin</span><br><span class="line">drwxr-xr-x   4 0 0  1024 Jun 15 14:45 boot</span><br><span class="line">drwxr-xr-x   6 0 0  4096 Jun 12 10:26 data</span><br><span class="line">drwxr-xr-x  10 0 0  3520 Sep 26 15:38 dev</span><br><span class="line">drwxr-xr-x  75 0 0  4096 Oct 16 04:02 etc</span><br><span class="line">drwxr-xr-x   4 0 0  4096 Jun 12 10:26 home</span><br><span class="line">drwxr-xr-x  14 0 0 12288 Jun 16 04:02 lib</span><br><span class="line">drwx------   2 0 0 16384 Jun 11 22:46 lost+found</span><br><span class="line">drwxr-xr-x   2 0 0  4096 May 11  2011 media</span><br><span class="line">drwxr-xr-x   2 0 0  4096 Nov  8  2010 misc</span><br><span class="line">drwxr-xr-x   2 0 0  4096 May 11  2011 mnt</span><br><span class="line">drwxr-xr-x   2 0 0  4096 May 11  2011 opt</span><br><span class="line">dr-xr-xr-x 232 0 0     0 Jun 15 11:04 proc</span><br><span class="line">drwxr-x---   4 0 0  4096 Oct 15 14:43 root</span><br><span class="line">drwxr-xr-x   2 0 0 12288 Jun 12 04:03 sbin</span><br><span class="line">drwxr-xr-x   2 0 0  4096 May 11  2011 selinux</span><br><span class="line">drwxr-xr-x   2 0 0  4096 May 11  2011 srv</span><br><span class="line">drwxr-xr-x  11 0 0     0 Jun 15 11:04 sys</span><br><span class="line">drwxrwxrwt   3 0 0 98304 Oct 16 08:45 tmp</span><br><span class="line">drwxr-xr-x  13 0 0  4096 Jun 11 23:38 usr</span><br><span class="line">drwxr-xr-x  19 0 0  4096 Jun 11 23:38 var</span><br></pre></td></tr></table></figure>
+<p>列出文件和文件夹的详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -l</span></span><br><span class="line"></span><br><span class="line">total 254</span><br><span class="line">drwxr-xr-x   2 root root  4096 Jun 12 04:03 bin</span><br><span class="line">drwxr-xr-x   4 root root  1024 Jun 15 14:45 boot</span><br><span class="line">drwxr-xr-x   6 root root  4096 Jun 12 10:26 data</span><br><span class="line">drwxr-xr-x  10 root root  3520 Sep 26 15:38 dev</span><br><span class="line">drwxr-xr-x  75 root root  4096 Oct 16 04:02 etc</span><br><span class="line">drwxr-xr-x   4 root root  4096 Jun 12 10:26 home</span><br><span class="line">drwxr-xr-x  14 root root 12288 Jun 16 04:02 lib</span><br><span class="line">drwx------   2 root root 16384 Jun 11 22:46 lost+found</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 media</span><br><span class="line">drwxr-xr-x   2 root root  4096 Nov  8  2010 misc</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 mnt</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 opt</span><br><span class="line">dr-xr-xr-x 232 root root     0 Jun 15 11:04 proc</span><br><span class="line">drwxr-x---   4 root root  4096 Oct 15 14:43 root</span><br><span class="line">drwxr-xr-x   2 root root 12288 Jun 12 04:03 sbin</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 selinux</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 srv</span><br><span class="line">drwxr-xr-x  11 root root     0 Jun 15 11:04 sys</span><br><span class="line">drwxrwxrwt   3 root root 98304 Oct 16 08:48 tmp</span><br><span class="line">drwxr-xr-x  13 root root  4096 Jun 11 23:38 usr</span><br><span class="line">drwxr-xr-x  19 root root  4096 Jun 11 23:38 var</span><br></pre></td></tr></table></figure>
+<p>列出可读文件和文件夹详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -lh</span></span><br><span class="line"></span><br><span class="line">total 254K</span><br><span class="line">drwxr-xr-x   2 root root 4.0K Jun 12 04:03 bin</span><br><span class="line">drwxr-xr-x   4 root root 1.0K Jun 15 14:45 boot</span><br><span class="line">drwxr-xr-x   6 root root 4.0K Jun 12 10:26 data</span><br><span class="line">drwxr-xr-x  10 root root 3.5K Sep 26 15:38 dev</span><br><span class="line">drwxr-xr-x  75 root root 4.0K Oct 16 04:02 etc</span><br><span class="line">drwxr-xr-x   4 root root 4.0K Jun 12 10:26 home</span><br><span class="line">drwxr-xr-x  14 root root  12K Jun 16 04:02 lib</span><br><span class="line">drwx------   2 root root  16K Jun 11 22:46 lost+found</span><br><span class="line">drwxr-xr-x   2 root root 4.0K May 11  2011 media</span><br><span class="line">drwxr-xr-x   2 root root 4.0K Nov  8  2010 misc</span><br><span class="line">drwxr-xr-x   2 root root 4.0K May 11  2011 mnt</span><br><span class="line">drwxr-xr-x   2 root root 4.0K May 11  2011 opt</span><br><span class="line">dr-xr-xr-x 235 root root    0 Jun 15 11:04 proc</span><br><span class="line">drwxr-x---   4 root root 4.0K Oct 15 14:43 root</span><br><span class="line">drwxr-xr-x   2 root root  12K Jun 12 04:03 sbin</span><br><span class="line">drwxr-xr-x   2 root root 4.0K May 11  2011 selinux</span><br><span class="line">drwxr-xr-x   2 root root 4.0K May 11  2011 srv</span><br><span class="line">drwxr-xr-x  11 root root    0 Jun 15 11:04 sys</span><br><span class="line">drwxrwxrwt   3 root root  96K Oct 16 08:49 tmp</span><br><span class="line">drwxr-xr-x  13 root root 4.0K Jun 11 23:38 usr</span><br><span class="line">drwxr-xr-x  19 root root 4.0K Jun 11 23:38 var</span><br></pre></td></tr></table></figure>
+<p>显示文件夹信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -ld /etc/</span></span><br><span class="line"></span><br><span class="line">drwxr-xr-x 75 root root 4096 Oct 16 04:02 /etc/</span><br></pre></td></tr></table></figure>
+<p>按时间列出文件和文件夹详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -lt</span></span><br><span class="line"></span><br><span class="line">total 254</span><br><span class="line">drwxrwxrwt   3 root root 98304 Oct 16 08:53 tmp</span><br><span class="line">drwxr-xr-x  75 root root  4096 Oct 16 04:02 etc</span><br><span class="line">drwxr-x---   4 root root  4096 Oct 15 14:43 root</span><br><span class="line">drwxr-xr-x  10 root root  3520 Sep 26 15:38 dev</span><br><span class="line">drwxr-xr-x  14 root root 12288 Jun 16 04:02 lib</span><br><span class="line">drwxr-xr-x   4 root root  1024 Jun 15 14:45 boot</span><br><span class="line">drwxr-xr-x  11 root root     0 Jun 15 11:04 sys</span><br><span class="line">dr-xr-xr-x 232 root root     0 Jun 15 11:04 proc</span><br><span class="line">drwxr-xr-x   6 root root  4096 Jun 12 10:26 data</span><br><span class="line">drwxr-xr-x   4 root root  4096 Jun 12 10:26 home</span><br><span class="line">drwxr-xr-x   2 root root  4096 Jun 12 04:03 bin</span><br><span class="line">drwxr-xr-x   2 root root 12288 Jun 12 04:03 sbin</span><br><span class="line">drwxr-xr-x  13 root root  4096 Jun 11 23:38 usr</span><br><span class="line">drwxr-xr-x  19 root root  4096 Jun 11 23:38 var</span><br><span class="line">drwx------   2 root root 16384 Jun 11 22:46 lost+found</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 media</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 mnt</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 opt</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 selinux</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 srv</span><br><span class="line">drwxr-xr-x   2 root root  4096 Nov  8  2010 misc</span><br></pre></td></tr></table></figure>
+<p>按修改时间列出文件和文件夹详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># ls -ltr</span></span><br><span class="line"></span><br><span class="line">total 254</span><br><span class="line">drwxr-xr-x   2 root root  4096 Nov  8  2010 misc</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 srv</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 selinux</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 opt</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 mnt</span><br><span class="line">drwxr-xr-x   2 root root  4096 May 11  2011 media</span><br><span class="line">drwx------   2 root root 16384 Jun 11 22:46 lost+found</span><br><span class="line">drwxr-xr-x  19 root root  4096 Jun 11 23:38 var</span><br><span class="line">drwxr-xr-x  13 root root  4096 Jun 11 23:38 usr</span><br><span class="line">drwxr-xr-x   2 root root 12288 Jun 12 04:03 sbin</span><br><span class="line">drwxr-xr-x   2 root root  4096 Jun 12 04:03 bin</span><br><span class="line">drwxr-xr-x   4 root root  4096 Jun 12 10:26 home</span><br><span class="line">drwxr-xr-x   6 root root  4096 Jun 12 10:26 data</span><br><span class="line">dr-xr-xr-x 232 root root     0 Jun 15 11:04 proc</span><br><span class="line">drwxr-xr-x  11 root root     0 Jun 15 11:04 sys</span><br><span class="line">drwxr-xr-x   4 root root  1024 Jun 15 14:45 boot</span><br><span class="line">drwxr-xr-x  14 root root 12288 Jun 16 04:02 lib</span><br><span class="line">drwxr-xr-x  10 root root  3520 Sep 26 15:38 dev</span><br><span class="line">drwxr-x---   4 root root  4096 Oct 15 14:43 root</span><br><span class="line">drwxr-xr-x  75 root root  4096 Oct 16 04:02 etc</span><br><span class="line">drwxrwxrwt   3 root root 98304 Oct 16 08:54 tmp</span><br></pre></td></tr></table></figure>
+<p>按照特殊字符对文件进行分类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost nginx-1.2.1]<span class="comment"># ls -F</span></span><br><span class="line"></span><br><span class="line">auto/  CHANGES  CHANGES.ru  conf/  configure*  contrib/  html/  LICENSE  Makefile  man/  objs/  README  src/</span><br></pre></td></tr></table></figure>
+<p>列出文件并标记颜色分类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost nginx-1.2.1]<span class="comment"># ls --color=auto</span></span><br><span class="line"></span><br><span class="line">auto  CHANGES  CHANGES.ru  conf  configure  contrib  html  LICENSE  Makefile  man  objs  README  src</span><br></pre></td></tr></table></figure>
+<h2 id="mkdir">mkdir</h2>
+<p>mkdir命令用来创建目录。该命令创建由dirname命名的目录。如果在目录名的前面没有加任何路径名，则在当前目录下创建由dirname指定的目录；如果给出了一个已经存在的路径，将会在该目录下创建一个指定的目录。在创建目录时，应保证新建的目录与它所在目录下的文件没有重名。</p>
+<p>注意：在创建文件时，不要把所有的文件都存放在主目录中，可以创建子目录，通过它们来更有效地组织文件。最好采用前后一致的命名方式来区分文件和目录。例如，目录名可以以大写字母开头，这样，在目录列表中目录名就出现在前面。</p>
+<p>在一个子目录中应包含类型相似或用途相近的文件。例如，应建立一个子目录，它包含所有的数据库文件，另有一个子目录应包含电子表格文件，还有一个子目录应包含文字处理文档，等等。目录也是文件，它们和普通文件一样遵循相同的命名规则，并且利用全路径可以唯一地指定一个目录。</p>
+<h3 id="语法-1">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir (选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-2">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-Z：设置安全上下文，当使用SELinux时有效；</span><br><span class="line">-m&lt;目标属性&gt;或--mode&lt;目标属性&gt;建立目录的同时设置目录的权限；</span><br><span class="line">-p或--parents 若所要建立目录的上层目录目前尚未建立，则会一并建立上层目录；</span><br><span class="line">--version 显示版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-1">参数</h3>
+<p>目录：指定要创建的目录列表，多个目录之间用空格隔开。</p>
+<h3 id="实例-2">实例</h3>
+<p>在目录/usr/meng下建立子目录test，并且只有文件主有读、写和执行权限，其他人无权访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -m 700 /usr/meng/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>在当前目录中建立bin和bin下的os_1目录，权限设置为文件主可读、写、执行，同组用户可读和执行，其他用户无权访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p-m 750 bin/os_1</span><br></pre></td></tr></table></figure>
+<h2 id="rmdir">rmdir</h2>
+<p>rmdir命令用来删除空目录。当目录不再被使用时，或者磁盘空间已到达使用限定值，就需要删除失去使用价值的目录。利用rmdir命令可以从一个目录中删除一个或多个空的子目录。该命令从一个目录中删除一个或多个子目录，其中dirname佬表示目录名。如果dirname中没有指定路径，则删除当前目录下由dirname指定的目录；如dirname中包含路径，则删除指定位置的目录。删除目录时，必须具有对其父目录的写权限。</p>
+<p>注意：子目录被删除之前应该是空目录。就是说，该目录中的所有文件必须用rm命令全部，另外，当前工作目录必须在被删除目录之上，不能是被删除目录本身，也不能是被删除目录的子目录。</p>
+<p>虽然还可以用带有-r选项的rm命令递归删除一个目录中的所有文件和该目录本身，但是这样做存在很大的危险性。</p>
+<h3 id="语法-2">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-3">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-p或--parents：删除指定目录后，若该目录的上层目录已变成空目录，则将其一并删除；</span><br><span class="line">--ignore-fail-on-non-empty：此选项使rmdir命令忽略由于删除非空目录时导致的错误信息；</span><br><span class="line">-v或-verboes：显示命令的详细执行过程；</span><br><span class="line">--help：显示命令的帮助信息；</span><br><span class="line">--version：显示命令的版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-2">参数</h3>
+<p>目录列表：要删除的空目录列表。当删除多个空目录时，目录名之间使用空格隔开。</p>
+<h3 id="实例-3">实例</h3>
+<p>删除子目录os_1和其父目录bin</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/meng/<span class="built_in">test</span></span><br><span class="line">rmdir -p bin/os_1</span><br></pre></td></tr></table></figure>
+<h2 id="pwd">pwd</h2>
+<p>pwd命令以绝对路径的方式显示用户当前工作目录。命令将当前目录的全路径名称（从根目录）写入标准输出。全部目录使用/分隔。第一个/表示根目录，最后一个目录是当前目录。执行pwd命令可立刻得知您目前所在的工作目录的绝对路径名称。</p>
+<h3 id="语法-3">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span>（选项）</span><br></pre></td></tr></table></figure>
+<h3 id="选项-4">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--help：显示帮助信息；</span><br><span class="line">--version：显示版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="实例-4">实例</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># pwd</span></span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
+<h2 id="cp">cp</h2>
+<p>cp命令用来将一个或多个源文件或者目录复制到指定的目的文件或目录。它可以将单个源文件复制成一个指定文件名的具体的文件或一个已经存在的目录下。cp命令还支持同时复制多个文件，当一次复制多个文件时，目标文件参数必须是一个已经存在的目录，否则将出现错误。</p>
+<h3 id="语法-4">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-5">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-a</span>：此参数的效果和同时指定<span class="string">"-dpR"</span>参数相同；</span><br><span class="line"><span class="_">-d</span>：当复制符号连接时，把目标文件或目录也建立为符号连接，并指向与源文件或目录连接的原始文件或目录；</span><br><span class="line"><span class="_">-f</span>：强行复制文件或目录，不论目标文件或目录是否已存在；</span><br><span class="line">-i：覆盖既有文件之前先询问用户；</span><br><span class="line"><span class="_">-l</span>：对源文件建立硬连接，而非复制文件；</span><br><span class="line">-p：保留源文件或目录的属性；</span><br><span class="line">-R/r：递归处理，将指定目录下的所有文件与子目录一并处理；</span><br><span class="line"><span class="_">-s</span>：对源文件建立符号连接，而非复制文件；</span><br><span class="line">-u：使用这项参数后只会在源文件的更改时间较目标文件更新时或是名称相互对应的目标文件并不存在时，才复制文件；</span><br><span class="line">-S：在备份文件时，用指定的后缀“SUFFIX”代替文件的默认后缀；</span><br><span class="line">-b：覆盖已存在的文件目标前将目标文件备份；</span><br><span class="line">-v：详细显示命令执行的操作。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-3">参数</h3>
+<ul>
+<li><p>源文件：制定源文件列表。默认情况下，cp命令不能复制目录，如果要复制目录，则必须使用-R选项；</p></li>
+<li><p>目标文件：指定目标文件。当“源文件”为多个文件时，要求“目标文件”为指定的目录。</p></li>
+</ul>
+<h3 id="实例-5">实例</h3>
+<p>如果把一个文件复制到一个目标文件中，而目标文件已经存在，那么，该目标文件的内容将被破坏。此命令中所有参数既可以是绝对路径名，也可以是相对路径名。通常会用到点.或点点..的形式。例如，下面的命令将指定文件复制到当前目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ../mary/homework/assign .</span><br></pre></td></tr></table></figure>
+<p>所有目标文件指定的目录必须是己经存在的，cp命令不能创建目录。如果没有文件复制的权限，则系统会显示出错信息。</p>
+<p>将文件file复制到目录/usr/men/tmp下，并改名为file1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file /usr/men/tmp/file1</span><br></pre></td></tr></table></figure>
+<p>将目录/usr/men下的所有文件及其子目录复制到目录/usr/zh中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r /usr/men /usr/zh</span><br></pre></td></tr></table></figure>
+<p>交互式地将目录/usr/men中的以m打头的所有.c文件复制到目录/usr/zh中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -i /usr/men m*.c /usr/zh</span><br></pre></td></tr></table></figure>
+<p>我们在Linux下使用cp命令复制文件时候，有时候会需要覆盖一些同名文件，覆盖文件的时候都会有提示：需要不停的按Y来确定执行覆盖。文件数量不多还好，但是要是几百个估计按Y都要吐血了，于是折腾来半天总结了一个方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cp aaa/* /bbb</span><br><span class="line">复制目录aaa下所有到/bbb目录下，这时如果/bbb目录下有和aaa同名的文件，需要按Y来确认并且会略过aaa目录下的子目录。</span><br><span class="line"></span><br><span class="line">cp -r aaa/* /bbb</span><br><span class="line">这次依然需要按Y来确认操作，但是没有忽略子目录。</span><br><span class="line"></span><br><span class="line">cp -r <span class="_">-a</span> aaa/* /bbb</span><br><span class="line">依然需要按Y来确认操作，并且把aaa目录以及子目录和文件属性也传递到了/bbb。</span><br><span class="line"></span><br><span class="line">\cp -r <span class="_">-a</span> aaa/* /bbb</span><br><span class="line">成功，没有提示按Y、传递了目录属性、没有略过目录。</span><br></pre></td></tr></table></figure>
+<h2 id="mv">mv</h2>
+<p>mv命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。source表示源文件或目录，target表示目标文件或目录。如果将一个文件移到一个已经存在的目标文件中，则目标文件的内容将被覆盖。</p>
+<p>mv命令可以用来将源文件移至一个目标文件中，或将一组文件移至一个目标目录中。源文件被移至目标文件有两种不同的结果：</p>
+<ul>
+<li><p>如果目标文件是到某一目录文件的路径，源文件会被移到此目录下，且文件名不变。</p></li>
+<li><p>如果目标文件不是目录文件，则源文件名（只能有一个）会变为此目标文件名，并覆盖己存在的同名文件。如果源文件和目标文件在同一个目录下，mv的作用就是改文件名。当目标文件是目录文件时，源文件或目录参数可以有多个，则所有的源文件都会被移至目标文件中。所有移到该目录下的文件都将保留以前的文件名。</p></li>
+</ul>
+<p>注意事项：mv与cp的结果不同，mv好像文件“搬家”，文件个数并未增加。而cp对文件进行复制，文件个数增加了。</p>
+<h3 id="语法-5">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-6">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">--backup=&lt;备份模式&gt;：若需覆盖文件，则覆盖前先行备份；</span><br><span class="line">-b：当文件存在时，覆盖前，为其创建一个备份；</span><br><span class="line"><span class="_">-f</span>：若目标文件或目录与现有的文件或目录重复，则直接覆盖现有的文件或目录；</span><br><span class="line">-i：交互式操作，覆盖前先行询问用户，如果源文件与目标文件或目标目录中的文件同名，则询问用户是否覆盖目标文件。用户输入”y”，表示将覆盖目标文件；输入”n”，表示取消对源文件的移动。这样可以避免误将文件覆盖。</span><br><span class="line">--strip-trailing-slashes：删除源文件中的斜杠“/”；</span><br><span class="line">-S&lt;后缀&gt;：为备份文件指定后缀，而不使用默认的后缀；</span><br><span class="line">--target-directory=&lt;目录&gt;：指定源文件要移动到目标目录；</span><br><span class="line">-u：当源文件比目标文件新或者目标文件不存在时，才执行移动操作。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-4">参数</h3>
+<ul>
+<li><p>源文件：源文件列表。</p></li>
+<li><p>目标文件：如果“目标文件”是文件名则在移动文件的同时，将其改名为“目标文件”；如果“目标文件”是目录名则将源文件移动到“目标文件”下。</p></li>
+</ul>
+<h3 id="实例-6">实例</h3>
+<p>将文件ex3改名为new1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv ex3 new1</span><br></pre></td></tr></table></figure>
+<p>将目录/usr/men中的所有文件移到当前目录（用.表示）中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/men/* .</span><br></pre></td></tr></table></figure>
+<h2 id="rm">rm</h2>
+<p>rm命令可以删除一个目录中的一个或多个文件或目录，也可以将某个目录及其下属的所有文件及其子目录均删除掉。对于链接文件，只是删除整个链接文件，而原有文件保持不变。</p>
+<p>注意：使用rm命令要格外小心。因为一旦删除了一个文件，就无法再恢复它。所以，在删除文件之前，最好再看一下文件的内容，确定是否真要删除。rm命令可以用-i选项，这个选项在使用文件扩展名字符删除多个文件时特别有用。使用这个选项，系统会要求你逐一确定是否要删除。这时，必须输入y并按Enter键，才能删除文件。如果仅按Enter键或其他字符，文件不会被删除。</p>
+<h3 id="语法-6">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm (选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-7">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-d</span>：直接把欲删除的目录的硬连接数据删除成0，删除该目录；</span><br><span class="line"><span class="_">-f</span>：强制删除文件或目录；</span><br><span class="line">-i：删除已有文件或目录之前先询问用户；</span><br><span class="line">-r或-R：递归处理，将指定目录下的所有文件与子目录一并处理；</span><br><span class="line">--preserve-root：不对根目录进行递归操作；</span><br><span class="line">-v：显示指令的详细执行过程。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-5">参数</h3>
+<p>文件：指定被删除的文件列表，如果参数中含有目录，则必须加上-r或者-R选项。</p>
+<h3 id="实例-7">实例</h3>
+<p>交互式删除当前目录下的文件test和example</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -i <span class="built_in">test</span> example</span><br><span class="line">Remove <span class="built_in">test</span> ?n（不删除文件<span class="built_in">test</span>)</span><br><span class="line">Remove example ?y（删除文件example)</span><br></pre></td></tr></table></figure>
+<p>删除当前目录下除隐含文件外的所有文件和子目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rm -r *</span></span><br></pre></td></tr></table></figure>
+<p>应注意，这样做是非常危险的!</p>
+<h2 id="sudo">sudo</h2>
+<p>sudo命令用来以其他身份来执行命令，预设的身份为root。在/etc/sudoers中设置了可执行sudo指令的用户。若其未经授权的用户企图使用sudo，则会发出警告的邮件给管理员。用户使用sudo时，必须先输入密码，之后有5分钟的有效期限，超过期限则必须重新输入密码。</p>
+<h3 id="语法-7">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-8">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-b：在后台执行指令；</span><br><span class="line">-h：显示帮助；</span><br><span class="line">-H：将HOME环境变量设为新身份的HOME环境变量；</span><br><span class="line">-k：结束密码的有效期限，也就是下次再执行sudo时便需要输入密码；。</span><br><span class="line"><span class="_">-l</span>：列出目前用户可执行与无法执行的指令；</span><br><span class="line">-p：改变询问密码的提示符号；</span><br><span class="line"><span class="_">-s</span>&lt;shell&gt;：执行指定的shell；</span><br><span class="line">-u&lt;用户&gt;：以指定的用户作为新的身份。若不加上此参数，则预设以root作为新的身份；</span><br><span class="line">-v：延长密码有效期限5分钟；</span><br><span class="line">-V ：显示版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-6">参数</h3>
+<p>指令：需要运行的指令和对应的参数。</p>
+<h3 id="实例-8">实例</h3>
+<p>配置sudo必须通过编辑/etc/sudoers文件，而且只有超级用户才可以修改它，还必须使用visudo编辑。之所以使用visudo有两个原因，一是它能够防止两个用户同时修改它；二是它也能进行有限的语法检查。所以，即使只有你一个超级用户，你也最好用visudo来检查一下语法。</p>
+<p>visudo默认的是在vi里打开配置文件，用vi来修改文件。我们可以在编译时修改这个默认项。visudo不会擅自保存带有语法错误的配置文件，它会提示你出现的问题，并询问该如何处理，就像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudoers file: syntax error, line 22 &lt;&lt;</span><br></pre></td></tr></table></figure>
+<p>此时我们有三种选择：键入“e”是重新编辑，键入“x”是不保存退出，键入“Q”是退出并保存。如果真选择Q，那么sudo将不会再运行，直到错误被纠正。</p>
+<p>现在，我们一起来看一下神秘的配置文件，学一下如何编写它。让我们从一个简单的例子开始：让用户Foobar可以通过sudo执行所有root可执行的命令。以root身份用visudo打开配置文件，可以看到类似下面几行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Runas alias specification</span></span><br><span class="line"><span class="comment"># User privilege specificationroot    ALL=(ALL)ALL</span></span><br></pre></td></tr></table></figure>
+<p>我们一看就明白个差不多了，root有所有权限，只要仿照现有root的例子就行，我们在下面加一行（最好用tab作为空白）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foobar ALL=(ALL)    ALL</span><br></pre></td></tr></table></figure>
+<p>保存退出后，切换到foobar用户，我们用它的身份执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[foobar@localhost ~]$ ls /root</span><br><span class="line">ls: /root: 权限不够</span><br><span class="line"></span><br><span class="line">[foobar@localhost ~]$ sudo ls /root</span><br><span class="line">PassWord:</span><br><span class="line">anaconda-ks.cfg Desktop install.log install.log.syslog</span><br></pre></td></tr></table></figure>
+<p>好了，我们限制一下foobar的权利，不让他为所欲为。比如我们只想让他像root那样使用ls和ifconfig，把那一行改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foobar localhost=    /sbin/ifconfig,   /bin/ls</span><br></pre></td></tr></table></figure>
+<p>再来执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[foobar@localhost ~]$ sudo head -5 /etc/shadow</span><br><span class="line">Password:</span><br><span class="line">Sorry, user foobar is not allowed to execute <span class="string">'/usr/bin/head -5 /etc/shadow'</span> as root on localhost.localdomain.</span><br><span class="line"></span><br><span class="line">[foobar@localhost ~]$ sudo /sbin/ifconfigeth0      Linkencap:Ethernet HWaddr 00:14:85:EC:E9:9B...</span><br></pre></td></tr></table></figure>
+<p>现在让我们来看一下那三个ALL到底是什么意思。第一个ALL是指网络中的主机，我们后面把它改成了主机名，它指明foobar可以在此主机上执行后面的命令。第二个括号里的ALL是指目标用户，也就是以谁的身份去执行命令。最后一个ALL当然就是指命令名了。例如，我们想让foobar用户在linux主机上以jimmy或rene的身份执行kill命令，这样编写配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foobar    linux=(jimmy,rene)    /bin/<span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
+<p>但这还有个问题，foobar到底以jimmy还是rene的身份执行？这时我们应该想到了sudo -u了，它正是用在这种时候。 foobar可以使用sudo -u jimmy kill PID或者sudo -u rene kill PID，但这样挺麻烦，其实我们可以不必每次加-u，把rene或jimmy设为默认的目标用户即可。再在上面加一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Defaults:foobar    runas_default=rene</span><br></pre></td></tr></table></figure>
+<p>Defaults后面如果有冒号，是对后面用户的默认，如果没有，则是对所有用户的默认。就像配置文件中自带的一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Defaults    env_reset</span><br></pre></td></tr></table></figure>
+<p>另一个问题是，很多时候，我们本来就登录了，每次使用sudo还要输入密码就显得烦琐了。我们可不可以不再输入密码呢？当然可以，我们这样修改配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foobar localhost=NOPASSWD:     /bin/cat, /bin/ls</span><br></pre></td></tr></table></figure>
+<p>再来sudo一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[foobar@localhost ~]$ sudo ls /rootanaconda-ks.cfg Desktop install.log</span><br><span class="line">install.log.syslog</span><br></pre></td></tr></table></figure>
+<p>当然，你也可以说“某些命令用户foobar不可以运行”，通过使用!操作符，但这不是一个好主意。因为，用!操作符来从ALL中“剔出”一些命令一般是没什么效果的，一个用户完全可以把那个命令拷贝到别的地方，换一个名字后再来运行。</p>
+<p>日志与安全</p>
+<p>sudo为安全考虑得很周到，不仅可以记录日志，还能在有必要时向系统管理员报告。但是，sudo的日志功能不是自动的，必须由管理员开启。这样来做：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch /var/<span class="built_in">log</span>/sudo</span><br><span class="line">vi /etc/syslog.conf</span><br></pre></td></tr></table></figure>
+<p>在syslog.conf最后面加一行（必须用tab分割开）并保存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">local</span>2.debug                    /var/<span class="built_in">log</span>/sudo</span><br></pre></td></tr></table></figure>
+<p>重启日志守候进程，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux grep syslogd</span><br></pre></td></tr></table></figure>
+<p>把得到的syslogd进程的PID（输出的第二列是PID）填入下面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> –HUP PID</span><br></pre></td></tr></table></figure>
+<p>这样，sudo就可以写日志了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[foobar@localhost ~]$ sudo ls /rootanaconda-ks.cfg</span><br><span class="line">Desktop install.log</span><br><span class="line">install.log.syslog</span><br><span class="line"><span class="variable">$cat</span> /var/<span class="built_in">log</span>/sudoJul 28 22:52:54 localhost sudo:   foobar :</span><br><span class="line">TTY=pts/1 ; <span class="built_in">pwd</span>=/home/foobar ; USER=root ; <span class="built_in">command</span>=/bin/ls /root</span><br></pre></td></tr></table></figure>
+<p>不过，有一个小小的“缺陷”，sudo记录日志并不是很忠实：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[foobar@localhost ~]$ sudo cat /etc/shadow &gt; /dev/null</span><br><span class="line">cat /var/<span class="built_in">log</span>/sudo...Jul 28 23:10:24 localhost sudo:   foobar : TTY=pts/1 ;</span><br><span class="line">PWD=/home/foobar ; USER=root ; COMMAND=/bin/cat /etc/shadow</span><br></pre></td></tr></table></figure>
+<p>重定向没有被记录在案！为什么？因为在命令运行之前，shell把重定向的工作做完了，sudo根本就没看到重定向。这也有个好处，下面的手段不会得逞：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[foobar@localhost ~]$ sudo ls /root &gt; /etc/shadowbash: /etc/shadow: 权限不够</span><br></pre></td></tr></table></figure>
+<p>sudo 有自己的方式来保护安全。以root的身份执行sudo-V，查看一下sudo的设置。因为考虑到安全问题，一部分环境变量并没有传递给sudo后面的命令，或者被检查后再传递的，比如：PATH，HOME，SHELL等。当然，你也可以通过sudoers来配置这些环境变量。</p>
+<h2 id="ping">ping</h2>
+<p>ping命令用来测试主机之间网络的连通性。执行ping指令会使用ICMP传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常。</p>
+<h3 id="语法-8">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-9">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-d</span>：使用Socket的SO_DEBUG功能；</span><br><span class="line">-c&lt;完成次数&gt;：设置完成要求回应的次数；</span><br><span class="line"><span class="_">-f</span>：极限检测；</span><br><span class="line">-i&lt;间隔秒数&gt;：指定收发信息的间隔时间；</span><br><span class="line">-I&lt;网络界面&gt;：使用指定的网络界面送出数据包；</span><br><span class="line"><span class="_">-l</span>&lt;前置载入&gt;：设置在送出要求信息之前，先行发出的数据包；</span><br><span class="line">-n：只输出数值；</span><br><span class="line">-p&lt;范本样式&gt;：设置填满数据包的范本样式；</span><br><span class="line">-q：不显示指令执行过程，开头和结尾的相关信息除外；</span><br><span class="line">-r：忽略普通的Routing Table，直接将数据包送到远端主机上；</span><br><span class="line">-R：记录路由过程；</span><br><span class="line"><span class="_">-s</span>&lt;数据包大小&gt;：设置数据包的大小；</span><br><span class="line">-t&lt;存活数值&gt;：设置存活数值TTL的大小；</span><br><span class="line">-v：详细显示指令的执行过程。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-7">参数</h3>
+<p>目的主机：指定发送ICMP报文的目的主机。</p>
+<h3 id="实例-9">实例</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@AY1307311912260196<span class="built_in">fc</span>Z ~]<span class="comment"># ping www.linuxde.net</span></span><br><span class="line">PING host.1.linuxde.net (100.42.212.8) 56(84) bytes of data.</span><br><span class="line">64 bytes from 100-42-212-8.static.webnx.com (100.42.212.8): icmp_seq=1 ttl=50 time=177 ms</span><br><span class="line">64 bytes from 100-42-212-8.static.webnx.com (100.42.212.8): icmp_seq=2 ttl=50 time=178 ms</span><br><span class="line">64 bytes from 100-42-212-8.static.webnx.com (100.42.212.8): icmp_seq=3 ttl=50 time=174 ms</span><br><span class="line">64 bytes from 100-42-212-8.static.webnx.com (100.42.212.8): icmp_seq=4 ttl=50 time=177 ms</span><br><span class="line">...按Ctrl+C结束</span><br><span class="line"></span><br><span class="line">--- host.1.linuxde.net ping statistics ---</span><br><span class="line">4 packets transmitted, 4 received, 0% packet loss, time 2998ms</span><br><span class="line">rtt min/avg/max/mdev = 174.068/176.916/178.182/1.683 ms</span><br></pre></td></tr></table></figure>
+<h2 id="tar">tar</h2>
+<p>tar命令可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用tar命令，可以把一大堆的文件和目录全部打包成一个文件，这对于备份文件或将几个文件组合成为一个文件以便于网络传输是非常有用的。</p>
+<p>首先要弄清两个概念：打包和压缩。打包是指将一大堆文件或目录变成一个总的文件；压缩则是将一个大的文件通过一些压缩算法变成一个小文件。</p>
+<p>为什么要区分这两个概念呢？这源于Linux中很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你得先将这一大堆文件先打成一个包（tar命令），然后再用压缩程序进行压缩（gzip bzip2命令）。</p>
+<h3 id="语法-9">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-10">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-A或--catenate：新增文件到以存在的备份文件；</span><br><span class="line">-B：设置区块大小；</span><br><span class="line">-c或--create：建立新的备份文件；</span><br><span class="line">-C &lt;目录&gt;：这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项。</span><br><span class="line"><span class="_">-d</span>：记录文件的差别；</span><br><span class="line">-x或--extract或--get：从备份文件中还原文件；</span><br><span class="line">-t或--list：列出备份文件的内容；</span><br><span class="line">-z或--gzip或--ungzip：通过gzip指令处理备份文件；</span><br><span class="line">-Z或--compress或--uncompress：通过compress指令处理备份文件；</span><br><span class="line"><span class="_">-f</span>&lt;备份文件&gt;或--file=&lt;备份文件&gt;：指定备份文件；</span><br><span class="line">-v或--verbose：显示指令执行过程；</span><br><span class="line">-r：添加文件到已经压缩的文件；</span><br><span class="line">-u：添加改变了和现有的文件到已经存在的压缩文件；</span><br><span class="line">-j：支持bzip2解压文件；</span><br><span class="line">-v：显示操作过程；</span><br><span class="line"><span class="_">-l</span>：文件系统边界设置；</span><br><span class="line">-k：保留原有文件不覆盖；</span><br><span class="line">-m：保留文件不被覆盖；</span><br><span class="line">-w：确认压缩文件的正确性；</span><br><span class="line">-p或--same-permissions：用原来的文件权限还原文件；</span><br><span class="line">-P或--absolute-names：文件名使用绝对名称，不移除文件名称前的“/”号；</span><br><span class="line">-N &lt;日期格式&gt; 或 --newer=&lt;日期时间&gt;：只将较指定日期更新的文件保存到备份文件里；</span><br><span class="line">--exclude=&lt;范本样式&gt;：排除符合范本样式的文件。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-8">参数</h3>
+<p>文件或目录：指定要打包的文件或目录列表。</p>
+<h3 id="实例-10">实例</h3>
+<p>将文件全部打包成tar包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf log.tar <span class="built_in">log</span>2012.log    仅打包，不压缩！ </span><br><span class="line">tar -zcvf log.tar.gz <span class="built_in">log</span>2012.log   打包后，以 gzip 压缩 </span><br><span class="line">tar -jcvf log.tar.bz2 <span class="built_in">log</span>2012.log  打包后，以 bzip2 压缩</span><br></pre></td></tr></table></figure>
+<p>在选项f之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。 如果加z选项，则以.tar.gz或.tgz来代表gzip压缩过的tar包；如果加j选项，则以.tar.bz2来作为tar包名。</p>
+<p>查阅上述tar包内有哪些文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -ztvf log.tar.gz</span><br></pre></td></tr></table></figure>
+<p>由于我们使用 gzip 压缩的log.tar.gz，所以要查阅log.tar.gz包内的文件时，就得要加上z这个选项了。</p>
+<p>将tar包解压缩：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf /opt/soft/<span class="built_in">test</span>/log.tar.gz</span><br></pre></td></tr></table></figure>
+<p>在预设的情况下，我们可以将压缩档在任何地方解开的</p>
+<p>只将tar内的部分文件解压出来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf /opt/soft/<span class="built_in">test</span>/<span class="built_in">log</span>30.tar.gz <span class="built_in">log</span>2013.log</span><br></pre></td></tr></table></figure>
+<p>我可以透过tar -ztvf来查阅 tar 包内的文件名称，如果单只要一个文件，就可以透过这个方式来解压部分文件！</p>
+<p>文件备份下来，并且保存其权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvpf <span class="built_in">log</span>31.tar.gz <span class="built_in">log</span>2014.log <span class="built_in">log</span>2015.log <span class="built_in">log</span>2016.log</span><br></pre></td></tr></table></figure>
+<p>这个-p的属性是很重要的，尤其是当您要保留原本文件的属性时。</p>
+<p>在文件夹当中，比某个日期新的文件才备份：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -N <span class="string">"2012/11/13"</span> -zcvf <span class="built_in">log</span>17.tar.gz <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>备份文件夹内容是排除部分文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar --exclude scf/service -zcvf scf.tar.gz scf/*</span><br></pre></td></tr></table></figure>
+<p>其实最简单的使用 tar 就只要记忆底下的方式即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">压　缩：tar -jcv <span class="_">-f</span> filename.tar.bz2 要被压缩的文件或目录名称</span><br><span class="line">查　询：tar -jtv <span class="_">-f</span> filename.tar.bz2</span><br><span class="line">解压缩：tar -jxv <span class="_">-f</span> filename.tar.bz2 -C 欲解压缩的目录</span><br></pre></td></tr></table></figure>
+<h2 id="unzip">unzip</h2>
+<p>unzip命令用于解压缩由zip命令压缩的“.zip”压缩包。</p>
+<h3 id="语法-10">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-11">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-c：将解压缩的结果显示到屏幕上，并对字符做适当的转换；</span><br><span class="line"><span class="_">-f</span>：更新现有的文件；</span><br><span class="line"><span class="_">-l</span>：显示压缩文件内所包含的文件；</span><br><span class="line">-p：与-c参数类似，会将解压缩的结果显示到屏幕上，但不会执行任何的转换；</span><br><span class="line">-t：检查压缩文件是否正确；</span><br><span class="line">-u：与<span class="_">-f</span>参数类似，但是除了更新现有的文件外，也会将压缩文件中的其他文件解压缩到目录中；</span><br><span class="line">-v：执行时显示详细的信息；</span><br><span class="line">-z：仅显示压缩文件的备注文字；</span><br><span class="line"><span class="_">-a</span>：对文本文件进行必要的字符转换；</span><br><span class="line">-b：不要对文本文件进行字符转换；</span><br><span class="line">-C：压缩文件中的文件名称区分大小写；</span><br><span class="line">-j：不处理压缩文件中原有的目录路径；</span><br><span class="line">-L：将压缩文件中的全部文件名改为小写；</span><br><span class="line">-M：将输出结果送到more程序处理；</span><br><span class="line">-n：解压缩时不要覆盖原有的文件；</span><br><span class="line">-o：不必先询问用户，unzip执行后覆盖原有的文件；</span><br><span class="line">-P&lt;密码&gt;：使用zip的密码选项；</span><br><span class="line">-q：执行时不显示任何信息；</span><br><span class="line"><span class="_">-s</span>：将文件名中的空白字符转换为底线字符；</span><br><span class="line">-V：保留VMS的文件版本信息；</span><br><span class="line">-X：解压缩时同时回存文件原来的UID/GID；</span><br><span class="line"><span class="_">-d</span>&lt;目录&gt;：指定文件解压缩后所要存储的目录；</span><br><span class="line">-x&lt;文件&gt;：指定不要处理.zip压缩文件中的哪些文件；</span><br><span class="line">-Z：unzip-Z等于执行zipinfo指令。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-9">参数</h3>
+<p>压缩包：指定要解压的“.zip”压缩包。</p>
+<h3 id="实例-11">实例</h3>
+<p>将压缩文件text.zip在当前目录下解压缩。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip test.zip</span><br></pre></td></tr></table></figure>
+<p>将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip -n test.zip <span class="_">-d</span> /tmp</span><br></pre></td></tr></table></figure>
+<p>查看压缩文件目录，但不解压。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip -v test.zip</span><br></pre></td></tr></table></figure>
+<p>将压缩文件test.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令覆盖原先的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip -o test.zip <span class="_">-d</span> tmp/</span><br></pre></td></tr></table></figure>
+<h2 id="uname">uname</h2>
+<p>uname命令用于打印当前系统相关信息（内核版本号、硬件架构、主机名称和操作系统类型等）。</p>
+<h3 id="语法-11">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname(选项)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-12">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-a</span>或--all：显示全部的信息；</span><br><span class="line">-m或--machine：显示电脑类型；</span><br><span class="line">-n或-nodename：显示在网络上的主机名称；</span><br><span class="line">-r或--release：显示操作系统的发行编号；</span><br><span class="line"><span class="_">-s</span>或--sysname：显示操作系统名称；</span><br><span class="line">-v：显示操作系统的版本；</span><br><span class="line">-p或--processor：输出处理器类型或<span class="string">"unknown"</span>；</span><br><span class="line">-i或--hardware-platform：输出硬件平台或<span class="string">"unknown"</span>；</span><br><span class="line">-o或--operating-system：输出操作系统名称；</span><br><span class="line">--help：显示帮助；</span><br><span class="line">--version：显示版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="实例-12">实例</h3>
+<p>使用uname命令查看全部信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname    #单独使用uname命令时相当于uname -s</span></span><br><span class="line">Linux</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -a</span></span><br><span class="line">Linux localhost 2.6.18-348.6.1.el5 <span class="comment">#1 SMP Tue May 21 15:34:22 EDT 2013 i686 i686 i386 GNU/Linux</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -m</span></span><br><span class="line">i686</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -n</span></span><br><span class="line">localhost</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -r</span></span><br><span class="line">2.6.18-4-686</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -s</span></span><br><span class="line">Linux</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -v</span></span><br><span class="line"><span class="comment">#1 SMP Tue May 21 15:34:22 EDT 2013</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -p</span></span><br><span class="line">i686</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -i</span></span><br><span class="line">i386</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname -o</span></span><br><span class="line">GNU/Linux</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># uname --version</span></span><br><span class="line">uname (GNU coreutils) 5.97</span><br><span class="line">Copyright (C) 2006 free Software Foundation, Inc.</span><br><span class="line">这是自由软件。您可以按照 GNU GPL 协议 &lt;http://www.gnu.org/licenses/gpl.html&gt; 的条款再发布此软件的副本，但我们无法保证相关法律不对这一情形进行限制。</span><br><span class="line"></span><br><span class="line">由 David MacKenzie 编写。</span><br></pre></td></tr></table></figure>
+<h2 id="df">df</h2>
+<p>df命令用于显示磁盘分区上的可使用的磁盘空间。默认显示单位为KB。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</p>
+<h3 id="语法-12">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-13">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-a</span>或--all：包含全部的文件系统；</span><br><span class="line">--block-size=&lt;区块大小&gt;：以指定的区块大小来显示区块数目；</span><br><span class="line">-h或--human-readable：以可读性较高的方式来显示信息；</span><br><span class="line">-H或--si：与-h参数相同，但在计算时是以1000 Bytes为换算单位而非1024 Bytes；</span><br><span class="line">-i或--inodes：显示inode的信息；</span><br><span class="line">-k或--kilobytes：指定区块大小为1024字节；</span><br><span class="line"><span class="_">-l</span>或--local：仅显示本地端的文件系统；</span><br><span class="line">-m或--megabytes：指定区块大小为1048576字节；</span><br><span class="line">--no-sync：在取得磁盘使用信息前，不要执行sync指令，此为预设值；</span><br><span class="line">-P或--portability：使用POSIX的输出格式；</span><br><span class="line">--sync：在取得磁盘使用信息前，先执行sync指令；</span><br><span class="line">-t&lt;文件系统类型&gt;或--type=&lt;文件系统类型&gt;：仅显示指定文件系统类型的磁盘信息；</span><br><span class="line">-T或--print-type：显示文件系统的类型；</span><br><span class="line">-x&lt;文件系统类型&gt;或--exclude-type=&lt;文件系统类型&gt;：不要显示指定文件系统类型的磁盘信息；</span><br><span class="line">--help：显示帮助；</span><br><span class="line">--version：显示版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-10">参数</h3>
+<p>文件：指定文件系统上的文件。</p>
+<h3 id="实例-13">实例</h3>
+<p>查看系统磁盘设备，默认是KB为单位：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@L<span class="keyword">in</span>Serv-1 ~]<span class="comment"># df</span></span><br><span class="line">文件系统               1K-块        已用     可用 已用% 挂载点</span><br><span class="line">/dev/sda2            146294492  28244432 110498708  21% /</span><br><span class="line">/dev/sda1              1019208     62360    904240   7% /boot</span><br><span class="line">tmpfs                  1032204         0   1032204   0% /dev/shm</span><br><span class="line">/dev/sdb1            2884284108 218826068 2518944764   8% /data1</span><br></pre></td></tr></table></figure>
+<p>使用-h选项以KB以上的单位来显示，可读性高：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@L<span class="keyword">in</span>Serv-1 ~]<span class="comment"># df -h</span></span><br><span class="line">文件系统              容量  已用 可用 已用% 挂载点</span><br><span class="line">/dev/sda2             140G   27G  106G  21% /</span><br><span class="line">/dev/sda1             996M   61M  884M   7% /boot</span><br><span class="line">tmpfs                1009M     0 1009M   0% /dev/shm</span><br><span class="line">/dev/sdb1             2.7T  209G  2.4T   8% /data1</span><br></pre></td></tr></table></figure>
+<p>查看全部文件系统：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@L<span class="keyword">in</span>Serv-1 ~]<span class="comment"># df -a</span></span><br><span class="line">文件系统               1K-块        已用     可用 已用% 挂载点</span><br><span class="line">/dev/sda2            146294492  28244432 110498708  21% /</span><br><span class="line">proc                         0         0         0   -  /proc</span><br><span class="line">sysfs                        0         0         0   -  /sys</span><br><span class="line">devpts                       0         0         0   -  /dev/pts</span><br><span class="line">/dev/sda1              1019208     62360    904240   7% /boot</span><br><span class="line">tmpfs                  1032204         0   1032204   0% /dev/shm</span><br><span class="line">/dev/sdb1            2884284108 218826068 2518944764   8% /data1</span><br><span class="line">none                         0         0         0   -  /proc/sys/fs/binfmt_misc</span><br></pre></td></tr></table></figure>
+<h2 id="ps">ps</h2>
+<p>ps命令用于报告当前系统的进程状态。可以搭配kill指令随时中断、删除不必要的程序。ps命令是最基本同时也是非常强大的进程查看命令，使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等，总之大部分信息都是可以通过执行该命令得到的。</p>
+<h3 id="语法-13">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps(选项)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-14">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-a</span>：显示所有终端机下执行的程序，除了阶段作业领导者之外。</span><br><span class="line">a：显示现行终端机下的所有程序，包括其他用户的程序。</span><br><span class="line">-A：显示所有程序。</span><br><span class="line">-c：显示CLS和PRI栏位。</span><br><span class="line">c：列出程序时，显示每个程序真正的指令名称，而不包含路径，选项或常驻服务的标示。</span><br><span class="line">-C&lt;指令名称&gt;：指定执行指令的名称，并列出该指令的程序的状况。</span><br><span class="line"><span class="_">-d</span>：显示所有程序，但不包括阶段作业领导者的程序。</span><br><span class="line"><span class="_">-e</span>：此选项的效果和指定<span class="string">"A"</span>选项相同。</span><br><span class="line">e：列出程序时，显示每个程序所使用的环境变量。</span><br><span class="line"><span class="_">-f</span>：显示UID,PPIP,C与STIME栏位。</span><br><span class="line">f：用ASCII字符显示树状结构，表达程序间的相互关系。</span><br><span class="line">-g&lt;群组名称&gt;：此选项的效果和指定<span class="string">"-G"</span>选项相同，当亦能使用阶段作业领导者的名称来指定。</span><br><span class="line">g：显示现行终端机下的所有程序，包括群组领导者的程序。</span><br><span class="line">-G&lt;群组识别码&gt;：列出属于该群组的程序的状况，也可使用群组名称来指定。</span><br><span class="line">h：不显示标题列。</span><br><span class="line">-H：显示树状结构，表示程序间的相互关系。</span><br><span class="line">-j或j：采用工作控制的格式显示程序状况。</span><br><span class="line"><span class="_">-l</span>或l：采用详细的格式来显示程序状况。</span><br><span class="line">L：列出栏位的相关信息。</span><br><span class="line">-m或m：显示所有的执行绪。</span><br><span class="line">n：以数字来表示USER和WCHAN栏位。</span><br><span class="line">-N：显示所有的程序，除了执行ps指令终端机下的程序之外。</span><br><span class="line">-p&lt;程序识别码&gt;：指定程序识别码，并列出该程序的状况。</span><br><span class="line">p&lt;程序识别码&gt;：此选项的效果和指定<span class="string">"-p"</span>选项相同，只在列表格式方面稍有差异。</span><br><span class="line">r：只列出现行终端机正在执行中的程序。</span><br><span class="line"><span class="_">-s</span>&lt;阶段作业&gt;：指定阶段作业的程序识别码，并列出隶属该阶段作业的程序的状况。</span><br><span class="line">s：采用程序信号的格式显示程序状况。</span><br><span class="line">S：列出程序时，包括已中断的子程序资料。</span><br><span class="line">-t&lt;终端机编号&gt;：指定终端机编号，并列出属于该终端机的程序的状况。</span><br><span class="line">t&lt;终端机编号&gt;：此选项的效果和指定<span class="string">"-t"</span>选项相同，只在列表格式方面稍有差异。</span><br><span class="line">-T：显示现行终端机下的所有程序。</span><br><span class="line">-u&lt;用户识别码&gt;：此选项的效果和指定<span class="string">"-U"</span>选项相同。</span><br><span class="line">u：以用户为主的格式来显示程序状况。</span><br><span class="line">-U&lt;用户识别码&gt;：列出属于该用户的程序的状况，也可使用用户名称来指定。</span><br><span class="line">U&lt;用户名称&gt;：列出属于该用户的程序的状况。</span><br><span class="line">v：采用虚拟内存的格式显示程序状况。</span><br><span class="line">-V或V：显示版本信息。</span><br><span class="line">-w或w：采用宽阔的格式来显示程序状况。　</span><br><span class="line">x：显示所有程序，不以终端机来区分。</span><br><span class="line">X：采用旧式的Linux i386登陆格式显示程序状况。</span><br><span class="line">-y：配合选项<span class="string">"-l"</span>使用时，不显示F(flag)栏位，并以RSS栏位取代ADDR栏位　。</span><br><span class="line">-&lt;程序识别码&gt;：此选项的效果和指定<span class="string">"p"</span>选项相同。</span><br><span class="line">--cols&lt;每列字符数&gt;：设置每列的最大字符数。</span><br><span class="line">--columns&lt;每列字符数&gt;：此选项的效果和指定<span class="string">"--cols"</span>选项相同。</span><br><span class="line">--cumulative：此选项的效果和指定<span class="string">"S"</span>选项相同。</span><br><span class="line">--deselect：此选项的效果和指定<span class="string">"-N"</span>选项相同。</span><br><span class="line">--forest：此选项的效果和指定<span class="string">"f"</span>选项相同。</span><br><span class="line">--headers：重复显示标题列。</span><br><span class="line">--help：在线帮助。</span><br><span class="line">--info：显示排错信息。</span><br><span class="line">--lines&lt;显示列数&gt;：设置显示画面的列数。</span><br><span class="line">--no-headers：此选项的效果和指定<span class="string">"h"</span>选项相同，只在列表格式方面稍有差异。</span><br><span class="line">--group&lt;群组名称&gt;：此选项的效果和指定<span class="string">"-G"</span>选项相同。</span><br><span class="line">--Group&lt;群组识别码&gt;：此选项的效果和指定<span class="string">"-G"</span>选项相同。</span><br><span class="line">--pid&lt;程序识别码&gt;：此选项的效果和指定<span class="string">"-p"</span>选项相同。</span><br><span class="line">--rows&lt;显示列数&gt;：此选项的效果和指定<span class="string">"--lines"</span>选项相同。</span><br><span class="line">--sid&lt;阶段作业&gt;：此选项的效果和指定<span class="string">"-s"</span>选项相同。</span><br><span class="line">--tty&lt;终端机编号&gt;：此选项的效果和指定<span class="string">"-t"</span>选项相同。</span><br><span class="line">--user&lt;用户名称&gt;：此选项的效果和指定<span class="string">"-U"</span>选项相同。</span><br><span class="line">--User&lt;用户识别码&gt;：此选项的效果和指定<span class="string">"-U"</span>选项相同。</span><br><span class="line">--version：此选项的效果和指定<span class="string">"-V"</span>选项相同。</span><br><span class="line">--widty&lt;每列字符数&gt;：此选项的效果和指定<span class="string">"-cols"</span>选项相同。</span><br></pre></td></tr></table></figure>
+<p>由于ps命令能够支持的系统类型相当的多，所以选项多的离谱！</p>
+<h2 id="top">top</h2>
+<p>top命令可以实时动态地查看系统的整体运行情况，是一个综合了多方信息监测系统性能和运行信息的实用工具。通过top命令所提供的互动式界面，用热键可以管理。</p>
+<h3 id="语法-14">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top(选项)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-15">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-b：以批处理模式操作；</span><br><span class="line">-c：显示完整的治命令；</span><br><span class="line"><span class="_">-d</span>：屏幕刷新间隔时间；</span><br><span class="line">-I：忽略失效过程；</span><br><span class="line"><span class="_">-s</span>：保密模式；</span><br><span class="line">-S：累积模式；</span><br><span class="line">-i&lt;时间&gt;：设置间隔时间；</span><br><span class="line">-u&lt;用户名&gt;：指定用户名；</span><br><span class="line">-p&lt;进程号&gt;：指定进程；</span><br><span class="line">-n&lt;次数&gt;：循环显示的次数。</span><br></pre></td></tr></table></figure>
+<h3 id="top交互命令">top交互命令</h3>
+<p>在top命令执行过程中可以使用的一些交互命令。这些命令都是单字母的，如果在命令行中使用了-s选项， 其中一些命令可能会被屏蔽。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">h：显示帮助画面，给出一些简短的命令总结说明；</span><br><span class="line">k：终止一个进程；</span><br><span class="line">i：忽略闲置和僵死进程，这是一个开关式命令；</span><br><span class="line">q：退出程序；</span><br><span class="line">r：重新安排一个进程的优先级别；</span><br><span class="line">S：切换到累计模式；</span><br><span class="line">s：改变两次刷新之间的延迟时间（单位为s），如果有小数，就换算成ms。输入0值则系统将不断刷新，默认值是5s；</span><br><span class="line">f或者F：从当前显示中添加或者删除项目；</span><br><span class="line">o或者O：改变显示项目的顺序；</span><br><span class="line">l：切换显示平均负载和启动时间信息；</span><br><span class="line">m：切换显示内存信息；</span><br><span class="line">t：切换显示进程和CPU状态信息；</span><br><span class="line">c：切换显示命令名称和完整命令行；</span><br><span class="line">M：根据驻留内存大小进行排序；</span><br><span class="line">P：根据CPU使用百分比大小进行排序；</span><br><span class="line">T：根据时间/累计时间进行排序；</span><br><span class="line">w：将当前设置写入~/.toprc文件中。</span><br></pre></td></tr></table></figure>
+<h3 id="实例-14">实例</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">top - 09:44:56 up 16 days, 21:23,  1 user,  load average: 9.59, 4.75, 1.92</span><br><span class="line">Tasks: 145 total,   2 running, 143 sleeping,   0 stopped,   0 zombie</span><br><span class="line">Cpu(s): 99.8%us,  0.1%sy,  0.0%ni,  0.2%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st</span><br><span class="line">Mem:   4147888k total,  2493092k used,  1654796k free,   158188k buffers</span><br><span class="line">Swap:  5144568k total,       56k used,  5144512k free,  2013180k cached</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<ul>
+<li><p>top - 09:44:56[当前系统时间],</p></li>
+<li><p>16 days[系统已经运行了16天],</p></li>
+<li><p>1 user[个用户当前登录],</p></li>
+<li><p>load average: 9.59, 4.75, 1.92[系统负载，即任务队列的平均长度]</p></li>
+<li><p>Tasks: 145 total[总进程数],</p></li>
+<li><p>2 running[正在运行的进程数],</p></li>
+<li><p>143 sleeping[睡眠的进程数],</p></li>
+<li><p>0 stopped[停止的进程数],</p></li>
+<li><p>0 zombie[冻结进程数],</p></li>
+<li><p>Cpu(s): 99.8%us[用户空间占用CPU百分比],</p></li>
+<li><p>0.1%sy[内核空间占用CPU百分比],</p></li>
+<li><p>0.0%ni[用户进程空间内改变过优先级的进程占用CPU百分比],</p></li>
+<li><p>0.2%id[空闲CPU百分比], 0.0%wa[等待输入输出的CPU时间百分比],</p></li>
+<li><p>0.0%hi[],</p></li>
+<li><p>0.0%st[],</p></li>
+<li><p>Mem: 4147888k total[物理内存总量],</p></li>
+<li><p>2493092k used[使用的物理内存总量],</p></li>
+<li><p>1654796k free[空闲内存总量],</p></li>
+<li><p>158188k buffers[用作内核缓存的内存量]</p></li>
+<li><p>Swap:  5144568k total[交换区总量],</p></li>
+<li><p>56k used[使用的交换区总量],</p></li>
+<li><p>5144512k free[空闲交换区总量],</p></li>
+<li><p>2013180k cached[缓冲的交换区总量],</p></li>
+</ul>
+<h2 id="chmod">chmod</h2>
+<p>chmod命令用来变更文件或目录的权限。在UNIX系统家族里，文件或目录权限的控制分别以读取、写入、执行3种一般权限来区分，另有3种特殊权限可供运用。用户可以使用chmod指令去变更文件与目录的权限，设置方式采用文字或数字代号皆可。符号连接的权限无法变更，如果用户对符号连接修改权限，其改变会作用在被连接的原始文件。</p>
+<p>权限范围的表示法如下：</p>
+<p>u User，即文件或目录的拥有者； g Group，即文件或目录的所属群组； o Other，除了文件或目录拥有者或所属群组之外，其他用户皆属于这个范围； a All，即全部的用户，包含拥有者，所属群组以及其他用户； r 读取权限，数字代号为“4”; w 写入权限，数字代号为“2”； x 执行或切换权限，数字代号为“1”； - 不具任何权限，数字代号为“0”； s 特殊功能说明：变更文件或目录的权限。</p>
+<h3 id="语法-15">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-16">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-c或——changes：效果类似“-v”参数，但仅回报更改的部分；</span><br><span class="line"><span class="_">-f</span>或--quiet或——silent：不显示错误信息；</span><br><span class="line">-R或——recursive：递归处理，将指令目录下的所有文件及子目录一并处理；</span><br><span class="line">-v或——verbose：显示指令执行过程；</span><br><span class="line">--reference=&lt;参考文件或目录&gt;：把指定文件或目录的所属群组全部设成和参考文件或目录的所属群组相同；</span><br><span class="line">&lt;权限范围&gt;+&lt;权限设置&gt;：开启权限范围的文件或目录的该选项权限设置；</span><br><span class="line">&lt;权限范围&gt;-&lt;权限设置&gt;：关闭权限范围的文件或目录的该选项权限设置；</span><br><span class="line">&lt;权限范围&gt;=&lt;权限设置&gt;：指定权限范围的文件或目录的该选项权限设置；</span><br></pre></td></tr></table></figure>
+<h3 id="参数-11">参数</h3>
+<p>权限模式：指定文件的权限模式； 文件：要改变权限的文件。</p>
+<h3 id="知识扩展和实例">知识扩展和实例</h3>
+<p>Linux用 户分为：拥有者、组群(Group)、其他（other），Linux系统中，预设的情況下，系统中所有的帐号与一般身份使用者，以及root的相关信 息， 都是记录在/etc/passwd文件中。每个人的密码则是记录在/etc/shadow文件下。 此外，所有的组群名称记录在/etc/group內！</p>
+<p>linux文件的用户权限的分析图</p>
+<p>例：rwx　rw-　r--</p>
+<p>r=读取属性　　//值＝4 w=写入属性　　//值＝2 x=执行属性　　//值＝1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x,g+w f01　　//为文件f01设置自己可以执行，组员可以写入的权限</span><br><span class="line">chmod u=rwx,g=rw,o=r f01</span><br><span class="line">chmod 764 f01</span><br><span class="line">chmod a+x f01　　//对文件f01的u,g,o都设置可执行属性</span><br></pre></td></tr></table></figure>
+<p>文件的属主和属组属性设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown user:market f01　　//把文件f01给uesr，添加到market组</span><br><span class="line">ll <span class="_">-d</span> f1  查看目录f1的属性</span><br></pre></td></tr></table></figure>
+<h2 id="chown">chown</h2>
+<p>chown命令改变某个文件或目录的所有者和所属的组，该命令可以向某个用户授权，使该用户变成指定文件的所有者或者改变文件所属的组。用户可以是用户或者是用户D，用户组可以是组名或组id。文件名可以使由空格分开的文件列表，在文件名中可以包含通配符。</p>
+<p>只有文件主和超级用户才可以便用该命令。</p>
+<h3 id="语法-16">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-17">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-c或——changes：效果类似“-v”参数，但仅回报更改的部分；</span><br><span class="line"><span class="_">-f</span>或--quite或——silent：不显示错误信息；</span><br><span class="line">-h或--no-dereference：只对符号连接的文件作修改，而不更改其他任何相关文件；</span><br><span class="line">-R或——recursive：递归处理，将指定目录下的所有文件及子目录一并处理；</span><br><span class="line">-v或——version：显示指令执行过程；</span><br><span class="line">--dereference：效果和“-h”参数相同；</span><br><span class="line">--help：在线帮助；</span><br><span class="line">--reference=&lt;参考文件或目录&gt;：把指定文件或目录的拥有者与所属群组全部设成和参考文件或目录的拥有者与所属群组相同；</span><br><span class="line">--version：显示版本信息。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-12">参数</h3>
+<p>用户：组：指定所有者和所属工作组。当省略“：组”，仅改变文件所有者； 文件：指定要改变所有者和工作组的文件列表。支持多个文件和目标，支持shell通配符。</p>
+<h3 id="实例-15">实例</h3>
+<p>将目录/usr/meng及其下面的所有文件、子目录的文件主改成 liu：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R liu /usr/meng</span><br></pre></td></tr></table></figure>
+<h2 id="cat">cat</h2>
+<p>cat命令连接文件并打印到标准输出设备上，cat经常用来显示文件的内容，类似于下的type命令。</p>
+<p>注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。为了控制滚屏，可以按Ctrl+S键，停止滚屏；按Ctrl+Q键可以恢复滚屏。按Ctrl+C（中断）键可以终止该命令的执行，并且返回Shell提示符状态。</p>
+<h3 id="语法-17">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-18">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-n或-number：有1开始对所有输出的行数编号；</span><br><span class="line">-b或--number-nonblank：和-n相似，只不过对于空白行不编号；</span><br><span class="line"><span class="_">-s</span>或--squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行；</span><br><span class="line">-A：显示不可打印字符，行尾显示“$”；</span><br><span class="line"><span class="_">-e</span>：等价于<span class="string">"-vE"</span>选项；</span><br><span class="line">-t：等价于<span class="string">"-vT"</span>选项；</span><br></pre></td></tr></table></figure>
+<h3 id="参数-13">参数</h3>
+<p>文件列表：指定要连接的文件列表。</p>
+<h3 id="实例-16">实例</h3>
+<p>设ml和m2是当前目录下的两个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat m1 （在屏幕上显示文件ml的内容）</span><br><span class="line">cat m1 m2 （同时显示文件ml和m2的内容）</span><br><span class="line">cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</span><br></pre></td></tr></table></figure>
+<h2 id="tail">tail</h2>
+<p>tail命令用于输入文件中的尾部内容。tail命令默认在屏幕上显示指定文件的末尾10行。如果给定的文件不止一个，则在显示的每个文件前面加一个文件名标题。如果没有指定文件或者文件名为“-”，则读取标准输入。</p>
+<p>注意：如果表示字节或行数的N值之前有一个”+”号，则从文件开头的第N项开始显示，而不是显示文件的最后N项。N值后面可以有后缀：b表示512，k表示1024，m表示1 048576(1M)。</p>
+<h3 id="语法-18">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-19">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--retry：即是在tail命令启动时，文件不可访问或者文件稍后变得不可访问，都始终尝试打开文件。使用此选项时需要与选项“——follow=name”连用；</span><br><span class="line">-c&lt;N&gt;或——bytes=&lt;N&gt;：输出文件尾部的N（N为整数）个字节内容；</span><br><span class="line"><span class="_">-f</span>&lt;name/descriptor&gt;或；--follow&lt;nameldescript&gt;：显示文件最新追加的内容。“name”表示以文件名的方式监视文件的变化。“<span class="_">-f</span>”与“-fdescriptor”等效；</span><br><span class="line">-F：与选项“-follow=name”和“--retry<span class="string">"连用时功能相同；</span></span><br><span class="line"><span class="string">-n&lt;N&gt;或——line=&lt;N&gt;：输出文件的尾部N（N位数字）行内容。</span></span><br><span class="line"><span class="string">--pid=&lt;进程号&gt;：与“-f”选项连用，当指定的进程号的进程终止后，自动退出tail命令；</span></span><br><span class="line"><span class="string">-q或——quiet或——silent：当有多个文件参数时，不输出各个文件名；</span></span><br><span class="line"><span class="string">-s&lt;秒数&gt;或——sleep-interal=&lt;秒数&gt;：与“-f”选项连用，指定监视文件变化时间隔的秒数；</span></span><br><span class="line"><span class="string">-v或——verbose：当有多个文件参数时，总是输出各个文件名；</span></span><br><span class="line"><span class="string">--help：显示指令的帮助信息；</span></span><br><span class="line"><span class="string">--version：显示指令的版本信息。</span></span><br></pre></td></tr></table></figure>
+<h3 id="参数-14">参数</h3>
+<p>文件列表：指定要显示尾部内容的文件列表。</p>
+<h3 id="实例-17">实例</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tail file （显示文件file的最后10行）</span><br><span class="line">tail +20 file （显示文件file的内容，从第20行至文件末尾）</span><br><span class="line">tail -c 10 file （显示文件file的最后10个字符）</span><br></pre></td></tr></table></figure>
+<h2 id="less">less</h2>
+<p>less命令的作用与more十分相似，都可以用来浏览文字档案的内容，不同的是less命令允许用户向前或向后浏览文件，而more命令只能向前浏览。用less命令显示文件时，用PageUp键向上翻页，用PageDown键向下翻页。要退出less程序，应按Q键。</p>
+<h3 id="语法-19">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-20">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-e</span>：文件内容显示完毕后，自动退出；</span><br><span class="line"><span class="_">-f</span>：强制显示文件；</span><br><span class="line">-g：不加亮显示搜索到的所有关键词，仅显示当前显示的关键字，以提高显示速度；</span><br><span class="line"><span class="_">-l</span>：搜索时忽略大小写的差异；</span><br><span class="line">-N：每一行行首显示行号；</span><br><span class="line"><span class="_">-s</span>：将连续多个空行压缩成一行显示；</span><br><span class="line">-S：在单行显示较长的内容，而不换行显示；</span><br><span class="line">-x&lt;数字&gt;：将TAB字符显示为指定个数的空格字符。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-15">参数</h3>
+<p>文件：指定要分屏显示内容的文件。</p>
+<h2 id="more">more</h2>
+<p>more命令是一个基于vi编辑器文本过滤器，它以全屏幕的方式按页显示文本文件的内容，支持vi中的关键字定位操作。more名单中内置了若干快捷键，常用的有H（获得帮助信息），Enter（向下翻滚一行），空格（向下滚动一屏），Q（退出命令）。</p>
+<p>该命令一次显示一屏文本，满屏后停下来，并且在屏幕的底部出现一个提示信息，给出至今己显示的该文件的百分比：--More--（XX%）可以用下列不同的方法对提示做出回答：</p>
+<ul>
+<li><p>按Space键：显示文本的下一屏内容。</p></li>
+<li><p>按Enier键：只显示文本的下一行内容。</p></li>
+<li><p>按斜线符|：接着输入一个模式，可以在文本中寻找下一个相匹配的模式。</p></li>
+<li><p>按H键：显示帮助屏，该屏上有相关的帮助信息。</p></li>
+<li><p>按B键：显示上一屏内容。</p></li>
+<li><p>按Q键：退出rnore命令。</p></li>
+</ul>
+<h3 id="语法-20">语法</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more(语法)(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="选项-21">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-&lt;数字&gt;：指定每屏显示的行数；</span><br><span class="line"><span class="_">-d</span>：显示“[press space to <span class="built_in">continue</span>,<span class="string">'q'</span> to quit.]”和“[Press <span class="string">'h'</span> <span class="keyword">for</span> instructions]”；</span><br><span class="line">-c：不进行滚屏操作。每次刷新这个屏幕；</span><br><span class="line"><span class="_">-s</span>：将多个空行压缩成一行显示；</span><br><span class="line">-u：禁止下划线；</span><br><span class="line">+&lt;数字&gt;：从指定数字的行开始显示。</span><br></pre></td></tr></table></figure>
+<h3 id="参数-16">参数</h3>
+<p>文件：指定分页显示内容的文件。</p>
+<h3 id="实例-18">实例</h3>
+<p>显示文件file的内容，但在显示之前先清屏，并且在屏幕的最下方显示完核的百分比。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more -dc file</span><br></pre></td></tr></table></figure>
+<p>显示文件file的内容，每10行显示一次，而且在显示之前先清屏。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more -c -10 file</span><br></pre></td></tr></table></figure>
+<h2 id="grep">grep</h2>
+<p>grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。</p>
+<h3 id="选项-22">选项</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="_">-a</span> 不要忽略二进制数据。</span><br><span class="line">-A&lt;显示列数&gt; 除了显示符合范本样式的那一行之外，并显示该行之后的内容。</span><br><span class="line">-b 在显示符合范本样式的那一行之外，并显示该行之前的内容。</span><br><span class="line">-c 计算符合范本样式的列数。</span><br><span class="line">-C&lt;显示列数&gt;或-&lt;显示列数&gt;  除了显示符合范本样式的那一列之外，并显示该列之前后的内容。</span><br><span class="line"><span class="_">-d</span>&lt;进行动作&gt; 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作。</span><br><span class="line"><span class="_">-e</span>&lt;范本样式&gt; 指定字符串作为查找文件内容的范本样式。</span><br><span class="line">-E 将范本样式为延伸的普通表示法来使用，意味着使用能使用扩展正则表达式。</span><br><span class="line"><span class="_">-f</span>&lt;范本文件&gt; 指定范本文件，其内容有一个或多个范本样式，让grep查找符合范本条件的文件内容，格式为每一列的范本样式。</span><br><span class="line">-F 将范本样式视为固定字符串的列表。</span><br><span class="line">-G 将范本样式视为普通的表示法来使用。</span><br><span class="line">-h 在显示符合范本样式的那一列之前，不标示该列所属的文件名称。</span><br><span class="line">-H 在显示符合范本样式的那一列之前，标示该列的文件名称。</span><br><span class="line">-i 忽略字符大小写的差别。</span><br><span class="line"><span class="_">-l</span> 列出文件内容符合指定的范本样式的文件名称。</span><br><span class="line">-L 列出文件内容不符合指定的范本样式的文件名称。</span><br><span class="line">-n 在显示符合范本样式的那一列之前，标示出该列的编号。</span><br><span class="line">-q 不显示任何信息。</span><br><span class="line">-R/-r 此参数的效果和指定“<span class="_">-d</span> recurse”参数相同。</span><br><span class="line"><span class="_">-s</span> 不显示错误信息。</span><br><span class="line">-v 反转查找。</span><br><span class="line">-w 只显示全字符合的列。</span><br><span class="line">-x 只显示全列符合的列。</span><br><span class="line">-y 此参数效果跟“-i”相同。</span><br><span class="line">-o 只输出文件中匹配到的部分。</span><br></pre></td></tr></table></figure>
+<p>在文件中搜索一个单词，命令会返回一个包含“match_pattern”的文本行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep match_pattern file_name</span><br><span class="line">grep <span class="string">"match_pattern"</span> file_name</span><br></pre></td></tr></table></figure>
+<p>在多个文件中查找：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">"match_pattern"</span> file_1 file_2 file_3 ...</span><br></pre></td></tr></table></figure>
+<p>输出除之外的所有行 -v 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v <span class="string">"match_pattern"</span> file_name</span><br></pre></td></tr></table></figure>
+<p>标记匹配颜色 --color=auto 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">"match_pattern"</span> file_name --color=auto</span><br></pre></td></tr></table></figure>
+<p>使用正则表达式 -E 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">"[1-9]+"</span></span><br><span class="line">或</span><br><span class="line">egrep <span class="string">"[1-9]+"</span></span><br></pre></td></tr></table></figure>
+<p>只输出文件中匹配到的部分 -o 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> this is a <span class="built_in">test</span> line. | grep -o -E <span class="string">"[a-z]+\."</span></span><br><span class="line">line.</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> this is a <span class="built_in">test</span> line. | egrep -o <span class="string">"[a-z]+\."</span></span><br><span class="line">line.</span><br></pre></td></tr></table></figure>
+<p>统计文件或者文本中包含匹配字符串的行数 -c 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -c <span class="string">"text"</span> file_name</span><br></pre></td></tr></table></figure>
+<p>输出包含匹配字符串的行数 -n 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">"text"</span> -n file_name</span><br><span class="line">或</span><br><span class="line">cat file_name | grep <span class="string">"text"</span> -n</span><br><span class="line"></span><br><span class="line"><span class="comment">#多个文件</span></span><br><span class="line">grep <span class="string">"text"</span> -n file_1 file_2</span><br></pre></td></tr></table></figure>
+<p>打印样式匹配所位于的字符或字节偏移：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> gun is not unix | grep -b -o <span class="string">"not"</span></span><br><span class="line">7:not</span><br><span class="line"></span><br><span class="line"><span class="comment">#一行中字符串的字符便宜是从该行的第一个字符开始计算，起始值为0。选项 -b -o 一般总是配合使用。</span></span><br></pre></td></tr></table></figure>
+<p>搜索多个文件并查找匹配文本在哪些文件中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="_">-l</span> <span class="string">"text"</span> file1 file2 file3...</span><br></pre></td></tr></table></figure>
+<h3 id="grep递归搜索文件">grep递归搜索文件</h3>
+<p>在多级目录中对文本进行递归搜索：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">"text"</span> . -r -n</span><br><span class="line"><span class="comment"># .表示当前目录。</span></span><br></pre></td></tr></table></figure>
+<p>忽略匹配样式中的字符大小写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"hello world"</span> | grep -i <span class="string">"HELLO"</span></span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+<p>选项 -e 制动多个匹配样式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> this is a text line | grep <span class="_">-e</span> <span class="string">"is"</span> <span class="_">-e</span> <span class="string">"line"</span> -o</span><br><span class="line">is</span><br><span class="line">line</span><br><span class="line"></span><br><span class="line"><span class="comment">#也可以使用-f选项来匹配多个样式，在样式文件中逐行写出需要匹配的字符。</span></span><br><span class="line">cat patfile</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> aaa bbb ccc ddd eee | grep <span class="_">-f</span> patfile -o</span><br></pre></td></tr></table></figure>
+<p>在grep搜索结果中包括或者排除指定文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#只在目录中所有的.php和.html文件中递归搜索字符"main()"</span></span><br><span class="line">grep <span class="string">"main()"</span> . -r --include *.&#123;php,html&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#在搜索结果中排除所有README文件</span></span><br><span class="line">grep <span class="string">"main()"</span> . -r --exclude <span class="string">"README"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在搜索结果中排除filelist文件列表里的文件</span></span><br><span class="line">grep <span class="string">"main()"</span> . -r --exclude-from filelist</span><br></pre></td></tr></table></figure>
+<p>使用0值字节后缀的grep与xargs：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#测试文件：</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"aaa"</span> &gt; file1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"bbb"</span> &gt; file2</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"aaa"</span> &gt; file3</span><br><span class="line"></span><br><span class="line">grep <span class="string">"aaa"</span> file* <span class="_">-l</span>Z | xargs -0 rm</span><br><span class="line"></span><br><span class="line"><span class="comment">#执行后会删除file1和file3，grep输出用-Z选项来指定以0值字节作为终结符文件名（\0），xargs -0 读取输入并用0值字节终结符分隔文件名，然后删除匹配文件，-Z通常和-l结合使用。</span></span><br></pre></td></tr></table></figure>
+<p>grep静默输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -q <span class="string">"test"</span> filename</span><br><span class="line"></span><br><span class="line"><span class="comment">#不会输出任何信息，如果命令运行成功返回0，失败则返回非0值。一般用于条件测试。</span></span><br></pre></td></tr></table></figure>
+<p>打印出匹配文本之前或者之后的行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示匹配某个结果之后的3行，使用 -A 选项：</span></span><br><span class="line">seq 10 | grep <span class="string">"5"</span> -A 3</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line"></span><br><span class="line"><span class="comment">#显示匹配某个结果之前的3行，使用 -B 选项：</span></span><br><span class="line">seq 10 | grep <span class="string">"5"</span> -B 3</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line"></span><br><span class="line"><span class="comment">#显示匹配某个结果的前三行和后三行，使用 -C 选项：</span></span><br><span class="line">seq 10 | grep <span class="string">"5"</span> -C 3</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line"></span><br><span class="line"><span class="comment">#如果匹配结果有多个，会用“--”作为各匹配结果之间的分隔符：</span></span><br><span class="line"><span class="built_in">echo</span> <span class="_">-e</span> <span class="string">"a\nb\nc\na\nb\nc"</span> | grep a -A 1</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">--</span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="aponder WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="aponder Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>xiyusullos</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://blog.aponder.top/2018/05/Mostly-Used-Linux-Commands/" title="Mostly Used Linux Commands">http://blog.aponder.top/2018/05/Mostly-Used-Linux-Commands/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/Speed-up-Homestead-on-Windows-7/" rel="next" title="Speed Up Homestead on Windows 7">
+                <i class="fa fa-chevron-left"></i> Speed Up Homestead on Windows 7
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/Knapsack-Problem/" rel="prev" title="Knapsack Problem">
+                Knapsack Problem <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200" alt="aponder">
+            
+              <p class="site-author-name" itemprop="name">aponder</p>
+              <div class="site-description motion-element" itemprop="description">from 0 to 1</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xiyusullos" title="GitHub &rarr; https://github.com/xiyusullos" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://gitee.com/xiyusullos" title="Gitee &rarr; https://gitee.com/xiyusullos" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Gitee</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mostly-used-linux-commands"><span class="nav-number">1.</span> <span class="nav-text">Mostly Used Linux Commands</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cd"><span class="nav-number">1.1.</span> <span class="nav-text">cd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选项"><span class="nav-number">1.1.1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.1.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">1.2.</span> <span class="nav-text">ls</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">1.2.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-number">1.3.</span> <span class="nav-text">mkdir</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rmdir"><span class="nav-number">1.4.</span> <span class="nav-text">rmdir</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-2"><span class="nav-number">1.4.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-3"><span class="nav-number">1.4.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-number">1.5.</span> <span class="nav-text">pwd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp"><span class="nav-number">1.6.</span> <span class="nav-text">cp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-4"><span class="nav-number">1.6.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-3"><span class="nav-number">1.6.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-5"><span class="nav-number">1.6.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv"><span class="nav-number">1.7.</span> <span class="nav-text">mv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-5"><span class="nav-number">1.7.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-6"><span class="nav-number">1.7.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-4"><span class="nav-number">1.7.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-6"><span class="nav-number">1.7.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm"><span class="nav-number">1.8.</span> <span class="nav-text">rm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-6"><span class="nav-number">1.8.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-7"><span class="nav-number">1.8.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-5"><span class="nav-number">1.8.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-7"><span class="nav-number">1.8.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sudo"><span class="nav-number">1.9.</span> <span class="nav-text">sudo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-7"><span class="nav-number">1.9.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-8"><span class="nav-number">1.9.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-6"><span class="nav-number">1.9.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-8"><span class="nav-number">1.9.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">1.10.</span> <span class="nav-text">ping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-8"><span class="nav-number">1.10.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-9"><span class="nav-number">1.10.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-7"><span class="nav-number">1.10.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-9"><span class="nav-number">1.10.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">1.11.</span> <span class="nav-text">tar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-9"><span class="nav-number">1.11.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-10"><span class="nav-number">1.11.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-8"><span class="nav-number">1.11.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-10"><span class="nav-number">1.11.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unzip"><span class="nav-number">1.12.</span> <span class="nav-text">unzip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-10"><span class="nav-number">1.12.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-11"><span class="nav-number">1.12.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-9"><span class="nav-number">1.12.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-11"><span class="nav-number">1.12.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uname"><span class="nav-number">1.13.</span> <span class="nav-text">uname</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-11"><span class="nav-number">1.13.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-12"><span class="nav-number">1.13.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-12"><span class="nav-number">1.13.3.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-number">1.14.</span> <span class="nav-text">df</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-12"><span class="nav-number">1.14.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-13"><span class="nav-number">1.14.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-10"><span class="nav-number">1.14.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-13"><span class="nav-number">1.14.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-number">1.15.</span> <span class="nav-text">ps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-13"><span class="nav-number">1.15.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-14"><span class="nav-number">1.15.2.</span> <span class="nav-text">选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top"><span class="nav-number">1.16.</span> <span class="nav-text">top</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-14"><span class="nav-number">1.16.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-15"><span class="nav-number">1.16.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top交互命令"><span class="nav-number">1.16.3.</span> <span class="nav-text">top交互命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-14"><span class="nav-number">1.16.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-number">1.17.</span> <span class="nav-text">chmod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-15"><span class="nav-number">1.17.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-16"><span class="nav-number">1.17.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-11"><span class="nav-number">1.17.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识扩展和实例"><span class="nav-number">1.17.4.</span> <span class="nav-text">知识扩展和实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown"><span class="nav-number">1.18.</span> <span class="nav-text">chown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-16"><span class="nav-number">1.18.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-17"><span class="nav-number">1.18.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-12"><span class="nav-number">1.18.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-15"><span class="nav-number">1.18.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">1.19.</span> <span class="nav-text">cat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-17"><span class="nav-number">1.19.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-18"><span class="nav-number">1.19.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-13"><span class="nav-number">1.19.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-16"><span class="nav-number">1.19.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tail"><span class="nav-number">1.20.</span> <span class="nav-text">tail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-18"><span class="nav-number">1.20.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-19"><span class="nav-number">1.20.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-14"><span class="nav-number">1.20.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-17"><span class="nav-number">1.20.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-number">1.21.</span> <span class="nav-text">less</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-19"><span class="nav-number">1.21.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-20"><span class="nav-number">1.21.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-15"><span class="nav-number">1.21.3.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-number">1.22.</span> <span class="nav-text">more</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-20"><span class="nav-number">1.22.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-21"><span class="nav-number">1.22.2.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-16"><span class="nav-number">1.22.3.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-18"><span class="nav-number">1.22.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">1.23.</span> <span class="nav-text">grep</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-22"><span class="nav-number">1.23.1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep递归搜索文件"><span class="nav-number">1.23.2.</span> <span class="nav-text">grep递归搜索文件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aponder</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Symbols count total: </span>
+    
+    <span title="Symbols count total">123k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    
+    <span title="Reading time total">2:false</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.0"></script>
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+  
+  
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '3Tk3aaayuMwhrfpL46KvAyXe-gzGzoHsz',
+    appKey: '0KgQzAYGmgJ5B08c1skEkhmc',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.0"></script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+</body>
+</html>

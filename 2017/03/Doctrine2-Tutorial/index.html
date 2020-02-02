@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/han-css@3/dist/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '17P8IIYLYC',
+      apiKey: '9846c7615cc932fcbafe390a4e311374',
+      indexName: 'hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Getting Started with Doctrine This guide covers getting started with the Doctrine ORM. After working through the guide you should know:  How to install and configure Doctrine by connecting it to a dat">
+<meta name="keywords" content="PHP,Doctrine">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Doctrine2 Tutorial">
+<meta property="og:url" content="http://blog.aponder.top/2017/03/Doctrine2-Tutorial/index.html">
+<meta property="og:site_name" content="aponder&#39;s blog">
+<meta property="og:description" content="Getting Started with Doctrine This guide covers getting started with the Doctrine ORM. After working through the guide you should know:  How to install and configure Doctrine by connecting it to a dat">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-02-02T05:23:00.247Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Doctrine2 Tutorial">
+<meta name="twitter:description" content="Getting Started with Doctrine This guide covers getting started with the Doctrine ORM. After working through the guide you should know:  How to install and configure Doctrine by connecting it to a dat">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://blog.aponder.top/2017/03/Doctrine2-Tutorial/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Doctrine2 Tutorial | aponder's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">aponder's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">dig world</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">10</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">3</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">19</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>Commonweal 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.aponder.top/2017/03/Doctrine2-Tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="aponder">
+      <meta itemprop="description" content="from 0 to 1">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="aponder's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Doctrine2 Tutorial
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-03-11 12:39:26" itemprop="dateCreated datePublished" datetime="2017-03-11T12:39:26+08:00">2017-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-02-02 13:23:00" itemprop="dateModified" datetime="2020-02-02T13:23:00+08:00">2020-02-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP-Doctrine/" itemprop="url" rel="index"><span itemprop="name">PHP - Doctrine</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2017/03/Doctrine2-Tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/03/Doctrine2-Tutorial/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2017/03/Doctrine2-Tutorial/" class="leancloud_visitors" data-flag-title="Doctrine2 Tutorial">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">47k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">57 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="getting-started-with-doctrine">Getting Started with Doctrine</h2>
+<p>This guide covers getting started with the Doctrine ORM. After working through the guide you should know:</p>
+<ul>
+<li>How to install and configure Doctrine by connecting it to a database</li>
+<li>Mapping PHP objects to database tables</li>
+<li>Generating a database schema from PHP objects</li>
+<li>Using the <code>EntityManager</code> to insert, update, delete and find objects in the database.</li>
+</ul>
+<a id="more"></a>
+<h2 id="guide-assumptions">Guide Assumptions</h2>
+<p>This guide is designed for beginners that haven’t worked with Doctrine ORM before. There are some prerequesites for the tutorial that have to be installed:</p>
+<ul>
+<li>PHP (latest stable version)</li>
+<li>Composer Package Manager(<a href="http://getcomposer.org/doc/00-intro.md" target="_blank" rel="noopener">Install Composer</a>)</li>
+</ul>
+<p>The code of this tutorial is <a href="https://github.com/xiyusullos/doctrine2-tutorial" target="_blank" rel="noopener">available on Github</a>.</p>
+<h2 id="what-is-doctrine">What is Doctrine?</h2>
+<p>Doctrine 2 is an <a href="http://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank" rel="noopener">object-relational mapper (ORM)</a> for PHP 5.4+ that provides transparent persistence for PHP objects. It uses the Data Mapper pattern at the heart, aiming for a complete separation of your domain/business logic from the persistence in a relational database management system.</p>
+<p>The benefit of Doctrine for the programmer is the ability to focus on the object-oriented business logic and worry about persistence only as a secondary problem. This doesn’t mean persistence is downplayed by Doctrine 2, however it is our belief that there are considerable benefits for object-oriented programming if persistence and entities are kept separated.</p>
+<h3 id="what-are-entities">What are Entities?</h3>
+<p>Entities are PHP Objects that can be identified over many requests by a unique identifier or primary key. These classes don’t need to extend any abstract base class or interface. An entity class must not be final or contain final methods. Additionally it must not implement <strong>clone</strong> nor <strong>wakeup</strong>, unless it <a href="http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/cookbook/implementing-wakeup-or-clone.html" target="_blank" rel="noopener">does so safely</a>.</p>
+<p>An entity contains persistable properties. A persistable property is an instance variable of the entity that is saved into and retrieved from the database by Doctrine’s data mapping capabilities.</p>
+<h2 id="an-example-model-bug-tracker">An Example Model: Bug Tracker</h2>
+<p>For this Getting Started Guide for Doctrine we will implement the Bug Tracker domain model from the <a href="http://framework.zend.com/manual/1.12/en/zend.db.adapter.html" target="_blank" rel="noopener">Zend_Db_Table</a>documentation. Reading their documentation we can extract the requirements:</p>
+<ul>
+<li>A Bug has a description, creation date, status, reporter and engineer</li>
+<li>A Bug can occur on different Products (platforms)</li>
+<li>A Product has a name.</li>
+<li>Bug reporters and engineers are both Users of the system.</li>
+<li>A User can create new Bugs.</li>
+<li>The assigned engineer can close a Bug.</li>
+<li>A User can see all his reported or assigned Bugs.</li>
+<li>Bugs can be paginated through a list-view.</li>
+</ul>
+<h2 id="project-setup">Project Setup</h2>
+<p>Create a new empty folder for this tutorial project, for example <strong>doctrine2-tutorial</strong> and create a new file <code>composer.json</code> with the following contents:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"require"</span>: &#123;</span><br><span class="line">        <span class="attr">"doctrine/orm"</span>: <span class="string">"2.4.*"</span>,</span><br><span class="line">        <span class="attr">"symfony/yaml"</span>: <span class="string">"2.*"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"autoload"</span>: &#123;</span><br><span class="line">        <span class="attr">"psr-0"</span>: &#123;<span class="attr">""</span>: <span class="string">"src/"</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Install Doctrine using the Composer Dependency Management tool, by calling:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer install</span><br></pre></td></tr></table></figure>
+<p>This will install the packages Doctrine Common, Doctrine DBAL, Doctrine ORM, Symfony YAML and Symfony Console into the vendor directory. The Symfony dependencies are not required by Doctrine but will be used in this tutorial.</p>
+<p>Add the following directories:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doctrine2-tutorial</span><br><span class="line">|-- config</span><br><span class="line">|   |-- xml</span><br><span class="line">|   `-- yaml</span><br><span class="line">`-- src</span><br></pre></td></tr></table></figure>
+<h2 id="obtaining-the-entitymanager">Obtaining the EntityManager</h2>
+<p>Doctrine’s public interface is the EntityManager, it provides the access point to the complete lifecycle management of your entities and transforms entities from and back to persistence. You have to configure and create it to use your entities with Doctrine 2. I will show the configuration steps and then discuss them step by step:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// bootstrap.php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Doctrine</span>\<span class="title">ORM</span>\<span class="title">Tools</span>\<span class="title">Setup</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Doctrine</span>\<span class="title">ORM</span>\<span class="title">EntityManager</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"vendor/autoload.php"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a simple "default" Doctrine ORM configuration for Annotations</span></span><br><span class="line">$isDevMode = <span class="keyword">true</span>;</span><br><span class="line">$config = Setup::createAnnotationMetadataConfiguration(<span class="keyword">array</span>(<span class="keyword">__DIR__</span>.<span class="string">"/src"</span>), $isDevMode);</span><br><span class="line"><span class="comment">// or if you prefer yaml or XML</span></span><br><span class="line"><span class="comment">//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);</span></span><br><span class="line"><span class="comment">//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// database configuration parameters</span></span><br><span class="line">$conn = <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'driver'</span> =&gt; <span class="string">'pdo_sqlite'</span>,</span><br><span class="line">    <span class="string">'path'</span> =&gt; <span class="keyword">__DIR__</span> . <span class="string">'/db.sqlite'</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// obtaining the entity manager</span></span><br><span class="line">$entityManager = EntityManager::create($conn, $config);</span><br></pre></td></tr></table></figure>
+<p>The first require statement sets up the autoloading capabilities of Doctrine using the Composer autoload.</p>
+<p>The second block consists of the instantiation of the ORM <strong>Configuration</strong> object using the Setup helper. It assumes a bunch of defaults that you don’t have to bother about for now. You can read up on the configuration details in the <a href="http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/configuration.html" target="_blank" rel="noopener">reference chapter on configuration</a>.</p>
+<p>The third block shows the configuration options required to connect to a database, in my case a file-based sqlite database. All the configuration options for all the shipped drivers are given in the <a href="http://www.doctrine-project.org/documentation/manual/2_0/en/dbal" target="_blank" rel="noopener">DBAL Configuration section of the manual</a>.</p>
+<p>The last block shows how the <strong>EntityManager</strong> is obtained from a factory method.</p>
+<h2 id="generating-the-database-schema">Generating the Database Schema</h2>
+<p>Now that we have defined the Metadata mappings and bootstrapped the EntityManager we want to generate the relational database schema from it. Doctrine has a Command-Line Interface that allows you to access the SchemaTool, a component that generates the required tables to work with the metadata.</p>
+<p>For the command-line tool to work a <code>cli-config.php</code> file has to be present in the project root directory, where you will execute the doctrine command. Its a fairly simple file:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// cli-config.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);</span><br></pre></td></tr></table></figure>
+<p>You can then change into your project directory and call the Doctrine command-line tool:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> project/</span><br><span class="line">vendor/bin/doctrine orm:schema-tool:create</span><br></pre></td></tr></table></figure>
+<p>At this point no entity metadata exists in src so you will see a message like "No Metadata Classes to process". Don't worry, we’ll create a Product entity and corresponding metadata in the next section.</p>
+<p>You should be aware that during the development process you’ll periodically need to update your database schema to be in sync with your Entities metadata.</p>
+<p>You can easily recreate the database:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vendor/bin/doctrine orm:schema-tool:drop --force</span><br><span class="line">vendor/bin/doctrine orm:schema-tool:create</span><br></pre></td></tr></table></figure>
+<p>Or use the update functionality:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor/bin/doctrine orm:schema-tool:update --force</span><br></pre></td></tr></table></figure>
+<p>The updating of databases uses a Diff Algorithm for a given Database Schema, a cornerstone of the **Doctrine* package, which can even be used without the Doctrine ORM package.</p>
+<h2 id="starting-with-the-product">Starting with the Product</h2>
+<p>We start with the simplest entity, the Product. Create a <code>src/Product.php</code> file to contain the <strong>Product</strong> entity definition:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Product.php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getId</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Note that all fields are set to protected (not public) with a mutator (getter and setter) defined for every field except $id. The use of mutators allows Doctrine to hook into calls which manipulate the entities in ways that it could not if you just directly set the values with <code>entity#field = foo</code>;</p>
+<p>The id field has no setter since, generally speaking, your code should not set this value since it represents a database id value. (Note that Doctrine itself can still set the value using the Reflection API instead of a defined setter function)</p>
+<p>The next step for persistence with Doctrine is to describe the structure of the <strong>Product</strong> entity to Doctrine using a metadata language. The metadata language describes how entities, their properties and references should be persisted and what constraints should be applied to them.</p>
+<p>Metadata for entities are configured using a XML, YAML or Docblock Annotations. This Getting Started Guide will show the mappings for all Mapping Drivers. References in the text will be made to the XML mapping.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- config/xml/Product.dcm.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">doctrine-mapping</span> <span class="attr">xmlns</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping</span></span></span><br><span class="line"><span class="tag"><span class="string">                    http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">"Product"</span> <span class="attr">table</span>=<span class="string">"products"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"integer"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">generator</span> <span class="attr">strategy</span>=<span class="string">"AUTO"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">doctrine-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/yaml/Product.dcm.yml</span></span><br><span class="line"><span class="attr">Product:</span></span><br><span class="line"><span class="attr">  type:</span> entity</span><br><span class="line"><span class="attr">  table:</span> products</span><br><span class="line"><span class="attr">  id:</span></span><br><span class="line"><span class="attr">    id:</span></span><br><span class="line"><span class="attr">      type:</span> integer</span><br><span class="line"><span class="attr">      generator:</span></span><br><span class="line"><span class="attr">        strategy:</span> AUTO</span><br><span class="line"><span class="attr">  fields:</span></span><br><span class="line"><span class="attr">    name:</span></span><br><span class="line"><span class="attr">      type:</span> string</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Product.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Entity</span> <span class="doctag">@Table</span>(name="products")</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/** <span class="doctag">@Id</span> <span class="doctag">@Column</span>(type="integer") <span class="doctag">@GeneratedValue</span> **/</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line">    <span class="comment">/** <span class="doctag">@Column</span>(type="string") **/</span></span><br><span class="line">    <span class="keyword">protected</span> $name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// .. (other code)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The top-level <strong>entity</strong> definition tag specifies information about the class and table-name. The primitive type <strong>Product#name</strong> is defined as a <strong>field</strong> attribute. The <strong>id</strong> property is defined with the <strong>id</strong> tag, this has a <strong>generator</strong> tag nested inside which defines that the primary key generation mechanism automatically uses the database platforms native id generation strategy (for example AUTO INCREMENT in the case of MySql or Sequences in the case of PostgreSql and Oracle).</p>
+<p>Now that we have defined our first entity, let’s update the database:</p>
+<pre><code>$ vendor/bin/doctrine orm:schema-tool:update --force --dump-sql</code></pre>
+<p>Specifying both flags <code>--force</code> and <code>--dump-sql</code> prints and executes the DDL statements.</p>
+<p>Now create a new script that will insert products into the database:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// create_product.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$newProductName = $argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">$product = <span class="keyword">new</span> Product();</span><br><span class="line">$product-&gt;setName($newProductName);</span><br><span class="line"></span><br><span class="line">$entityManager-&gt;persist($product);</span><br><span class="line">$entityManager-&gt;flush();</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Created Product with ID "</span> . $product-&gt;getId() . <span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+<p>Call this script from the command-line to see how new products are created:</p>
+<pre><code>php create_product.php ORM
+php create_product.php DBAL</code></pre>
+<hr>
+<p><em>Here I got some errors:</em></p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ php create_product.php ORM</span><br><span class="line">Fatal error: Uncaught exception <span class="string">'Doctrine\ORM\Mapping\MappingException'</span> with message <span class="string">'Class "Product" is not a valid entity or mapped super class.'</span> <span class="keyword">in</span> D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php:336</span><br><span class="line">Stack trace:</span><br><span class="line"><span class="comment">#0 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\Driver\AnnotationDriver.php(89): Doctrine\ORM\Mapping\MappingException::classIsNotAValidEntityOrMappedSuperClass('Product')</span></span><br><span class="line"><span class="comment">#1 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\ClassMetadataFactory.php(116): Doctrine\ORM\Mapping\Driver\AnnotationDriver-&gt;loadMetadataForClass('Product', Object(Doctrine\ORM\Mapping\ClassMetadata))</span></span><br><span class="line"><span class="comment">#2 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\common\lib\Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory.php(332): Doctrine\ORM\Mapping\ClassMetadataFactory-&gt;doLoadMetadata(Object(Doctrine\ORM\Mapping\ClassMetadata), NULL, false, Array)</span></span><br><span class="line"><span class="comment">#3 D:\04.Codes\doctrine2-tutorial\vendor\doctrine\common\lib\Doctrine\Common\Pe in D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\Mapping\MappingException.php on line 336</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+
+</blockquote>
+<p><em>Reasons</em>: - Thanks for the PhpStrom "PHP Annotations" plugin!!! It generated codes like this:</p>
+<pre><code><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Doctrine</span>\<span class="title">ORM</span>\<span class="title">Mapping</span> <span class="title">as</span> <span class="title">ORM</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by PhpStorm.</span></span><br><span class="line"><span class="comment"> * User: xiyusullos</span></span><br><span class="line"><span class="comment"> * Date: 2017/3/9</span></span><br><span class="line"><span class="comment"> * Time: 15:29</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ORM</span>\Entity() <span class="doctag">@ORM</span>\Table(name="products")</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> int</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@ORM</span>\Id() <span class="doctag">@ORM</span>\Column(type="integer") <span class="doctag">@ORM</span>\GeneratedValue()</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@ORM</span>\Column(type="string")</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $name;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<ul>
+<li>One more important is that only double quote works. This <code>@Table(name='products')</code> doesn't work. Make sure change the <strong>'</strong> to <strong>"</strong> like <code>@Table(name="products")</code></li>
+</ul>
+<hr>
+<p>What is happening here? Using the Product is pretty standard OOP. The interesting bits are the use of the EntityManager service. To notify the EntityManager that a new entity should be inserted into the database you have to call persist(). To initiate a transaction to actually perform the insertion, You have to explicitly call flush() on the EntityManager.</p>
+<p><strong>This distinction between persist and flush is allows to aggregate all writes (INSERT, UPDATE, DELETE) into one single transaction, which is executed when flush is called. Using this approach the write-performance is significantly better than in a scenario where updates are done for each entity in isolation.</strong></p>
+<p>Doctrine follows the <strong>UnitOfWork pattern</strong>(<em><a href="http://wiki.c2.com/?UnitOfWork" target="_blank" rel="noopener">Intent: Maintains a list of objects that are affected by a business transaction and coordinates the writing out of changes and resolution of concurrency problems.</a></em>) which additionally detects all entities that were fetched and have changed during the request. You don’t have to keep track of entities yourself, when Doctrine already knows about them.</p>
+<p>As a next step we want to fetch a list of all the Products. Let’s create a new script for this:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// list_products.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$productRepository = $entityManager-&gt;getRepository(<span class="string">'Product'</span>);</span><br><span class="line">$products = $productRepository-&gt;findAll();</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($products <span class="keyword">as</span> $product) &#123;</span><br><span class="line">    <span class="keyword">echo</span> sprintf(<span class="string">"-%s\n"</span>, $product-&gt;getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The <code>EntityManager#getRepository()</code> method can create a finder object (called a repository) for every entity. It is provided by Doctrine and contains some finder methods such as <code>findAll()</code>.</p>
+<p>Let’s continue with displaying the name of a product based on its ID:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// show_product.php &lt;id&gt;</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$id = $argv[<span class="number">1</span>];</span><br><span class="line">$product = $entityManager-&gt;find(<span class="string">'Product'</span>, $id);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($product === <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"No product found.\n"</span>;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> sprintf(<span class="string">"-%s\n"</span>, $product-&gt;getName());</span><br></pre></td></tr></table></figure>
+<p>Updating a product name demonstrates the functionality UnitOfWork of pattern discussed before. We only need to find a product entity and all changes to its properties are written to the database:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// update_product.php &lt;id&gt; &lt;new-name&gt;</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$id = $argv[<span class="number">1</span>];</span><br><span class="line">$newName = $argv[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">$product = $entityManager-&gt;find(<span class="string">'Product'</span>, $id);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($product === <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Product $id does not exist.\n"</span>;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$product-&gt;setName($newName);</span><br><span class="line"></span><br><span class="line">$entityManager-&gt;flush();</span><br></pre></td></tr></table></figure>
+<p>After calling this script on one of the existing products, you can verify the product name changed by calling the <code>show_product.php</code> script.</p>
+<h2 id="adding-bug-and-user-entities">Adding Bug and User Entities</h2>
+<p>We continue with the bug tracker domain, by creating the missing classes Bug and User and putting them into src/Bug.php and src/User.php respectively.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Bug.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Entity</span>(repositoryClass="BugRepository") <span class="doctag">@Table</span>(name="bugs")</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Id</span> <span class="doctag">@Column</span>(type="integer") <span class="doctag">@GeneratedValue</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="string")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $description;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="datetime")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> DateTime</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $created;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="string")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $status;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getId</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getDescription</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setDescription</span><span class="params">($description)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;description = $description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setCreated</span><span class="params">(DateTime $created)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;created = $created;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getCreated</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;created;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setStatus</span><span class="params">($status)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;status = $status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getStatus</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;status;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/User.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Entity</span> <span class="doctag">@Table</span>(name="users")</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Id</span> <span class="doctag">@GeneratedValue</span> <span class="doctag">@Column</span>(type="integer")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="string")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getId</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>All of the properties discussed so far are simple string and integer values, for example the id fields of the entities, their names, description, status and change dates. Next we will model the dynamic relationships between the entities by defining the references between entities.</p>
+<p>References between objects are foreign keys in the database. You never have to (and never should) work with the foreign keys directly, only with the objects that represent the foreign key through their own identity.</p>
+<p>For every foreign key you either have a Doctrine <strong>ManyToOne</strong> or <strong>OneToOne</strong> association. On the inverse sides of these foreign keys you can have <strong>OneToMany</strong> associations. Obviously you can have <strong>ManyToMany</strong> associations that connect two tables with each other through a join table with two foreign keys.</p>
+<p>Now that you know the basics about references in Doctrine, we can extend the domain model to match the requirements:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Bug.php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Doctrine</span>\<span class="title">Common</span>\<span class="title">Collections</span>\<span class="title">ArrayCollection</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... (previous code)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $products;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;products = <span class="keyword">new</span> ArrayCollection();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/User.php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Doctrine</span>\<span class="title">Common</span>\<span class="title">Collections</span>\<span class="title">ArrayCollection</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... (previous code)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $reportedBugs;</span><br><span class="line">    <span class="keyword">protected</span> $assignedBugs;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;reportedBugs = <span class="keyword">new</span> ArrayCollection();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assignedBugs = <span class="keyword">new</span> ArrayCollection();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You use Doctrine’s ArrayCollections in your Doctrine models, rather than plain PHP arrays, so that Doctrine can watch what happens with them and act appropriately. Note that if you dump your entities, you’ll see a "PersistentCollection" in place of your ArrayCollection, which is just an internal Doctrine class with the same interface.</p>
+<blockquote>
+<p>Lazy load proxies always contain an instance of Doctrine’s EntityManager and all its dependencies. Therefore a <code>var_dump()</code> will possibly dump a very large recursive structure which is impossible to render and read. You have to use <strong><code>Doctrine\Common\Util\Debug::dump()</code></strong> to restrict the dumping to a human readable level. Additionally you should be aware that dumping the EntityManager to a Browser may take several minutes, and the <code>Debug::dump()</code> method just ignores any occurrences of it in Proxy instances.</p>
+</blockquote>
+<p>Because we only work with collections for the references we must be careful to implement a bidirectional reference in the domain model. The concept of owning or inverse side of a relation is central to this notion and should always be kept in mind. The following assumptions are made about relations and have to be followed to be able to work with Doctrine 2. These assumptions are not unique to Doctrine 2 but are best practices in handling database relations and Object-Relational Mapping.</p>
+<ul>
+<li>Changes to Collections are saved or updated, when the entity on the <strong>owning</strong> side of the collection is saved or updated.</li>
+<li>Saving an Entity at the inverse side of a relation <strong>never</strong> triggers a persist operation to changes to the collection.</li>
+<li>In a one-to-one relation the entity holding the foreign key of the related entity on its own database table is <strong>always</strong> the owning side of the relation.</li>
+<li>In a many-to-many relation, <strong>both</strong> sides can be the owning side of the relation. However in a bi-directional many-to-many relation only one is allowed to be.</li>
+<li>In a many-to-one relation the Many-side is the owning side by default, because it holds the foreign key.</li>
+<li>The OneToMany side of a relation is inverse by default, since the foreign key is saved on the Many side. A OneToMany relation can only be the owning side, if its implemented using a ManyToMany relation with join table and restricting the one side to allow only UNIQUE values per database constraint.</li>
+</ul>
+<blockquote>
+<p><strong>Consistency</strong> of bi-directional references on the inverse side of a relation have to <strong>be managed</strong> in userland application code. Doctrine cannot magically update your collections to be consistent.</p>
+</blockquote>
+<p>In the case of Users and Bugs we have references back and forth to the assigned and reported bugs from a user, making this relation bi-directional. We have to change the code to ensure consistency of the bi-directional reference:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Bug.php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... (previous code)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $engineer;</span><br><span class="line">    <span class="keyword">protected</span> $reporter;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setEngineer</span><span class="params">($engineer)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $engineer-&gt;assignedToBug(<span class="keyword">$this</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;engineer = $engineer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setReporter</span><span class="params">($reporter)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $reporter-&gt;addReportedBug(<span class="keyword">$this</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;reporter = $reporter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getEngineer</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;engineer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getReporter</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;reporter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/User.php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... (previous code)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $reportedBugs = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">protected</span> $assignedBugs = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addReportedBug</span><span class="params">($bug)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;reportedBugs[] = $bug;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">assignedToBug</span><span class="params">($bug)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assignedBugs[] = $bug;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>I chose to name the inverse methods in <strong>past-tense</strong>, which should indicate that the actual assigning has already taken place and the methods are only used for <strong>ensuring </strong>consistency of the references. This approach is my personal preference, you can choose whatever method to make this work.</p>
+<p>You can see from <code>User#addReportedBug()</code> and <code>User#assignedToBug()</code> that using this method in userland alone would not add the Bug to the collection of the owning side in <code>Bug#reporter</code> or <code>Bug#engineer</code>. Using these methods and calling Doctrine for persistence would not update the collections representation in the database.</p>
+<p>Only using <code>Bug#setEngineer()</code> or <code>Bug#setReporter()</code> correctly saves the relation information.</p>
+<p>The <code>Bug#reporter</code> and <code>Bug#engineer</code> properties are Many-To-One relations, which point to a User. In a normalized relational model the foreign key is saved on the Bug’s table, hence in our object-relation model <strong>the Bug is at the owning side</strong> of the relation. You should always make sure that the use-cases of your domain model should drive which side is an inverse or owning one in your Doctrine mapping. In our example, whenever a new bug is saved or an engineer is assigned to the bug, we don’t want to update the User to persist the reference, but the Bug. This is the case with the Bug being at the owning side of the relation.</p>
+<p>Bugs reference Products by an uni-directional ManyToMany relation in the database that points from Bugs to Products.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Bug.php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... (previous code)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $products = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">assignToProduct</span><span class="params">($product)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;products[] = $product;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getProducts</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;products;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We are now finished with the domain model given the requirements. Lets add metadata mappings for the <code>User</code> and <code>Bug</code> as we did for the <code>Product</code> before:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Bug.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Entity</span> <span class="doctag">@Table</span>(name="bugs")</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Id</span> <span class="doctag">@Column</span>(type="integer") <span class="doctag">@GeneratedValue</span></span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="string")</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $description;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="datetime")</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $created;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="string")</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $status;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@ManyToOne</span>(targetEntity="User", inversedBy="assignedBugs")</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $engineer;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@ManyToOne</span>(targetEntity="User", inversedBy="reportedBugs")</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $reporter;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@ManyToMany</span>(targetEntity="Product")</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $products;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... (other code)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- config/xml/Bug.dcm.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">doctrine-mapping</span> <span class="attr">xmlns</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping</span></span></span><br><span class="line"><span class="tag"><span class="string">                    http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">"Bug"</span> <span class="attr">table</span>=<span class="string">"bugs"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"integer"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">strategy</span>=<span class="string">"AUTO"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"created"</span> <span class="attr">type</span>=<span class="string">"datetime"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"status"</span> <span class="attr">type</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">many-to-one</span> <span class="attr">target-entity</span>=<span class="string">"User"</span> <span class="attr">field</span>=<span class="string">"reporter"</span> <span class="attr">inversed-by</span>=<span class="string">"reportedBugs"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">many-to-one</span> <span class="attr">target-entity</span>=<span class="string">"User"</span> <span class="attr">field</span>=<span class="string">"engineer"</span> <span class="attr">inversed-by</span>=<span class="string">"assignedBugs"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">many-to-many</span> <span class="attr">target-entity</span>=<span class="string">"Product"</span> <span class="attr">field</span>=<span class="string">"products"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">doctrine-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/yaml/Bug.dcm.yml</span></span><br><span class="line"><span class="attr">Bug:</span></span><br><span class="line"><span class="attr">  type:</span> entity</span><br><span class="line"><span class="attr">  table:</span> bugs</span><br><span class="line"><span class="attr">  id:</span></span><br><span class="line"><span class="attr">    id:</span></span><br><span class="line"><span class="attr">      type:</span> integer</span><br><span class="line"><span class="attr">      generator:</span></span><br><span class="line"><span class="attr">        strategy:</span> AUTO</span><br><span class="line"><span class="attr">  fields:</span></span><br><span class="line"><span class="attr">    description:</span></span><br><span class="line"><span class="attr">      type:</span> text</span><br><span class="line"><span class="attr">    created:</span></span><br><span class="line"><span class="attr">      type:</span> datetime</span><br><span class="line"><span class="attr">    status:</span></span><br><span class="line"><span class="attr">      type:</span> string</span><br><span class="line"><span class="attr">  manyToOne:</span></span><br><span class="line"><span class="attr">    reporter:</span></span><br><span class="line"><span class="attr">      targetEntity:</span> User</span><br><span class="line"><span class="attr">      inversedBy:</span> reportedBugs</span><br><span class="line"><span class="attr">    engineer:</span></span><br><span class="line"><span class="attr">      targetEntity:</span> User</span><br><span class="line"><span class="attr">      inversedBy:</span> assignedBugs</span><br><span class="line"><span class="attr">  manyToMany:</span></span><br><span class="line"><span class="attr">    products:</span></span><br><span class="line"><span class="attr">      targetEntity:</span> Product</span><br></pre></td></tr></table></figure>
+<p>Here we have the entity, id and primitive type definitions. For the "created" field we have used the datetime type, which translates the YYYY-mm-dd HH:mm:ss database format into a PHP DateTime instance and back.</p>
+<p>After the field definitions the two qualified references to the user entity are defined. They are created by the <strong>many-to-one</strong> tag. The class name of the related entity has to be specified with the <strong>target-entity</strong> attribute, which is enough information for the database mapper to access the foreign-table. Since <strong>reporter</strong> and <strong>engineer</strong> are on the owning side of a bi-directional relation we also have to specify the <strong>inversed-by</strong> attribute. They have to point to the field names on the inverse side of the relationship. We will see in the next example that the <strong>inversed-by</strong> attribute has a counterpart <strong>mapped-by</strong> which makes that the inverse side.</p>
+<p>The last definition is for the <strong>Bug#products</strong> collection. It holds all products where the specific bug occurs. Again you have to define the <strong>target-entity</strong> and <strong>field</strong> attributes on the <strong>many-to-many</strong> tag.</p>
+<p>The last missing definition is that of the User entity:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/User.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Entity</span> <span class="doctag">@Table</span>(name="users")</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Id</span> <span class="doctag">@GeneratedValue</span> <span class="doctag">@Column</span>(type="integer")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> int</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Column</span>(type="string")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@OneToMany</span>(targetEntity="Bug", mappedBy="reporter")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> Bug[]</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $reportedBugs = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@OneToMany</span>(targetEntity="Bug", mappedBy="engineer")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> Bug[]</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="keyword">protected</span> $assignedBugs = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// .. (other code)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- config/xml/User.dcm.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">doctrine-mapping</span> <span class="attr">xmlns</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping</span></span></span><br><span class="line"><span class="tag"><span class="string">                    http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">table</span>=<span class="string">"users"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"integer"</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">generator</span> <span class="attr">strategy</span>=<span class="string">"AUTO"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"></span><br><span class="line">         <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">         <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">target-entity</span>=<span class="string">"Bug"</span> <span class="attr">field</span>=<span class="string">"reportedBugs"</span> <span class="attr">mapped-by</span>=<span class="string">"reporter"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">target-entity</span>=<span class="string">"Bug"</span> <span class="attr">field</span>=<span class="string">"assignedBugs"</span> <span class="attr">mapped-by</span>=<span class="string">"engineer"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">doctrine-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/yaml/User.dcm.yml</span></span><br><span class="line"><span class="attr">User:</span></span><br><span class="line"><span class="attr">  type:</span> entity</span><br><span class="line"><span class="attr">  table:</span> users</span><br><span class="line"><span class="attr">  id:</span></span><br><span class="line"><span class="attr">    id:</span></span><br><span class="line"><span class="attr">      type:</span> integer</span><br><span class="line"><span class="attr">      generator:</span></span><br><span class="line"><span class="attr">        strategy:</span> AUTO</span><br><span class="line"><span class="attr">  fields:</span></span><br><span class="line"><span class="attr">    name:</span></span><br><span class="line"><span class="attr">      type:</span> string</span><br><span class="line"><span class="attr">  oneToMany:</span></span><br><span class="line"><span class="attr">    reportedBugs:</span></span><br><span class="line"><span class="attr">      targetEntity:</span> Bug</span><br><span class="line"><span class="attr">      mappedBy:</span> reporter</span><br><span class="line"><span class="attr">    assignedBugs:</span></span><br><span class="line"><span class="attr">      targetEntity:</span> Bug</span><br><span class="line"><span class="attr">      mappedBy:</span> engineer</span><br></pre></td></tr></table></figure>
+<p>Here are some new things to mention about the <strong>one-to-many</strong> tags. Remember that we discussed about the inverse and owning side. Now both reportedBugs and assignedBugs are inverse relations, which means the join details have already been defined on the owning side. Therefore we only have to specify the property on the Bug class that holds the owning sides.</p>
+<p>This example has a fair overview of the most basic features of the metadata definition language.</p>
+<p>Update your database running:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor/bin/doctrine orm:schema-tool:update --force</span><br></pre></td></tr></table></figure>
+<h2 id="implementing-more-requirements">Implementing more Requirements</h2>
+<p>For starters we need to create user entities:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// create_user.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$newUsername = $argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">$user = <span class="keyword">new</span> User();</span><br><span class="line">$user-&gt;setName($newUsername);</span><br><span class="line"></span><br><span class="line">$entityManager-&gt;persist($user);</span><br><span class="line">$entityManager-&gt;flush();</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Created User with ID "</span> . $user-&gt;getId() . <span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+<p>Now call:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php create_user.php xiyusullos</span><br></pre></td></tr></table></figure>
+<p>We now have the data to create a bug and the code for this scenario may look like this:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// create_bug.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$theReporterId = $argv[<span class="number">1</span>];</span><br><span class="line">$theDefaultEngineerId = $argv[<span class="number">2</span>];</span><br><span class="line">$productIds = explode(<span class="string">","</span>, $argv[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">$reporter = $entityManager-&gt;find(<span class="string">"User"</span>, $theReporterId);</span><br><span class="line">$engineer = $entityManager-&gt;find(<span class="string">"User"</span>, $theDefaultEngineerId);</span><br><span class="line"><span class="keyword">if</span> (!$reporter || !$engineer) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"No reporter and/or engineer found for the input.\n"</span>;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$bug = <span class="keyword">new</span> Bug();</span><br><span class="line">$bug-&gt;setDescription(<span class="string">"Something does not work!"</span>);</span><br><span class="line">$bug-&gt;setCreated(<span class="keyword">new</span> DateTime(<span class="string">"now"</span>));</span><br><span class="line">$bug-&gt;setStatus(<span class="string">"OPEN"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($productIds <span class="keyword">as</span> $productId) &#123;</span><br><span class="line">    $product = $entityManager-&gt;find(<span class="string">"Product"</span>, $productId);</span><br><span class="line">    $bug-&gt;assignToProduct($product);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$bug-&gt;setReporter($reporter);</span><br><span class="line">$bug-&gt;setEngineer($engineer);</span><br><span class="line"></span><br><span class="line">$entityManager-&gt;persist($bug);</span><br><span class="line">$entityManager-&gt;flush();</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Your new Bug Id: "</span>.$bug-&gt;getId().<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+<p>Since we only have one user and product, probably with the ID of 1, we can call this script with:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php create_bug.php 1 1 1</span><br></pre></td></tr></table></figure>
+<hr>
+<p><em>Here I got some errors.</em></p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ php create_bug.php 1 1 1</span><br><span class="line"></span><br><span class="line">Catchable fatal error: Argument 1 passed to Doctrine\Common\Collections\ArrayCollection::__construct() must be of the <span class="built_in">type</span> array, object given, called <span class="keyword">in</span> D:\04.Codes\doctrine2-tutorial\vendor\doctrine\orm\lib\Doctrine\ORM\UnitOfWork.php on line 555 and defined <span class="keyword">in</span> D:\04.Codes\doctrine2-tutorial\vendor\doctrine\collections\lib\Doctrine\Common\Collections\ArrayCollection.php on line 53</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>Resons: &gt; &gt; - Carelessly wrote this:<br>
+&gt; <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ManyToMany</span>(targetEntity="User", inversedBy="reportedBugs")</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@var</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> $reporter;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>Should be this:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ManyToOne</span>(targetEntity="User", inversedBy="reportedBugs")</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@var</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> $reporter;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ul>
+<li>Then recall this</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor/bin/doctrine orm:schema-tool:update --force</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>This is the first contact with the read API of the EntityManager, showing that a call to <code>EntityManager#find($name, $id)</code> returns a single instance of an entity queried by primary key. Besides this we see the persist + flush pattern again to save the Bug into the database.</p>
+<p>See how simple relating Bug, Reporter, Engineer and Products is done by using the discussed methods in the "A first prototype" section. The UnitOfWork will detect this relationship when flush is called and relate them in the database appropriately.</p>
+<h2 id="queries-for-application-use-cases">Queries for Application Use-Cases</h2>
+<h3 id="list-of-bugs">List of Bugs</h3>
+<p>Using the previous examples we can fill up the database quite a bit, however we now need to discuss how to query the underlying mapper for the required view representations. When opening the application, bugs can be paginated through a list-view, which is the first read-only use-case:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// list_bugs.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$dql = <span class="string">"SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r ORDER BY b.created DESC"</span>;</span><br><span class="line"></span><br><span class="line">$query = $entityManager-&gt;createQuery($dql);</span><br><span class="line">$query-&gt;setMaxResults(<span class="number">30</span>);</span><br><span class="line">$bugs = $query-&gt;getResult();</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($bugs <span class="keyword">as</span> $bug) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $bug-&gt;getDescription().<span class="string">" - "</span>.$bug-&gt;getCreated()-&gt;format(<span class="string">'d.m.Y'</span>).<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"    Reported by: "</span>.$bug-&gt;getReporter()-&gt;getName().<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"    Assigned to: "</span>.$bug-&gt;getEngineer()-&gt;getName().<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">foreach</span> ($bug-&gt;getProducts() <span class="keyword">as</span> $product) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"    Platform: "</span>.$product-&gt;getName().<span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The DQL Query in this example fetches the 30 most recent bugs with their respective engineer and reporter in one single SQL statement. The console output of this script is then:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Somethins does not work! - 11.03.2017</span><br><span class="line">  Reported by: xiyusullos</span><br><span class="line">  Assigned to: xiyusullos.</span><br><span class="line">  Platform: ORM-new</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="dql-is-not-sql">DQL is not SQL</h4>
+<p>You may wonder why we start writing SQL at the beginning of this use-case. Don’t we use an ORM to get rid of all the endless hand-writing of SQL? Doctrine introduces DQL which is best described as <strong>object-query-language</strong> and is a dialect of <a href="http://en.wikipedia.org/wiki/Object_Query_Language" target="_blank" rel="noopener">OQL</a> and similar to <a href="http://www.hibernate.org/" target="_blank" rel="noopener">HQL</a> or <a href="http://en.wikipedia.org/wiki/Java_Persistence_Query_Language" target="_blank" rel="noopener">JPQL</a>. It does not know the concept of columns and tables, but only those of Entity-Class and property. Using the Metadata we defined before it allows for very short distinctive and powerful queries. An important reason why DQL is favourable to the Query API of most ORMs is its similarity to SQL. The DQL language allows query constructs that most ORMs don’t: GROUP BY even with HAVING, Sub-selects, Fetch-Joins of nested classes, mixed results with entities and scalar data such as COUNT() results and much more. Using DQL you should seldom come to the point where you want to throw your ORM into the dumpster, because it doesn’t support some the more powerful SQL concepts. Instead of handwriting DQL you can use the <code>QueryBuilder</code> retrieved by calling <code>$entityManager-&gt;createQueryBuilder()</code>. There are more details about this in the relevant part of the documentation. As a last resort you can still use Native SQL and a description of the result set to retrieve entities from the database. DQL boils down to a Native SQL statement and a ResultSetMapping instance itself. Using Native SQL you could even use stored procedures for data retrieval, or make use of advanced non-portable database queries like PostgreSql’s recursive queries.</p>
+</blockquote>
+<h3 id="array-hydration-of-the-bug-list">Array Hydration of the Bug List</h3>
+<p>In the previous use-case we retrieved the results as their respective object instances. We are not limited to retrieving objects only from Doctrine however. For a simple list view like the previous one we only need read access to our entities and can switch the hydration from objects to simple PHP arrays instead.</p>
+<p>Hydration can be an expensive process so only retrieving what you need can yield considerable performance benefits for read-only requests.</p>
+<p>Implementing the same list view as before using array hydration we can rewrite our code:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// list_bugs_array.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$dql = <span class="string">"SELECT b, e, r, p FROM Bug b JOIN b.engineer e "</span>.</span><br><span class="line">       <span class="string">"JOIN b.reporter r JOIN b.products p ORDER BY b.created DESC"</span>;</span><br><span class="line">$query = $entityManager-&gt;createQuery($dql);</span><br><span class="line">$bugs = $query-&gt;getArrayResult();</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($bugs <span class="keyword">as</span> $bug) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $bug[<span class="string">'description'</span>] . <span class="string">" - "</span> . $bug[<span class="string">'created'</span>]-&gt;format(<span class="string">'d.m.Y'</span>).<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"    Reported by: "</span>.$bug[<span class="string">'reporter'</span>][<span class="string">'name'</span>].<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"    Assigned to: "</span>.$bug[<span class="string">'engineer'</span>][<span class="string">'name'</span>].<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">foreach</span> ($bug[<span class="string">'products'</span>] <span class="keyword">as</span> $product) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"    Platform: "</span>.$product[<span class="string">'name'</span>].<span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>There is one significant difference in the DQL query however, we have to add an additional fetch-join for the products connected to a bug. The resulting SQL query for this single select statement is pretty large, however still more efficient to retrieve compared to hydrating objects.</p>
+<h3 id="find-by-primary-key">Find by Primary Key</h3>
+<p>The next Use-Case is displaying a Bug by primary key. This could be done using DQL as in the previous example with a where clause, however there is a convenience method on the <strong>EntityManager</strong> that handles loading by primary key, which we have already seen in the write scenarios:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// show_bug.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$theBugId = $argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">$bug = $entityManager-&gt;find(<span class="string">"Bug"</span>, (int)$theBugId);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Bug: "</span>.$bug-&gt;getDescription().<span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Engineer: "</span>.$bug-&gt;getEngineer()-&gt;getName().<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+<p>The output of the engineer’s name is fetched from the database! What is happening?</p>
+<p>Since we only retrieved the bug by primary key both the engineer and reporter are not immediately loaded from the database but are replaced by LazyLoading proxies. These proxies will load behind the scenes, when the first method is called on them.</p>
+<p>Sample code of this proxy generated code can be found in the specified Proxy Directory, it looks like:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyProject</span>\<span class="title">Proxies</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * THIS CLASS WAS GENERATED BY THE DOCTRINE ORM. DO NOT EDIT THIS FILE.</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> <span class="keyword">extends</span> \<span class="title">User</span> <span class="keyword">implements</span> \<span class="title">Doctrine</span>\<span class="title">ORM</span>\<span class="title">Proxy</span>\<span class="title">Proxy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// .. lazy load code here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addReportedBug</span><span class="params">($bug)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_load();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">parent</span>::addReportedBug($bug);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">assignedToBug</span><span class="params">($bug)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_load();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">parent</span>::assignedToBug($bug);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>See how upon each method call the proxy is lazily loaded from the database?</p>
+<p>The call prints:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ php show_bug.php 1</span><br><span class="line">Bug: Somethins does not work!</span><br><span class="line">Engineer: xiyusullos</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Lazy loading additional data can be very convenient but the additional queries create an overhead. If you know that certain fields will always (or usually) be required by the query then you will get better performance by explicitly retrieving them all in the first query.</p>
+</blockquote>
+<h2 id="dashboard-of-the-user">Dashboard of the User</h2>
+<p>For the next use-case we want to retrieve the dashboard view, a list of all open bugs the user reported or was assigned to. This will be achieved using DQL again, this time with some WHERE clauses and usage of bound parameters:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// dashboard.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$theUserId = $argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">$dql = <span class="string">"SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r "</span>.</span><br><span class="line">       <span class="string">"WHERE b.status = 'OPEN' AND (e.id = ?1 OR r.id = ?1) ORDER BY b.created DESC"</span>;</span><br><span class="line"></span><br><span class="line">$myBugs = $entityManager-&gt;createQuery($dql)</span><br><span class="line">                        -&gt;setParameter(<span class="number">1</span>, $theUserId)</span><br><span class="line">                        -&gt;setMaxResults(<span class="number">15</span>)</span><br><span class="line">                        -&gt;getResult();</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"You have created or assigned to "</span> . count($myBugs) . <span class="string">" open bugs:\n\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($myBugs <span class="keyword">as</span> $bug) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $bug-&gt;getId() . <span class="string">" - "</span> . $bug-&gt;getDescription().<span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The call prints: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ php dashboard.php 1</span><br><span class="line">You have created or assigned to 1 open bugs:</span><br><span class="line"></span><br><span class="line">1 - Somethins does not work!</span><br></pre></td></tr></table></figure></p>
+<h2 id="number-of-bugs">Number of Bugs</h2>
+<p>Until now we only retrieved entities or their array representation. Doctrine also supports the retrieval of non-entities through DQL. These values are called "scalar result values" and may even be aggregate values using COUNT, SUM, MIN, MAX or AVG functions.</p>
+<p>We will need this knowledge to retrieve the number of open bugs grouped by product:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// products.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$dql = <span class="string">"SELECT p.id, p.name, count(b.id) AS openBugs FROM Bug b "</span>.</span><br><span class="line">       <span class="string">"JOIN b.products p WHERE b.status = 'OPEN' GROUP BY p.id"</span>;</span><br><span class="line">$productBugs = $entityManager-&gt;createQuery($dql)-&gt;getScalarResult();</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($productBugs <span class="keyword">as</span> $productBug) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $productBug[<span class="string">'name'</span>].<span class="string">" has "</span> . $productBug[<span class="string">'openBugs'</span>] . <span class="string">" open bugs!\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The call prints:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php products.php</span><br><span class="line">ORM-new has 1 open bugs!</span><br></pre></td></tr></table></figure>
+<h2 id="updating-entities">Updating Entities</h2>
+<p>There is a single use-case missing from the requirements, Engineers should be able to close a bug. This looks like:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/Bug.php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;status = <span class="string">"CLOSE"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// close_bug.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$theBugId = $argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">$bug = $entityManager-&gt;find(<span class="string">"Bug"</span>, (int)$theBugId);</span><br><span class="line">$bug-&gt;close();</span><br><span class="line"></span><br><span class="line">$entityManager-&gt;flush();</span><br></pre></td></tr></table></figure>
+<p>When retrieving the Bug from the database it is inserted into the IdentityMap inside the UnitOfWork of Doctrine. This means your Bug with exactly this id can only exist once during the whole request no matter how often you call <code>EntityManager#find()</code>. It even detects entities that are hydrated using DQL and are already present in the Identity Map.</p>
+<p>When flush is called the EntityManager loops over all the entities in the identity map and performs a comparison between the values originally retrieved from the database and those values the entity currently has. If at least one of these properties is different the entity is scheduled for an UPDATE against the database. Only the changed columns are updated, which offers a pretty good performance improvement compared to updating all the properties.</p>
+<h2 id="entity-repositories">Entity Repositories</h2>
+<p>For now we have not discussed how to separate the Doctrine query logic from your model. In Doctrine 1 there was the concept of <code>Doctrine_Table</code> instances for this separation. The similar concept in Doctrine2 is called Entity Repositories, integrating the <a href="http://martinfowler.com/eaaCatalog/repository.html" target="_blank" rel="noopener">repository pattern</a> at the heart of Doctrine.</p>
+<p>Every Entity uses a default repository by default and offers a bunch of convenience methods that you can use to query for instances of that Entity. Take for example our Product entity. If we wanted to Query by name, we can use:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$product = $entityManager-&gt;getRepository(<span class="string">'Product'</span>)</span><br><span class="line">                         -&gt;findOneBy(<span class="keyword">array</span>(<span class="string">'name'</span> =&gt; $productName));</span><br></pre></td></tr></table></figure>
+<p>The method <code>findOneBy()</code> takes an array of fields or association keys and the values to match against.</p>
+<p>If you want to find all entities matching a condition you can use <code>findBy()</code>, for example querying for all closed bugs:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$bugs = $entityManager-&gt;getRepository(<span class="string">'Bug'</span>)</span><br><span class="line">                      -&gt;findBy(<span class="keyword">array</span>(<span class="string">'status'</span> =&gt; <span class="string">'CLOSED'</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($bugs <span class="keyword">as</span> $bug) &#123;</span><br><span class="line">    <span class="comment">// do stuff</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Compared to DQL these query methods are falling short of functionality very fast. Doctrine offers you a convenient way to extend the functionalities of the default <code>EntityRepository</code> and put all the specialized DQL query logic on it. For this you have to create a subclass of <code>Doctrine\ORM\EntityRepository</code>, in our case a <code>BugRepository</code> and group all the previously discussed query functionality in it:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// src/BugRepository.php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Doctrine</span>\<span class="title">ORM</span>\<span class="title">EntityRepository</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BugRepository</span> <span class="keyword">extends</span> <span class="title">EntityRepository</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getRecentBugs</span><span class="params">($number = <span class="number">30</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $dql = <span class="string">"SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r ORDER BY b.created DESC"</span>;</span><br><span class="line"></span><br><span class="line">        $query = <span class="keyword">$this</span>-&gt;getEntityManager()-&gt;createQuery($dql);</span><br><span class="line">        $query-&gt;setMaxResults($number);</span><br><span class="line">        <span class="keyword">return</span> $query-&gt;getResult();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getRecentBugsArray</span><span class="params">($number = <span class="number">30</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $dql = <span class="string">"SELECT b, e, r, p FROM Bug b JOIN b.engineer e "</span>.</span><br><span class="line">               <span class="string">"JOIN b.reporter r JOIN b.products p ORDER BY b.created DESC"</span>;</span><br><span class="line">        $query = <span class="keyword">$this</span>-&gt;getEntityManager()-&gt;createQuery($dql);</span><br><span class="line">        $query-&gt;setMaxResults($number);</span><br><span class="line">        <span class="keyword">return</span> $query-&gt;getArrayResult();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUsersBugs</span><span class="params">($userId, $number = <span class="number">15</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $dql = <span class="string">"SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r "</span>.</span><br><span class="line">               <span class="string">"WHERE b.status = 'OPEN' AND e.id = ?1 OR r.id = ?1 ORDER BY b.created DESC"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;getEntityManager()-&gt;createQuery($dql)</span><br><span class="line">                             -&gt;setParameter(<span class="number">1</span>, $userId)</span><br><span class="line">                             -&gt;setMaxResults($number)</span><br><span class="line">                             -&gt;getResult();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getOpenBugsByProduct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $dql = <span class="string">"SELECT p.id, p.name, count(b.id) AS openBugs FROM Bug b "</span>.</span><br><span class="line">               <span class="string">"JOIN b.products p WHERE b.status = 'OPEN' GROUP BY p.id"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;getEntityManager()-&gt;createQuery($dql)-&gt;getScalarResult();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>To be able to use this query logic through <code>$this-&gt;getEntityManager()-&gt;getRepository('Bug')</code> we have to adjust the metadata slightly.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Entity</span>(repositoryClass="BugRepository")</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Table</span>(name="bugs")</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">doctrine-mapping</span> <span class="attr">xmlns</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://doctrine-project.org/schemas/orm/doctrine-mapping</span></span></span><br><span class="line"><span class="tag"><span class="string">                    http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">"Bug"</span> <span class="attr">table</span>=<span class="string">"bugs"</span> <span class="attr">repository-class</span>=<span class="string">"BugRepository"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">doctrine-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Bug:</span></span><br><span class="line"><span class="attr">  type:</span> entity</span><br><span class="line"><span class="attr">  repositoryClass:</span> BugRepository</span><br></pre></td></tr></table></figure>
+<p>Now we can remove our query logic in all the places and instead use them through the EntityRepository. As an example here is the code of the first use case "List of Bugs":</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// list_bugs_repository.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"bootstrap.php"</span>;</span><br><span class="line"></span><br><span class="line">$bugs = $entityManager-&gt;getRepository(<span class="string">'Bug'</span>)-&gt;getRecentBugs();</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($bugs <span class="keyword">as</span> $bug) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $bug-&gt;getDescription().<span class="string">" - "</span>.$bug-&gt;getCreated()-&gt;format(<span class="string">'d.m.Y'</span>).<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"    Reported by: "</span>.$bug-&gt;getReporter()-&gt;getName().<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"    Assigned to: "</span>.$bug-&gt;getEngineer()-&gt;getName().<span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">foreach</span> ($bug-&gt;getProducts() <span class="keyword">as</span> $product) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"    Platform: "</span>.$product-&gt;getName().<span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Using EntityRepositories you can avoid coupling your model with specific query logic. You can also re-use query logic easily throughout your application.</p>
+<p>The method <code>count()</code> takes an array of fields or association keys and the values to match against. This provides you with a convenient and lightweight way to count a resultset when you don’t need to deal with it:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$productCount = $entityManager-&gt;getRepository(Product::class)</span><br><span class="line">                         -&gt;count([<span class="string">'name'</span> =&gt; $productName]);</span><br></pre></td></tr></table></figure>
+<h2 id="conclusion">Conclusion</h2>
+<p>This tutorial is over here, I hope you had fun. Additional content will be added to this tutorial incrementally, topics will include:</p>
+<ul>
+<li>More on Association Mappings</li>
+<li>Lifecycle Events triggered in the UnitOfWork</li>
+<li>Ordering of Collections</li>
+</ul>
+<p>Additional details on all the topics discussed here can be found in the respective manual chapters.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="aponder WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="aponder Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>aponder</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://blog.aponder.top/2017/03/Doctrine2-Tutorial/" title="Doctrine2 Tutorial">http://blog.aponder.top/2017/03/Doctrine2-Tutorial/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Doctrine/" rel="tag"># Doctrine</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/Install-Chrome-Browser-on-CentOS-7/" rel="next" title="Install Chrome Browser on CentOS 7">
+                <i class="fa fa-chevron-left"></i> Install Chrome Browser on CentOS 7
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/Install-Redis-on-CentOS-7/" rel="prev" title="Install Redis on Centos 7">
+                Install Redis on Centos 7 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200" alt="aponder">
+            
+              <p class="site-author-name" itemprop="name">aponder</p>
+              <div class="site-description motion-element" itemprop="description">from 0 to 1</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xiyusullos" title="GitHub &rarr; https://github.com/xiyusullos" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://gitee.com/xiyusullos" title="Gitee &rarr; https://gitee.com/xiyusullos" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Gitee</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#getting-started-with-doctrine"><span class="nav-number">1.</span> <span class="nav-text">Getting Started with Doctrine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#guide-assumptions"><span class="nav-number">2.</span> <span class="nav-text">Guide Assumptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-is-doctrine"><span class="nav-number">3.</span> <span class="nav-text">What is Doctrine?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-are-entities"><span class="nav-number">3.1.</span> <span class="nav-text">What are Entities?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#an-example-model-bug-tracker"><span class="nav-number">4.</span> <span class="nav-text">An Example Model: Bug Tracker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#project-setup"><span class="nav-number">5.</span> <span class="nav-text">Project Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#obtaining-the-entitymanager"><span class="nav-number">6.</span> <span class="nav-text">Obtaining the EntityManager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generating-the-database-schema"><span class="nav-number">7.</span> <span class="nav-text">Generating the Database Schema</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#starting-with-the-product"><span class="nav-number">8.</span> <span class="nav-text">Starting with the Product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adding-bug-and-user-entities"><span class="nav-number">9.</span> <span class="nav-text">Adding Bug and User Entities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#implementing-more-requirements"><span class="nav-number">10.</span> <span class="nav-text">Implementing more Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#queries-for-application-use-cases"><span class="nav-number">11.</span> <span class="nav-text">Queries for Application Use-Cases</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#list-of-bugs"><span class="nav-number">11.1.</span> <span class="nav-text">List of Bugs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dql-is-not-sql"><span class="nav-number">11.1.1.</span> <span class="nav-text">DQL is not SQL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#array-hydration-of-the-bug-list"><span class="nav-number">11.2.</span> <span class="nav-text">Array Hydration of the Bug List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find-by-primary-key"><span class="nav-number">11.3.</span> <span class="nav-text">Find by Primary Key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dashboard-of-the-user"><span class="nav-number">12.</span> <span class="nav-text">Dashboard of the User</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#number-of-bugs"><span class="nav-number">13.</span> <span class="nav-text">Number of Bugs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#updating-entities"><span class="nav-number">14.</span> <span class="nav-text">Updating Entities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#entity-repositories"><span class="nav-number">15.</span> <span class="nav-text">Entity Repositories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">16.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aponder</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Symbols count total: </span>
+    
+    <span title="Symbols count total">123k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    
+    <span title="Reading time total">2:false</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.0"></script>
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+  
+  
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '3Tk3aaayuMwhrfpL46KvAyXe-gzGzoHsz',
+    appKey: '0KgQzAYGmgJ5B08c1skEkhmc',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.0"></script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+</body>
+</html>
