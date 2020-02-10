@@ -250,7 +250,7 @@
         
         
           
-          <li class="menu-item menu-item-about">
+          <li class="menu-item menu-item-2019ncov">
 
     
     
@@ -262,7 +262,7 @@
       
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+    <a href="/2019nCoV" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>2019nCoV</a>
 
   </li>
         
@@ -319,7 +319,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">20</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">21</span></a>
 
   </li>
         
@@ -428,6 +428,226 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.aponder.top/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="aponder">
+      <meta itemprop="description" content="from 0 to 1">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="aponder's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/" class="post-title-link" itemprop="url">How to Install Docker, Docker-Compose and Laradock Offline</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-05-08 19:39:30" itemprop="dateCreated datePublished" datetime="2017-05-08T19:39:30+08:00">2017-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-02-09 19:47:11" itemprop="dateModified" datetime="2020-02-09T19:47:11+08:00">2020-02-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/" class="leancloud_visitors" data-flag-title="How to Install Docker, Docker-Compose and Laradock Offline">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">1 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="step-0-prerequisites">Step 0: prerequisites</h2>
+<ul>
+<li>download <a href="https://get.docker.com/builds/Linux/x86_64/docker-17.05.0-ce.tgz" target="_blank" rel="noopener">docker binary</a></li>
+<li>download <a href="https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64" target="_blank" rel="noopener">docker-compose binary</a></li>
+<li>download <a href="https://github.com/laradock/laradock/archive/master.zip" target="_blank" rel="noopener">laradock</a></li>
+<li>download <a href="https://pan.baidu.com/s/1bptNEk3" target="_blank" rel="noopener">laradock images</a></li>
+<li>your application code, for example, <strong>dgiot.xy-jit.cc.zip</strong></li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -558,7 +778,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">263</span>
+                <span title="Symbols count in article">261</span>
               
 
               
@@ -593,10 +813,9 @@
 
       
         
-          <h2 id="intent"><a class="header-anchor" href="#intent">¶</a>Intent</h2>
+          <h2 id="intent">Intent</h2>
 <p>Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.</p>
-<p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。 Factory Method使一个类的<br>
-实例化延迟到其子类。</p>
+<p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。 Factory Method使一个类的 实例化延迟到其子类。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -809,7 +1028,7 @@
 
       
         
-          <h2 id="intent"><a class="header-anchor" href="#intent">¶</a>Intent</h2>
+          <h2 id="intent">Intent</h2>
 <p>Separate the construction of a complex object from its representation so that the same construction process can create different representations.</p>
 <p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
           <!--noindex-->
@@ -1024,7 +1243,7 @@
 
       
         
-          <h2 id="intent"><a class="header-anchor" href="#intent">¶</a>Intent</h2>
+          <h2 id="intent">Intent</h2>
 <p>Provide an interface for creating families of related or dependent objects without specifying their concrete classes.</p>
 <p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p>
           <!--noindex-->
@@ -1204,7 +1423,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">501</span>
+                <span title="Symbols count in article">499</span>
               
 
               
@@ -1239,8 +1458,8 @@
 
       
         
-          <h2 id="override-function-validate-pk-name-product-licensekey"><a class="header-anchor" href="#override-function-validate-pk-name-product-licensekey">¶</a>Override <code>function validate(PK, name, product, licenseKey)</code></h2>
-<p>Find where is your StarUML installed and edit the <code>LicenseManagerDomain.js</code> file whicd locates in  <code>{INSTALL_PATH}/www/license/node/</code>. For instance, <code>C:\Program Files (x86)\StarUML\www\license\node\LicenseManagerDomain.js</code></p>
+          <h2 id="override-function-validatepk-name-product-licensekey">Override <code>function validate(PK, name, product, licenseKey)</code></h2>
+<p>Find where is your StarUML installed and edit the <code>LicenseManagerDomain.js</code> file whicd locates in <code>{INSTALL_PATH}/www/license/node/</code>. For instance, <code>C:\Program Files (x86)\StarUML\www\license\node\LicenseManagerDomain.js</code></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1418,7 +1637,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">2.6k</span>
+                <span title="Symbols count in article">2.5k</span>
               
 
               
@@ -1453,7 +1672,7 @@
 
       
         
-          <h2 id="creational-创建型模式"><a class="header-anchor" href="#creational-创建型模式">¶</a>Creational (创建型模式)</h2>
+          <h2 id="creational-创建型模式">Creational (创建型模式)</h2>
 <p>In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.</p>
           <!--noindex-->
           
@@ -1650,7 +1869,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">761</span>
+                <span title="Symbols count in article">755</span>
               
 
               
@@ -1685,7 +1904,7 @@
 
       
         
-          <h2 id="step-1-download-the-package"><a class="header-anchor" href="#step-1-download-the-package">¶</a>Step 1: <a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz" target="_blank" rel="noopener">download the package</a></h2>
+          <h2 id="step-1-download-the-package">Step 1: <a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz" target="_blank" rel="noopener">download the package</a></h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
@@ -1917,7 +2136,7 @@
 
       
         
-          <h2 id="step-1-download-the-package"><a class="header-anchor" href="#step-1-download-the-package">¶</a>Step 1: <a href="http://download.redis.io/releases/redis-3.2.8.tar.gz" target="_blank" rel="noopener">download the package</a></h2>
+          <h2 id="step-1-download-the-package">Step 1: <a href="http://download.redis.io/releases/redis-3.2.8.tar.gz" target="_blank" rel="noopener">download the package</a></h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.2.8.tar.gz</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
@@ -2128,7 +2347,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">58 mins.</span>
+                <span title="Reading time">57 mins.</span>
               
             </div>
           
@@ -2149,7 +2368,7 @@
 
       
         
-          <h2 id="getting-started-with-doctrine"><a class="header-anchor" href="#getting-started-with-doctrine">¶</a>Getting Started with Doctrine</h2>
+          <h2 id="getting-started-with-doctrine">Getting Started with Doctrine</h2>
 <p>This guide covers getting started with the Doctrine ORM. After working through the guide you should know:</p>
 <ul>
 <li>How to install and configure Doctrine by connecting it to a database</li>
@@ -2352,7 +2571,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">530</span>
+                <span title="Symbols count in article">527</span>
               
 
               
@@ -2387,7 +2606,7 @@
 
       
         
-          <h2 id="step-1-add-a-new-repo-named-google-chrome-repo-in-etc-yum-repos-d"><a class="header-anchor" href="#step-1-add-a-new-repo-named-google-chrome-repo-in-etc-yum-repos-d">¶</a>Step 1: add a new repo named <code>google-chrome.repo</code> in /etc/yum.repos.d/</h2>
+          <h2 id="step-1-add-a-new-repo-named-google-chrome.repo-in-etcyum.repos.d">Step 1: add a new repo named <code>google-chrome.repo</code> in /etc/yum.repos.d/</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /ect/yum.repos.d/ &amp;&amp; vim google-chrome.repo</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
@@ -2437,228 +2656,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.aponder.top/2017/02/Hello-World/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="aponder">
-      <meta itemprop="description" content="from 0 to 1">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/02/Hello-World/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-02-28 21:18:52" itemprop="dateCreated datePublished" datetime="2017-02-28T21:18:52+08:00">2017-02-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-02-09 19:47:11" itemprop="dateModified" datetime="2020-02-09T19:47:11+08:00">2020-02-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2017/02/Hello-World/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/02/Hello-World/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2017/02/Hello-World/" class="leancloud_visitors" data-flag-title="Hello World">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">440</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">1 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/02/Hello-World/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2702,7 +2704,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2856,7 +2858,7 @@
     
       <span class="post-meta-item-text">Symbols count total: </span>
     
-    <span title="Symbols count total">123k</span>
+    <span title="Symbols count total">124k</span>
   
 
   

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts-en.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.8/jquery.csv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.20.3/collect.min.js"></script>
+
+    <title>2019 nCoV</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="main" style="width: 600px;height:400px;"></div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: "#app",
+      data: {
+        db: {},
+        nCoVData: [],
+        provinceNames: [],
+
+        test: null
+      },
+      methods: {
+        fetchNCoVData: function() {
+          this.nCoVData = this.parseCsv(this.db);
+        },
+        fetchProvinceNames: function() {
+          this.provinceName = new Set(this.nCoVData.map(x => x.provinceName));
+        },
+
+        // normal function
+        formatTimestamp: function(timestamp) {
+          return moment(timestamp).format("YYYY-MM-DD");
+        },
+        parseCsv: function(
+          csv,
+          separator = ",",
+          delimiter = "\n",
+          skipHeader = true
+        ) {
+          var startLine = 0;
+          if (skipHeader) {
+            startLine = 1;
+          }
+          var lines = csv.split(delimiter);
+          var data = [];
+          for (var i = startLine; i < lines.length; i++) {
+            var _ = lines[i].split(separator);
+            data.push({
+              provinceName: _[0],
+              cityName: _[1],
+              province_confirmedCount: parseInt(_[2]),
+              province_suspectedCount: parseInt(_[3]),
+              province_curedCount: parseInt(_[4]),
+              province_deadCount: parseInt(_[5]),
+              city_confirmedCount: parseInt(_[6]),
+              city_suspectedCount: parseInt(_[7]),
+              city_curedCount: parseInt(_[8]),
+              city_deadCount: parseInt(_[9]),
+              updateTime: moment(_[10]).valueOf()
+            });
+          }
+
+          return data;
+        },
+        makeSeries: function(yData) {
+          var extract = function(data, name) {
+            return data.map(x => x[name]);
+          };
+          return [
+            {
+              name: "confirmedCount",
+              type: "line",
+              data: extract(yData, "confirmedCount")
+            },
+            {
+              name: "curedCount",
+              type: "line",
+              data: extract(yData, "curedCount")
+            },
+            {
+              name: "deadCount",
+              type: "line",
+              data: extract(yData, "deadCount")
+            },
+            {
+              name: "suspectedCount",
+              type: "line",
+              data: extract(yData, "suspectedCount")
+            }
+          ];
+        },
+
+        // functions for echartsjs
+        makeEchartOption: function(title, xData, yData) {
+          // var series = [];
+          return {
+            title: {
+              text: title
+            },
+            tooltip: {},
+            legend: {
+              data: [
+                "confirmedCount",
+                "curedCount",
+                "deadCount",
+                "suspectedCount"
+              ]
+            },
+            xAxis: {
+              data: xData
+            },
+            yAxis: {},
+            series: this.makeSeries(yData)
+          };
+        },
+        makeProvinceData: function(provinceName = "安徽省") {
+          var app = this;
+          var data = collect(app.nCoVData)
+            .filter((value, key) => value.provinceName === provinceName)
+            .sortBy("updateTime")
+            .groupBy((item, key) => app.formatTimestamp(item.updateTime))
+            .filter((value, key) => !!key)
+            .map(collection => {
+              var item = collection.first();
+              return {
+                confirmedCount: item.province_confirmedCount,
+                curedCount: item.province_curedCount,
+                deadCount: item.province_deadCount,
+                suspectedCount: item.province_suspectedCount
+              };
+            });
+          this.test = data;
+          return [data.keys().all(), data.values().all()];
+        },
+        makeCityData: function(provinceName = "安徽") {},
+
+        plotFigure: function() {
+          // 基于准备好的dom，初始化echarts实例
+          var myChart = echarts.init(document.getElementById("main"));
+
+          // 指定图表的配置项和数据
+
+          var title = "疫情";
+          var xData, yData;
+          // xData = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"];
+          // yData = [5, 20, 36, 10, 10, 20];
+          var provinceName = "安徽省";
+          [xData, yData] = this.makeProvinceData(provinceName);
+          // yData = new Set(this.nCoVData.map(x => x.confirmedCount));
+          console.log(xData, yData);
+          var option = this.makeEchartOption(provinceName, xData, yData);
+          console.log(option);
+
+          // 使用刚指定的配置项和数据显示图表。
+          myChart.setOption(option);
+        }
+      },
+      created: function() {},
+      mounted: function() {
+        var _this = this;
+        // dbUrl = "https://raw.githubusercontent.com/BlankerL/DXY-2019-nCoV-Data/master/json/DXYArea.json";
+        dbUrl =
+          "https://raw.githubusercontent.com/BlankerL/DXY-2019-nCoV-Data/master/csv/DXYArea.csv";
+        // dbUrl = 'https://3.test.xy-jit.cc/db.json';
+        axios.get(dbUrl).then(res => {
+          // console.log(res);
+          _this.db = res.data;
+          this.fetchNCoVData();
+          this.fetchProvinceNames();
+          this.plotFigure();
+        });
+      }
+    });
+
+    // app.plotFigure();
+  </script>
+</html>
