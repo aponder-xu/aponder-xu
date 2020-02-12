@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/han-css@3/dist/han.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '17P8IIYLYC',
+      apiKey: '9846c7615cc932fcbafe390a4e311374',
+      indexName: 'hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="tr (translate)12 功能作用(Function) 转化、压缩和/或删除标准输入中的字符, 将其写入标准输出。 Translate, squeeze, and/or delete characters from standard input, writing to standard output.">
+<meta name="keywords" content="xiyusullos,aponder,tr,Linux shell,bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tr">
+<meta property="og:url" content="https://blog.aponder.top/2020/02/tr/index.html">
+<meta property="og:site_name" content="aponder&#39;s blog">
+<meta property="og:description" content="tr (translate)12 功能作用(Function) 转化、压缩和/或删除标准输入中的字符, 将其写入标准输出。 Translate, squeeze, and/or delete characters from standard input, writing to standard output.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-02-12T09:35:26.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tr">
+<meta name="twitter:description" content="tr (translate)12 功能作用(Function) 转化、压缩和/或删除标准输入中的字符, 将其写入标准输出。 Translate, squeeze, and/or delete characters from standard input, writing to standard output.">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://blog.aponder.top/2020/02/tr/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Tr | aponder's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">aponder's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">dig world</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-2019ncov">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/2019nCoV" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>2019nCoV</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">11</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">3</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>Commonweal 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.aponder.top/2020/02/tr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="aponder">
+      <meta itemprop="description" content="from 0 to 1">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="aponder's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Tr
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-12 13:33:56 / Modified: 17:35:26" itemprop="dateCreated datePublished" datetime="2020-02-12T13:33:56+08:00">2020-02-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2020/02/tr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/tr/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2020/02/tr/" class="leancloud_visitors" data-flag-title="Tr">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">7.8k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">9 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="tr-translate12">tr (translate)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h1>
+<h2 id="功能作用function">功能作用(Function)</h2>
+<p>转化、压缩和/或删除标准输入中的字符, 将其写入标准输出。</p>
+<p>Translate, squeeze, and/or delete characters from standard input, writing to standard output.</p>
+<a id="more"></a>
+<h2 id="语法synopsis">语法(Synopsis)</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tr [OPTION]... SET1 [SET2]</span><br></pre></td></tr></table></figure>
+<h3 id="选项option">选项(Option)</h3>
+<ul>
+<li><code>-c, -C, --complement</code>: 使用SET1的补集(use the complement of SET1)</li>
+<li><code>-d, --delete</code>: 删除SET1中的字符, 不转化(delete characters in SET1, do not translate)</li>
+<li><code>-s, --squeeze-repeats</code>: 将最后指定的SET中列出的重复字符的每个序列替换为该字符的单次出现(replace each sequence of a repeated character that is listed in the last specified SET, with a single occurrence of that character)</li>
+<li><code>-t, --truncate-set1</code>: 截断SET1到SET2的长度(first truncate SET1 to length of SET2)</li>
+</ul>
+<h3 id="描述description">描述(Description)</h3>
+<p>SET通常为字符串。其中转义字符<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>有:</p>
+<ul>
+<li><code>\NNN</code>: 三位八进制数值(character with octal value NNN (1 to 3 octal digits))</li>
+<li><code>\\</code>: 反斜线(backslash)</li>
+<li><code>\a</code>: 响铃符(audible BEL)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li><code>\b</code>: 退格符(backspace)</li>
+<li><code>\f</code>: 换页符(form feed)</li>
+<li><code>\n</code>: 换行符(new line)</li>
+<li><code>\r</code>: 回车符(return)</li>
+<li><code>\t</code>: 水平制表符(horizontal tab)</li>
+<li><code>\v</code>: 垂直制表符(vertical tab)</li>
+</ul>
+<p>SET可以由以下部分组成:</p>
+<ul>
+<li><code>CHAR1-CHAR2</code>: 从CHAR1到CHAR2的所有字符按升序排列</li>
+<li><code>[CHAR*]</code>: 在SET2中, SET1的长度个CHAR副本</li>
+<li><code>[CHAR*REPEAT]</code>: REPEAT个CHAR副本, 如果REPEAT以0开始, 则为八进制数</li>
+<li><code>[:alnum:]</code>: 所有字母和数字</li>
+<li><code>[:alpha:]</code>: 所有字母</li>
+<li><code>[:blank:]</code>: 所有水平空白</li>
+<li><code>[:cntrl:]</code>: 所有控制字符<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li><code>[:digit:]</code>: 所有数字</li>
+<li><code>[:graph:]</code>: 所有可打印字符, 不包括空格</li>
+<li><code>[:lower:]</code>: 所有小写字母</li>
+<li><code>[:print:]</code>: 所有可打印字符, 包括空格</li>
+<li><code>[:punct:]</code>: 所有标点符号</li>
+<li><code>[:space:]</code>: 所有水平或垂直空白</li>
+<li><code>[:upper:]</code>: 所有大写字母</li>
+<li><code>[:xdigit:]</code>: 所有十六进制数字</li>
+<li><code>[=CHAR=]</code>: 所有等价于CHAR的字符</li>
+</ul>
+<p>如果没有给出<code>-d</code>且<code>SET1</code>和<code>SET2</code>都出现, 则进行转化(translation)。<code>-t</code>只能在转化时时使用。</p>
+<p>当<code>SET2</code>的长度小于<code>SET1</code>的长度, 以<code>SET2</code>的最后一个字符对<code>SET2</code>进行扩展并扩展到与<code>SET1</code>长度相同。</p>
+<p>当<code>SET2</code>的长度大于<code>SET1</code>的长度, <code>SET2</code>中多余的字符将被忽略。</p>
+<p>只有<code>[:lower:]</code>和<code>[:upper:]</code>保证按升序展开;在含有<code>SET2</code>的转化中, 它们只能成对使用来进行大小写转换。<code>-s</code>使用最后一个指定的<code>SET</code>, 并用于转化(translation)或删除(deletion)。</p>
+<h2 id="示例example">示例(Example)</h2>
+<h3 id="小写转大写">小写转大写</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello\t10023 world 456&quot; | tr &quot;a-z&quot; &quot;A-Z&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; HELLO	10023 WORLD 456</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>"a-z"</code>, <code>"A-Z"</code>, 都是SET, 分别表示所有的小写字母和所有的大写字母。</p>
+<h3 id="制表符转空格">制表符转空格</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello\t10023 world 456&quot; | tr &quot;\t&quot; &quot; &quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; hello 10023 world 456</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="删除数字">删除数字</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello\t10023 world 456&quot; | tr -d &quot;0-9&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; hello	 world</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="只保留数字">只保留数字</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello\t10023 world 456&quot; | tr -cd &quot;0-9&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 10023456</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="压缩字符9和p">压缩字符<code>9</code>和<code>p</code></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello\t199923 world app 456&quot; | tr -s &quot;9p&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; hello	1923 world ap 456</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="截断set1">截断SET1</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;abcd&quot; | tr -t &quot;abcd&quot; &quot;123&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 123d</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;abcd&quot; | tr &quot;abcd&quot; &quot;123&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1233</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="reference">Reference</h2>
+<h2 id="man-tr"><code>man tr</code></h2>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">&gt; TR(1)                            User Commands                           TR(1)</span><br><span class="line">&gt;</span><br><span class="line">&gt; </span><br><span class="line">&gt;</span><br><span class="line">&gt; NAME</span><br><span class="line">&gt;        tr - translate or delete characters</span><br><span class="line">&gt;</span><br><span class="line">&gt; SYNOPSIS</span><br><span class="line">&gt;        tr [OPTION]... SET1 [SET2]</span><br><span class="line">&gt;</span><br><span class="line">&gt; DESCRIPTION</span><br><span class="line">&gt;        Translate, squeeze, and/or delete characters from standard input, writ-</span><br><span class="line">&gt;        ing to standard output.</span><br><span class="line">&gt;</span><br><span class="line">&gt;        -c, -C, --complement</span><br><span class="line">&gt;               use the complement of SET1</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        -d, --delete</span><br><span class="line">&gt;               delete characters in SET1, do not translate</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        -s, --squeeze-repeats</span><br><span class="line">&gt;               replace each sequence of a repeated character that is listed  in</span><br><span class="line">&gt;               the last specified SET, with a single occurrence of that charac-</span><br><span class="line">&gt;               ter</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        -t, --truncate-set1</span><br><span class="line">&gt;               first truncate SET1 to length of SET2</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        --help display this help and exit</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        --version</span><br><span class="line">&gt;               output version information and exit</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        SETs are specified as strings  of  characters.   Most  represent  them-</span><br><span class="line">&gt;        selves.  Interpreted sequences are:</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \NNN   character with octal value NNN (1 to 3 octal digits)</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \\     backslash</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \a     audible BEL</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \b     backspace</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \f     form feed</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \n     new line</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \r     return</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \t     horizontal tab</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        \v     vertical tab</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        CHAR1-CHAR2</span><br><span class="line">&gt;               all characters from CHAR1 to CHAR2 in ascending order</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [CHAR*]</span><br><span class="line">&gt;               in SET2, copies of CHAR until length of SET1</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [CHAR*REPEAT]</span><br><span class="line">&gt;               REPEAT copies of CHAR, REPEAT octal if starting with 0</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:alnum:]</span><br><span class="line">&gt;               all letters and digits</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:alpha:]</span><br><span class="line">&gt;               all letters</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:blank:]</span><br><span class="line">&gt;               all horizontal whitespace</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:cntrl:]</span><br><span class="line">&gt;               all control characters</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:digit:]</span><br><span class="line">&gt;               all digits</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:graph:]</span><br><span class="line">&gt;               all printable characters, not including space</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:lower:]</span><br><span class="line">&gt;               all lower case letters</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:print:]</span><br><span class="line">&gt;               all printable characters, including space</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:punct:]</span><br><span class="line">&gt;               all punctuation characters</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:space:]</span><br><span class="line">&gt;               all horizontal or vertical whitespace</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:upper:]</span><br><span class="line">&gt;               all upper case letters</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [:xdigit:]</span><br><span class="line">&gt;               all hexadecimal digits</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        [=CHAR=]</span><br><span class="line">&gt;               all characters which are equivalent to CHAR</span><br><span class="line">&gt;         </span><br><span class="line">&gt;        Translation  occurs  if  -d is not given and both SET1 and SET2 appear.</span><br><span class="line">&gt;        -t may be used only when translating.  SET2 is extended  to  length  of</span><br><span class="line">&gt;        SET1  by  repeating its last character as necessary.  Excess characters</span><br><span class="line">&gt;        of SET2 are ignored.  Only [:lower:] and [:upper:]  are  guaranteed  to</span><br><span class="line">&gt;        expand  in  ascending  order;  used in SET2 while translating, they may</span><br><span class="line">&gt;        only be used in pairs to specify case conversion.   -s  uses  the  last</span><br><span class="line">&gt;        specified SET, and occurs after translation or deletion.</span><br><span class="line">&gt;</span><br><span class="line">&gt; AUTHOR</span><br><span class="line">&gt;        Written by Jim Meyering.</span><br><span class="line">&gt;</span><br><span class="line">&gt; REPORTING BUGS</span><br><span class="line">&gt;        GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">&gt;        Report any translation bugs to &lt;https://translationproject.org/team/&gt;</span><br><span class="line">&gt;</span><br><span class="line">&gt; COPYRIGHT</span><br><span class="line">&gt;        Copyright  (C) 2019 Free Software Foundation, Inc.  License GPLv3+: GNU</span><br><span class="line">&gt;        GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">&gt;        This is free software: you are free  to  change  and  redistribute  it.</span><br><span class="line">&gt;        There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line">&gt;</span><br><span class="line">&gt; SEE ALSO</span><br><span class="line">&gt;        Full documentation &lt;https://www.gnu.org/software/coreutils/tr&gt;</span><br><span class="line">&gt;        or available locally via: info &apos;(coreutils) tr invocation&apos;</span><br><span class="line">&gt;</span><br><span class="line">&gt; </span><br><span class="line">&gt;</span><br><span class="line">&gt; GNU coreutils 8.31                March 2019                             TR(1)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p>“tr命令_Linux tr 命令用法详解：将字符进行替换压缩和删除.” [Online]. Available: https://man.linuxde.net/tr. [Accessed: 12-Feb-2020]<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>“Tr (Unix),” 维基百科, 自由的百科全书. 21-Dec-2019 [Online]. Available: https://zh.wikipedia.org/w/index.php?title=Tr_(Unix)&amp;oldid=57354145. [Accessed: 12-Feb-2020]<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>“转义字符_百度百科.” [Online]. Available: https://baike.baidu.com/item/%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/86397?fromtitle=%E8%BD%AC%E4%B9%89%E7%AC%A6&amp;fromid=6151115. [Accessed: 12-Feb-2020]<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>“Bell character,” Wikipedia. 14-Sep-2019 [Online]. Available: https://en.wikipedia.org/w/index.php?title=Bell_character&amp;oldid=915701003. [Accessed: 12-Feb-2020]<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>“控制字符,” 维基百科，自由的百科全书. 31-Jan-2018 [Online]. Available: https://zh.wikipedia.org/w/index.php?title=%E6%8E%A7%E5%88%B6%E5%AD%97%E7%AC%A6&amp;oldid=48096464. [Accessed: 12-Feb-2020]<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="aponder WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="aponder Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>aponder</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="https://blog.aponder.top/2020/02/tr/" title="Tr">https://blog.aponder.top/2020/02/tr/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/Zotero快速复制文献引用格式/" rel="next" title="Zotero快速复制文献引用格式">
+                <i class="fa fa-chevron-left"></i> Zotero快速复制文献引用格式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://en.gravatar.com/userimage/94797766/20cd1e3362b5c726339d61807151c666.jpg?size=200" alt="aponder">
+            
+              <p class="site-author-name" itemprop="name">aponder</p>
+              <div class="site-description motion-element" itemprop="description">from 0 to 1</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xiyusullos" title="GitHub &rarr; https://github.com/xiyusullos" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://gitee.com/xiyusullos" title="Gitee &rarr; https://gitee.com/xiyusullos" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Gitee</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tr-translate12"><span class="nav-number">1.</span> <span class="nav-text">tr (translate)12</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能作用function"><span class="nav-number">1.1.</span> <span class="nav-text">功能作用(Function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法synopsis"><span class="nav-number">1.2.</span> <span class="nav-text">语法(Synopsis)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选项option"><span class="nav-number">1.2.1.</span> <span class="nav-text">选项(Option)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述description"><span class="nav-number">1.2.2.</span> <span class="nav-text">描述(Description)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例example"><span class="nav-number">1.3.</span> <span class="nav-text">示例(Example)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小写转大写"><span class="nav-number">1.3.1.</span> <span class="nav-text">小写转大写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#制表符转空格"><span class="nav-number">1.3.2.</span> <span class="nav-text">制表符转空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数字"><span class="nav-number">1.3.3.</span> <span class="nav-text">删除数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只保留数字"><span class="nav-number">1.3.4.</span> <span class="nav-text">只保留数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩字符9和p"><span class="nav-number">1.3.5.</span> <span class="nav-text">压缩字符9和p</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截断set1"><span class="nav-number">1.3.6.</span> <span class="nav-text">截断SET1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#man-tr"><span class="nav-number">1.5.</span> <span class="nav-text">man tr</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aponder</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Symbols count total: </span>
+    
+    <span title="Symbols count total">132k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    
+    <span title="Reading time total">2:false</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.0"></script>
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+  
+  
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '3Tk3aaayuMwhrfpL46KvAyXe-gzGzoHsz',
+    appKey: '0KgQzAYGmgJ5B08c1skEkhmc',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.0"></script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+</body>
+</html>
