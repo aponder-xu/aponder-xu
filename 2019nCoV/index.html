@@ -56,18 +56,33 @@
           var data = [];
           for (var i = startLine; i < lines.length; i++) {
             var _ = lines[i].split(separator);
+            var [
+              provinceName,
+              provinceEnglishName,
+              cityName,
+              cityEnglishName,
+              province_confirmedCount,
+              province_suspectedCount,
+              province_curedCount,
+              province_deadCount,
+              city_confirmedCount,
+              city_suspectedCount,
+              city_curedCount,
+              city_deadCount,
+              updateTime
+            ] = _;
             data.push({
-              provinceName: _[0],
-              cityName: _[1],
-              province_confirmedCount: parseInt(_[2]),
-              province_suspectedCount: parseInt(_[3]),
-              province_curedCount: parseInt(_[4]),
-              province_deadCount: parseInt(_[5]),
-              city_confirmedCount: parseInt(_[6]),
-              city_suspectedCount: parseInt(_[7]),
-              city_curedCount: parseInt(_[8]),
-              city_deadCount: parseInt(_[9]),
-              updateTime: moment(_[10]).valueOf()
+              provinceName: provinceName,
+              cityName: cityName,
+              province_confirmedCount: parseInt(province_confirmedCount),
+              province_suspectedCount: parseInt(province_suspectedCount),
+              province_curedCount: parseInt(province_curedCount),
+              province_deadCount: parseInt(province_deadCount),
+              city_confirmedCount: parseInt(city_confirmedCount),
+              city_suspectedCount: parseInt(city_suspectedCount),
+              city_curedCount: parseInt(city_curedCount),
+              city_deadCount: parseInt(city_deadCount),
+              updateTime: moment(updateTime).valueOf()
             });
           }
 
