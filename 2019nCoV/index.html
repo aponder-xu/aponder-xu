@@ -33,7 +33,7 @@
         @change="handleChange"
       ></el-cascader-panel>
 
-      <div id="main" style="width: 750px;height:500px;"></div>
+      <div id="main" style="width: 500px;height:400px;"></div>
     </div>
   </body>
   <script type="text/javascript">
@@ -55,7 +55,7 @@
       },
       methods: {
         handleChange: function(values) {
-          var [countryName, provinceName, cityName] = values;
+          var [provinceName, cityName] = values;
           this.updateFigure(provinceName, cityName);
           console.log(values);
         },
@@ -97,9 +97,10 @@
               .all()
           );
           // console.log(cascaderOptions);
-          this.cascaderOptions = [
-            { value: "中国", label: "中国", children: cascaderOptions }
-          ];
+          // this.cascaderOptions = [
+          //   { value: "中国", label: "中国", children: cascaderOptions }
+          // ];
+          this.cascaderOptions = cascaderOptions;
         },
 
         // normal function
@@ -249,7 +250,7 @@
         },
         updateFigure: function(provinceName = "安徽省", cityName = "芜湖") {
           // 指定图表的配置项和数据
-          var title = "疫情：" + provinceName + cityName;
+          var title = "疫情：\n" + provinceName + cityName;
           var xData, yData;
           if (cityName === "所有市") {
             [xData, yData] = this.makeProvinceData(provinceName);
@@ -281,6 +282,7 @@
         dbUrl =
           "https://raw.githubusercontent.com/BlankerL/DXY-2019-nCoV-Data/master/csv/DXYArea.csv";
         // dbUrl = 'https://3.test.xy-jit.cc/db.json';
+        dbUrl = "http://3.test.xy-jit.cc/DXYArea.csv"
         // dbUrl = './db.csv'
         axios.get(dbUrl).then(res => {
           // console.log(res);
