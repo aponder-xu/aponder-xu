@@ -5,37 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+    <!-- 引入element样式 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui@2.13.0/lib/theme-chalk/index.css"
+    />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts-en.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.8/jquery.csv.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.8/jquery.csv.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.20.3/collect.min.js"></script>
+
+    <!-- 引入element组件库 -->
+    <script src="https://unpkg.com/element-ui@2.13.0/lib/index.js"></script>
 
     <title>2019 nCoV</title>
   </head>
   <body>
     <div id="app">
-      <div id="main" style="width: 600px;height:400px;"></div>
+      <!-- <el-cascader :options="cascaderOptions"></el-cascader> -->
+      请选择省、市（默认显示安徽省芜湖）：
+      <el-cascader-panel
+        :options="cascaderOptions"
+        @change="handleChange"
+      ></el-cascader-panel>
+
+      <div id="main" style="width: 750px;height:500px;"></div>
     </div>
   </body>
   <script type="text/javascript">
+    var CONFIRMED_COUNT = "确诊人数";
+    var CURED_COUNT = "治愈人数";
+    var DEAD_COUNT = "死亡人数";
+    var SUSPECTED_COUNT = "疑似人数";
+
     var app = new Vue({
       el: "#app",
       data: {
         db: {},
         nCoVData: [],
+        _collection: null,
         provinceNames: [],
 
+        cascaderOptions: [],
         test: null
       },
       methods: {
+        handleChange: function(values) {
+          var [countryName, provinceName, cityName] = values;
+          this.updateFigure(provinceName, cityName);
+          console.log(values);
+        },
+
         fetchNCoVData: function() {
           this.nCoVData = this.parseCsv(this.db);
+          this._collection = collect(this.nCoVData);
         },
         fetchProvinceNames: function() {
           this.provinceName = new Set(this.nCoVData.map(x => x.provinceName));
+        },
+
+        prepareCascaderOptions: function() {
+          var cascaderOptions = [
+            //{ value: "所有省", label: "所有省" }
+          ].concat(
+            this._collection
+              .groupBy("provinceName")
+              .filter((value, key) => !!key)
+              .map((items, key) => {
+                return {
+                  value: key,
+                  label: key,
+                  children: [{ value: "所有市", label: "所有市" }].concat(
+                    items
+                      .unique("cityName")
+                      .map(item => {
+                        return {
+                          value: item.cityName,
+                          label: item.cityName
+                        };
+                      })
+                      .values()
+                      .all()
+                  )
+                };
+              })
+              .values()
+              .all()
+          );
+          // console.log(cascaderOptions);
+          this.cascaderOptions = [
+            { value: "中国", label: "中国", children: cascaderOptions }
+          ];
         },
 
         // normal function
@@ -59,8 +123,10 @@
             var [
               provinceName,
               provinceEnglishName,
+              province_zipCode,
               cityName,
               cityEnglishName,
+              city_zipCode,
               province_confirmedCount,
               province_suspectedCount,
               province_curedCount,
@@ -94,22 +160,22 @@
           };
           return [
             {
-              name: "confirmedCount",
+              name: CONFIRMED_COUNT,
               type: "line",
               data: extract(yData, "confirmedCount")
             },
             {
-              name: "curedCount",
+              name: CURED_COUNT,
               type: "line",
               data: extract(yData, "curedCount")
             },
             {
-              name: "deadCount",
+              name: DEAD_COUNT,
               type: "line",
               data: extract(yData, "deadCount")
             },
             {
-              name: "suspectedCount",
+              name: SUSPECTED_COUNT,
               type: "line",
               data: extract(yData, "suspectedCount")
             }
@@ -125,12 +191,7 @@
             },
             tooltip: {},
             legend: {
-              data: [
-                "confirmedCount",
-                "curedCount",
-                "deadCount",
-                "suspectedCount"
-              ]
+              data: [CONFIRMED_COUNT, CURED_COUNT, DEAD_COUNT, SUSPECTED_COUNT]
             },
             xAxis: {
               data: xData
@@ -158,46 +219,81 @@
           this.test = data;
           return [data.keys().all(), data.values().all()];
         },
-        makeCityData: function(provinceName = "安徽") {},
+        makeCityData: function(provinceName = "安徽省", cityName = "芜湖") {
+          var app = this;
+          var data = collect(app.nCoVData)
+            .filter(
+              (value, key) =>
+                value.provinceName === provinceName &&
+                value.cityName === cityName
+            )
+            .sortBy("updateTime")
+            .groupBy((item, key) => app.formatTimestamp(item.updateTime))
+            .filter((value, key) => !!key)
+            .map(collection => {
+              var item = collection.first();
+              return {
+                confirmedCount: item.city_confirmedCount,
+                curedCount: item.city_curedCount,
+                deadCount: item.city_deadCount,
+                suspectedCount: item.city_suspectedCount
+              };
+            });
+          this.test = data;
+          return [data.keys().all(), data.values().all()];
+        },
 
-        plotFigure: function() {
+        initFigure: function() {
           // 基于准备好的dom，初始化echarts实例
-          var myChart = echarts.init(document.getElementById("main"));
-
+          this.figure = echarts.init(document.getElementById("main"));
+        },
+        updateFigure: function(provinceName = "安徽省", cityName = "芜湖") {
           // 指定图表的配置项和数据
-
-          var title = "疫情";
+          var title = "疫情：" + provinceName + cityName;
           var xData, yData;
-          // xData = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"];
-          // yData = [5, 20, 36, 10, 10, 20];
-          var provinceName = "安徽省";
-          [xData, yData] = this.makeProvinceData(provinceName);
+          if (cityName === "所有市") {
+            [xData, yData] = this.makeProvinceData(provinceName);
+          } else {
+            [xData, yData] = this.makeCityData(provinceName, cityName);
+          }
+          // console.log(xData, yData);
           // yData = new Set(this.nCoVData.map(x => x.confirmedCount));
-          console.log(xData, yData);
-          var option = this.makeEchartOption(provinceName, xData, yData);
-          console.log(option);
+          // console.log(xData, yData);
+          var option = this.makeEchartOption(title, xData, yData);
+          // console.log(option);
 
           // 使用刚指定的配置项和数据显示图表。
-          myChart.setOption(option);
+          this.figure.setOption(option);
         }
       },
       created: function() {},
       mounted: function() {
+        const loading = this.$loading({
+          lock: true,
+          text: '数据加载中...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+
         var _this = this;
+        _this.initFigure();
         // dbUrl = "https://raw.githubusercontent.com/BlankerL/DXY-2019-nCoV-Data/master/json/DXYArea.json";
         dbUrl =
           "https://raw.githubusercontent.com/BlankerL/DXY-2019-nCoV-Data/master/csv/DXYArea.csv";
         // dbUrl = 'https://3.test.xy-jit.cc/db.json';
+        // dbUrl = './db.csv'
         axios.get(dbUrl).then(res => {
           // console.log(res);
+          // close loading
+          loading.close();
+          
           _this.db = res.data;
           this.fetchNCoVData();
+          this.prepareCascaderOptions();
           this.fetchProvinceNames();
-          this.plotFigure();
+          this.updateFigure();
         });
       }
     });
-
-    // app.plotFigure();
   </script>
 </html>

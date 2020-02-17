@@ -113,18 +113,18 @@
 
 
 
-  <meta name="description" content="¶Step 0: prerequisites  download docker binary download docker-compose binary download laradock download laradock images your application code, for example, dgiot.xy-jit.cc.zip">
+  <meta name="description" content="Step 0: prerequisites  download docker binary download docker-compose binary download laradock download laradock images your application code, for example, dgiot.xy-jit.cc.zip">
 <meta name="keywords" content="xiyusullos,How to install docker, docker-compose and laradock offline">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Install Docker, Docker-Compose and Laradock Offline">
 <meta property="og:url" content="https://blog.aponder.top/2017/05/How-to-Install-Docker-Docker-compose-and-Laradock-Offline/index.html">
 <meta property="og:site_name" content="aponder&#39;s blog">
-<meta property="og:description" content="¶Step 0: prerequisites  download docker binary download docker-compose binary download laradock download laradock images your application code, for example, dgiot.xy-jit.cc.zip">
+<meta property="og:description" content="Step 0: prerequisites  download docker binary download docker-compose binary download laradock download laradock images your application code, for example, dgiot.xy-jit.cc.zip">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-02-09T11:47:11.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install Docker, Docker-Compose and Laradock Offline">
-<meta name="twitter:description" content="¶Step 0: prerequisites  download docker binary download docker-compose binary download laradock download laradock images your application code, for example, dgiot.xy-jit.cc.zip">
+<meta name="twitter:description" content="Step 0: prerequisites  download docker binary download docker-compose binary download laradock download laradock images your application code, for example, dgiot.xy-jit.cc.zip">
 
 
 
@@ -559,7 +559,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">1.1k</span>
+                <span title="Symbols count in article">1k</span>
               
 
               
@@ -593,7 +593,7 @@
       
 
       
-        <h2 id="step-0-prerequisites"><a class="header-anchor" href="#step-0-prerequisites">¶</a>Step 0: prerequisites</h2>
+        <h2 id="step-0-prerequisites">Step 0: prerequisites</h2>
 <ul>
 <li>download <a href="https://get.docker.com/builds/Linux/x86_64/docker-17.05.0-ce.tgz" target="_blank" rel="noopener">docker binary</a></li>
 <li>download <a href="https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64" target="_blank" rel="noopener">docker-compose binary</a></li>
@@ -602,18 +602,18 @@
 <li>your application code, for example, <strong>dgiot.xy-jit.cc.zip</strong></li>
 </ul>
 <a id="more"></a>
-<h2 id="step-1-install-docker"><a class="header-anchor" href="#step-1-install-docker">¶</a>Step 1: install docker</h2>
+<h2 id="step-1-install-docker">Step 1: install docker</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar xzf docker-17.05.0-ce.tgz </span><br><span class="line">sudo cp docker/* /usr/bin/</span><br></pre></td></tr></table></figure>
-<h2 id="step-2-start-the-docker-daemon"><a class="header-anchor" href="#step-2-start-the-docker-daemon">¶</a>Step 2: start the docker daemon</h2>
+<h2 id="step-2-start-the-docker-daemon">Step 2: start the docker daemon</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="step-3-install-docker-compose"><a class="header-anchor" href="#step-3-install-docker-compose">¶</a>Step 3: install docker-compose</h2>
+<h2 id="step-3-install-docker-compose">Step 3: install docker-compose</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp docker-compose-Linux-x86_64 /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
-<h2 id="step-4-load-docker-images"><a class="header-anchor" href="#step-4-load-docker-images">¶</a>Step 4: load docker images</h2>
+<h2 id="step-4-load-docker-images">Step 4: load docker images</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker load -i images/tianon-true-latest.tar</span><br><span class="line">sudo docker load -i images/laradock_nginx-latest.tar</span><br><span class="line">sudo docker load -i images/laradock_php-fpm-latest.tar</span><br><span class="line">sudo docker load -i images/laradock_workspace-latest.tar</span><br></pre></td></tr></table></figure>
-<h2 id="step-5-prepare-your-application-code"><a class="header-anchor" href="#step-5-prepare-your-application-code">¶</a>Step 5: prepare your application code</h2>
+<h2 id="step-5-prepare-your-application-code">Step 5: prepare your application code</h2>
 <p>If <code>unzip</code> is not installed, you can <code>yum install unzip-6.0-15.1.el7.x86_64.rpm</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">unzip dgiot.xy-jit.cc.zip</span><br><span class="line"><span class="built_in">cd</span> dgiot.xy-jit.cc</span><br><span class="line">sudo chmod 777 -R storage bootstrap/cache</span><br><span class="line">unzip ../laradock-master.zip</span><br><span class="line">mv laradock-master/ laradock</span><br><span class="line"><span class="built_in">cd</span> laradock</span><br><span class="line">cp env-example .env</span><br></pre></td></tr></table></figure>
-<h2 id="step-6-start-your-application"><a class="header-anchor" href="#step-6-start-your-application">¶</a>Step 6: start your application</h2>
+<h2 id="step-6-start-your-application">Step 6: start your application</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up <span class="_">-d</span> nginx</span><br></pre></td></tr></table></figure>
 
       
@@ -931,7 +931,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-0-prerequisites"><span class="nav-number">1.</span> <span class="nav-text">¶Step 0: prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-install-docker"><span class="nav-number">2.</span> <span class="nav-text">¶Step 1: install docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-start-the-docker-daemon"><span class="nav-number">3.</span> <span class="nav-text">¶Step 2: start the docker daemon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-install-docker-compose"><span class="nav-number">4.</span> <span class="nav-text">¶Step 3: install docker-compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-4-load-docker-images"><span class="nav-number">5.</span> <span class="nav-text">¶Step 4: load docker images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-5-prepare-your-application-code"><span class="nav-number">6.</span> <span class="nav-text">¶Step 5: prepare your application code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-6-start-your-application"><span class="nav-number">7.</span> <span class="nav-text">¶Step 6: start your application</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-0-prerequisites"><span class="nav-number">1.</span> <span class="nav-text">Step 0: prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-install-docker"><span class="nav-number">2.</span> <span class="nav-text">Step 1: install docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-start-the-docker-daemon"><span class="nav-number">3.</span> <span class="nav-text">Step 2: start the docker daemon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-install-docker-compose"><span class="nav-number">4.</span> <span class="nav-text">Step 3: install docker-compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-4-load-docker-images"><span class="nav-number">5.</span> <span class="nav-text">Step 4: load docker images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-5-prepare-your-application-code"><span class="nav-number">6.</span> <span class="nav-text">Step 5: prepare your application code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-6-start-your-application"><span class="nav-number">7.</span> <span class="nav-text">Step 6: start your application</span></a></li></ol></div>
             
 
           </div>
