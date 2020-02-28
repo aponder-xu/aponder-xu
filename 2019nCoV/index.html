@@ -32,19 +32,28 @@
         :options="cascaderOptions"
         @change="handleChange"
       ></el-cascader-panel>
-
+      <div>截至 {{lastUpdateTime}} 数据统计</div>
       <div id="main" style="width: 500px;height:400px;"></div>
     </div>
   </body>
   <script type="text/javascript">
-    var CONFIRMED_COUNT = "确诊人数";
-    var CURED_COUNT = "治愈人数";
-    var DEAD_COUNT = "死亡人数";
-    var SUSPECTED_COUNT = "疑似人数";
+    var CONFIRMED_COUNT = "累计确诊";
+    var CURED_COUNT = "治愈";
+    var DEAD_COUNT = "死亡";
+    var SUSPECTED_COUNT = "疑似";
+    var REMAIN_COUNT = "现存确诊"
 
     var app = new Vue({
       el: "#app",
       data: {
+        default: {
+          // provinceName: "安徽省",
+          provinceName: "全国",
+          cityName: "芜湖",
+        },
+
+        lastUpdateTime: '--',
+
         db: {},
         nCoVData: [],
         _collection: null,
@@ -62,7 +71,9 @@
 
         fetchNCoVData: function() {
           this.nCoVData = this.parseCsv(this.db);
-          this._collection = collect(this.nCoVData);
+          this._collection = collect(this.nCoVData).sortBy('updateTime');
+          this.lastUpdateTime = this._collection.last().updateTime;  // timestamp
+          this.lastUpdateTime = this.formatTimestamp(this.lastUpdateTime, "YYYY-MM-DD HH:mm:ss");
         },
         fetchProvinceNames: function() {
           this.provinceName = new Set(this.nCoVData.map(x => x.provinceName));
@@ -70,7 +81,7 @@
 
         prepareCascaderOptions: function() {
           var cascaderOptions = [
-            //{ value: "所有省", label: "所有省" }
+            { value: "全国", label: "全国" }
           ].concat(
             this._collection
               .groupBy("provinceName")
@@ -79,7 +90,7 @@
                 return {
                   value: key,
                   label: key,
-                  children: [{ value: "所有市", label: "所有市" }].concat(
+                  children: [{ value: "全省", label: "全省" }].concat(
                     items
                       .unique("cityName")
                       .map(item => {
@@ -104,8 +115,8 @@
         },
 
         // normal function
-        formatTimestamp: function(timestamp) {
-          return moment(timestamp).format("YYYY-MM-DD");
+        formatTimestamp: function(timestamp, format="YYYY-MM-DD") {
+          return moment(timestamp).format(format);
         },
         parseCsv: function(
           csv,
@@ -179,7 +190,12 @@
               name: SUSPECTED_COUNT,
               type: "line",
               data: extract(yData, "suspectedCount")
-            }
+            },
+            {
+              name: REMAIN_COUNT,
+              type: "line",
+              data: extract(yData, "remainCount")
+            },
           ];
         },
 
@@ -192,7 +208,7 @@
             },
             tooltip: {},
             legend: {
-              data: [CONFIRMED_COUNT, CURED_COUNT, DEAD_COUNT, SUSPECTED_COUNT]
+              data: [CONFIRMED_COUNT, CURED_COUNT, DEAD_COUNT, SUSPECTED_COUNT, REMAIN_COUNT]
             },
             xAxis: {
               data: xData
@@ -200,6 +216,30 @@
             yAxis: {},
             series: this.makeSeries(yData)
           };
+        },
+        makeAllProvinceData: function() {
+          var app = this;
+          var data = app._collection
+            .groupBy((item, key) => app.formatTimestamp(item.updateTime))
+            .filter((value, key) => !!key)
+            .map(collection => {
+              var _grouped = collection.groupBy('provinceName')
+              var confirmedCount = _grouped.sum(x => x.first().province_confirmedCount);
+              var curedCount = _grouped.sum(x => x.first().province_curedCount);
+              var deadCount = _grouped.sum(x => x.first().province_deadCount);
+              var suspectedCount = _grouped.sum(x => x.first().province_suspectedCount);
+              var remainCount = confirmedCount - curedCount;
+              return {
+              
+                confirmedCount: confirmedCount,
+                curedCount: curedCount,
+                deadCount: deadCount,
+                suspectedCount: suspectedCount,
+                remainCount: remainCount,
+              };
+            });
+          this.test = data;
+          return [data.keys().all(), data.values().all()];
         },
         makeProvinceData: function(provinceName = "安徽省") {
           var app = this;
@@ -214,7 +254,8 @@
                 confirmedCount: item.province_confirmedCount,
                 curedCount: item.province_curedCount,
                 deadCount: item.province_deadCount,
-                suspectedCount: item.province_suspectedCount
+                suspectedCount: item.province_suspectedCount,
+                remainCount: item.province_confirmedCount - item.province_curedCount,
               };
             });
           this.test = data;
@@ -237,7 +278,8 @@
                 confirmedCount: item.city_confirmedCount,
                 curedCount: item.city_curedCount,
                 deadCount: item.city_deadCount,
-                suspectedCount: item.city_suspectedCount
+                suspectedCount: item.city_suspectedCount,
+                remainCount: item.city_confirmedCount - item.city_curedCount,
               };
             });
           this.test = data;
@@ -252,7 +294,10 @@
           // 指定图表的配置项和数据
           var title = "疫情：\n" + provinceName + cityName;
           var xData, yData;
-          if (cityName === "所有市") {
+          if (provinceName === "全国") {
+            title =  "疫情：\n全国";
+            [xData, yData] = this.makeAllProvinceData();
+          } else if (cityName === "全省") {
             [xData, yData] = this.makeProvinceData(provinceName);
           } else {
             [xData, yData] = this.makeCityData(provinceName, cityName);
@@ -293,7 +338,7 @@
           this.fetchNCoVData();
           this.prepareCascaderOptions();
           this.fetchProvinceNames();
-          this.updateFigure();
+          this.updateFigure(this.default.provinceName, this.default.cityName);
         });
       }
     });
