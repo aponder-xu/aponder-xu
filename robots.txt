@@ -12,5 +12,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://blog.xy-jit.cc/sitemap.xml
-Sitemap: http://blog.xy-jit.cc/baidusitemap.xml
+Sitemap: https://blog.aponder.top/sitemap.xml
+Sitemap: https://blog.aponder.top/baidusitemap.xml
