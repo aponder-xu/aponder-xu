@@ -149,19 +149,21 @@
               city_deadCount,
               updateTime
             ] = _;
-            data.push({
-              provinceName: provinceName,
-              cityName: cityName,
-              province_confirmedCount: parseInt(province_confirmedCount),
-              province_suspectedCount: parseInt(province_suspectedCount),
-              province_curedCount: parseInt(province_curedCount),
-              province_deadCount: parseInt(province_deadCount),
-              city_confirmedCount: parseInt(city_confirmedCount),
-              city_suspectedCount: parseInt(city_suspectedCount),
-              city_curedCount: parseInt(city_curedCount),
-              city_deadCount: parseInt(city_deadCount),
-              updateTime: moment(updateTime).valueOf()
-            });
+            if (!!provinceName) {
+              data.push({
+                provinceName: provinceName,
+                cityName: cityName,
+                province_confirmedCount: parseInt(province_confirmedCount),
+                province_suspectedCount: parseInt(province_suspectedCount),
+                province_curedCount: parseInt(province_curedCount),
+                province_deadCount: parseInt(province_deadCount),
+                city_confirmedCount: parseInt(city_confirmedCount),
+                city_suspectedCount: parseInt(city_suspectedCount),
+                city_curedCount: parseInt(city_curedCount),
+                city_deadCount: parseInt(city_deadCount),
+                updateTime: moment(updateTime).valueOf()
+              });
+            }
           }
 
           return data;
