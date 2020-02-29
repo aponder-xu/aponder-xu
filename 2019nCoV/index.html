@@ -161,7 +161,7 @@
                 city_suspectedCount: parseInt(city_suspectedCount),
                 city_curedCount: parseInt(city_curedCount),
                 city_deadCount: parseInt(city_deadCount),
-                updateTime: moment(updateTime).valueOf()
+                updateTime: moment(updateTime, "YYYY-MM-DD HH:mm:ss.SSS").valueOf()
               });
             }
           }
