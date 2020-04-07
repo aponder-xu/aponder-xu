@@ -117,18 +117,18 @@
 
 
 
-  <meta name="description" content="¶Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/ 1cd /ect/yum.repos.d/ &amp;amp;&amp;amp; vim google-chrome.repo">
+  <meta name="description" content="Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/ 1cd /ect/yum.repos.d/ &amp;amp;&amp;amp; vim google-chrome.repo">
 <meta name="keywords" content="CentOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install Chrome Browser on CentOS 7">
 <meta property="og:url" content="https://blog.aponder.top/2017/03/Install-Chrome-Browser-on-CentOS-7/index.html">
 <meta property="og:site_name" content="aponder&#39;s blog">
-<meta property="og:description" content="¶Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/ 1cd /ect/yum.repos.d/ &amp;amp;&amp;amp; vim google-chrome.repo">
+<meta property="og:description" content="Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/ 1cd /ect/yum.repos.d/ &amp;amp;&amp;amp; vim google-chrome.repo">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-02-12T10:28:45.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install Chrome Browser on CentOS 7">
-<meta name="twitter:description" content="¶Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/ 1cd /ect/yum.repos.d/ &amp;amp;&amp;amp; vim google-chrome.repo">
+<meta name="twitter:description" content="Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/ 1cd /ect/yum.repos.d/ &amp;amp;&amp;amp; vim google-chrome.repo">
 
 
 
@@ -595,7 +595,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">530</span>
+                <span title="Symbols count in article">527</span>
               
 
               
@@ -629,15 +629,16 @@
       
 
       
-        <h2 id="step-1-add-a-new-repo-named-google-chrome-repo-in-etc-yum-repos-d"><a class="header-anchor" href="#step-1-add-a-new-repo-named-google-chrome-repo-in-etc-yum-repos-d">¶</a>Step 1: add a new repo named <code>google-chrome.repo</code> in /etc/yum.repos.d/</h2>
+        <h2 id="step-1-add-a-new-repo-named-google-chrome.repo-in-etcyum.repos.d">Step 1: add a new repo named <code>google-chrome.repo</code> in /etc/yum.repos.d/</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /ect/yum.repos.d/ &amp;&amp; vim google-chrome.repo</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="step-2-the-file-centent-of-google-chrome-repo-is-like-following"><a class="header-anchor" href="#step-2-the-file-centent-of-google-chrome-repo-is-like-following">¶</a>Step 2: the file centent of <code>google-chrome.repo</code> is like following:</h2>
+<h2 id="step-2-the-file-centent-of-google-chrome.repo-is-like-following">Step 2: the file centent of <code>google-chrome.repo</code> is like following:</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[google-chrome]</span><br><span class="line">name=google-chrome</span><br><span class="line">baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub</span><br></pre></td></tr></table></figure>
-<h2 id="step-3-now-install-it"><a class="header-anchor" href="#step-3-now-install-it">¶</a>Step 3: now install it</h2>
+<h2 id="step-3-now-install-it">Step 3: now install it</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install google-chrome-stable --nogpgcheck    <span class="comment"># for some reason in some country</span></span><br></pre></td></tr></table></figure>
-<h2 id="step-4-let-s-start-it"><a class="header-anchor" href="#step-4-let-s-start-it">¶</a>Step 4: let’s start it</h2>
+<h2 id="step-4-lets-start-it">Step 4: let's start it</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google-chrome &amp;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -959,7 +960,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-add-a-new-repo-named-google-chrome-repo-in-etc-yum-repos-d"><span class="nav-number">1.</span> <span class="nav-text">¶Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-the-file-centent-of-google-chrome-repo-is-like-following"><span class="nav-number">2.</span> <span class="nav-text">¶Step 2: the file centent of google-chrome.repo is like following:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-now-install-it"><span class="nav-number">3.</span> <span class="nav-text">¶Step 3: now install it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-4-let-s-start-it"><span class="nav-number">4.</span> <span class="nav-text">¶Step 4: let’s start it</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-add-a-new-repo-named-google-chrome.repo-in-etcyum.repos.d"><span class="nav-number">1.</span> <span class="nav-text">Step 1: add a new repo named google-chrome.repo in /etc/yum.repos.d/</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-the-file-centent-of-google-chrome.repo-is-like-following"><span class="nav-number">2.</span> <span class="nav-text">Step 2: the file centent of google-chrome.repo is like following:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-now-install-it"><span class="nav-number">3.</span> <span class="nav-text">Step 3: now install it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-4-lets-start-it"><span class="nav-number">4.</span> <span class="nav-text">Step 4: let&#39;s start it</span></a></li></ol></div>
             
 
           </div>
@@ -994,7 +995,7 @@
     
       <span class="post-meta-item-text">Symbols count total: </span>
     
-    <span title="Symbols count total">140k</span>
+    <span title="Symbols count total">139k</span>
   
 
   
