@@ -607,7 +607,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">19 mins.</span>
+                <span title="Reading time">20 mins.</span>
               
             </div>
           
@@ -628,103 +628,106 @@
 
       
         <p>翻译：<a href="https://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/" target="_blank" rel="noopener">Tensorflow Tutorial 2: image classifier using convolutional neural network</a></p>
-<h1>Tensorflow教程：使用卷积神经网络的图像分类器</h1>
+<h1 id="tensorflow教程使用卷积神经网络的图像分类器">Tensorflow教程：使用卷积神经网络的图像分类器</h1>
 <p>在这个Tensorflow教程中，我们将使用Tensorflow构建一个基于卷积神经网络的图像分类器。如果您刚刚开始使用Tensorflow，那么最好<a href="https://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow/tensorflow-tutorial/" target="_blank" rel="noopener">阅读这里的Tensorflow基本教程</a>。</p>
 <p>为了演示如何构建基于卷积神经网络的图像分类器，我们将构建一个6层神经网络来识别和分离狗和猫的图像。我们将要构建的这个网络是一个非常小的网络，可以在CPU上运行它。传统的神经网络在图像分类中有较多的参数，如果在CPU上进行训练，会花费大量的时间。然而，在本文中，我是向您展示的是如何使用Tensorflow而不是参与<a href="http://image-net.org/challenges/LSVRC/" target="_blank" rel="noopener">ILSVRC</a>来构建一个真实的卷积神经网络。在开始学习Tensorflow教程之前，让我们先介绍一下卷积神经网络的基础知识。如果您已经熟悉卷积神经网（conv-nets），您可以转到第2部分，即Tensorflow教程。</p>
 <a id="more"></a>
-<h2 id="第1部分：卷积神经网络-cnn-基础"><a class="header-anchor" href="#第1部分：卷积神经网络-cnn-基础">¶</a>第1部分：卷积神经网络（CNN）基础</h2>
-<p>神经网络本质上是求解优化问题的数学模型。它们由神经元构成，神经元是神经网络的基本计算单元。一个神经元接受一个输入（比方说：$x$），对它做一些计算（比方说：用一个变量$w$乘以它，再加上另一个变量$b$）来产生一个值（比方说：$z = wx + b$）。这个值被传递给一个叫做<strong>激活函数f（activation function）<strong>的非线性函数，以产生神经元的最终输出（激活）。激活函数有很多种，<strong>Sigmoid</strong>是常用的激活函数之一，数学公式为：<br>
-$$<br>
-y = \frac{1}{1+e^{-z}}<br>
-$$<br>
-利用sigmoid函数作为激活函数的神经元称为</strong>Sigmoid神经元（Sigmoid neuron）</strong>。根据激活函数的不同，神经元可被命名为<strong>RELU</strong>、<strong>TanH</strong>等神经元（记住这一点）。一个神经元可以连接到多个神经元，就像这样：</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/191x118xfigures_ArtificialNeuron.png" alt="Neuron in Tensorflow tutorial"></p>
-<p>在这个例子中，你可以看到<strong>权值</strong>（weight）是连接（connection）的属性，即每个连接都有不同的权值，而<strong>偏差</strong>（bias）是神经元的属性。这是产生输出y的sigmoid神经元的全图：<br>
-$$<br>
-z = b + \sum_{i}x_iw_i \<br>
-y = \frac{1}{1+e^{-z}}<br>
-$$</p>
-<h3 id="神经层"><a class="header-anchor" href="#神经层">¶</a>神经层</h3>
+<h2 id="第1部分卷积神经网络cnn基础">第1部分：卷积神经网络（CNN）基础</h2>
+<p>神经网络本质上是求解优化问题的数学模型。它们由神经元构成，神经元是神经网络的基本计算单元。一个神经元接受一个输入（比方说：<span class="math inline">\(x\)</span>），对它做一些计算（比方说：用一个变量<span class="math inline">\(w\)</span>乘以它，再加上另一个变量<span class="math inline">\(b\)</span>）来产生一个值（比方说：<span class="math inline">\(z = wx + b\)</span>）。这个值被传递给一个叫做<strong>激活函数f（activation function）</strong>的非线性函数，以产生神经元的最终输出（激活）。激活函数有很多种，<strong>Sigmoid</strong>是常用的激活函数之一，数学公式为： <span class="math display">\[
+y = \frac{1}{1+e^{-z}}
+\]</span> 利用sigmoid函数作为激活函数的神经元称为<strong>Sigmoid神经元（Sigmoid neuron）</strong>。根据激活函数的不同，神经元可被命名为<strong>RELU</strong>、<strong>TanH</strong>等神经元（记住这一点）。一个神经元可以连接到多个神经元，就像这样：</p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/191x118xfigures_ArtificialNeuron.png" alt><figcaption>Neuron in Tensorflow tutorial</figcaption>
+</figure>
+<p>在这个例子中，你可以看到<strong>权值</strong>（weight）是连接（connection）的属性，即每个连接都有不同的权值，而<strong>偏差</strong>（bias）是神经元的属性。这是产生输出y的sigmoid神经元的全图： <span class="math display">\[
+z = b + \sum_{i}x_iw_i \\
+y = \frac{1}{1+e^{-z}}
+\]</span></p>
+<h3 id="神经层">神经层</h3>
 <p>如果你把神经元堆在一条直线上，这叫做一层。这是神经网络的下一个组成部分。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/nnet.png" alt="neural network shown in Tensorflow tutorial "></p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/nnet.png" alt><figcaption>neural network shown in Tensorflow tutorial</figcaption>
+</figure>
 <p>如上所示，</p>
 <ul>
-<li>
-<p>输入层：绿色的神经元构成了网络的第一层，输入数据通过第一层传递到网络。</p>
-</li>
-<li>
-<p>输出层：如红色所示。</p>
-</li>
-<li>
-<p>隐藏层：在输入层和输出层之间的层称为隐藏层。在这个例子中，我们只有一个用蓝色表示的隐藏层。具有许多隐含层的网络往往更精确，称为<strong>深度网络</strong>。而使用这些深度网络的机器学习算法称为<strong>深度学习</strong>。</p>
-</li>
+<li><p>输入层：绿色的神经元构成了网络的第一层，输入数据通过第一层传递到网络。</p></li>
+<li><p>输出层：如红色所示。</p></li>
+<li><p>隐藏层：在输入层和输出层之间的层称为隐藏层。在这个例子中，我们只有一个用蓝色表示的隐藏层。具有许多隐含层的网络往往更精确，称为<strong>深度网络</strong>。而使用这些深度网络的机器学习算法称为<strong>深度学习</strong>。</p></li>
 </ul>
-<h3 id="神经层的类型"><a class="header-anchor" href="#神经层的类型">¶</a>神经层的类型</h3>
+<h3 id="神经层的类型">神经层的类型</h3>
 <p>通常，一层中的所有神经元都进行类似的数学运算，这就是该层名称的由来（输入层和输出层除外，因为它们很少进行数学运算）。以下是你应该知道的最流行的神经层类型：</p>
-<h4 id="卷积层-convolutional-layer"><a class="header-anchor" href="#卷积层-convolutional-layer">¶</a>卷积层（Convolutional Layer）</h4>
+<h4 id="卷积层convolutional-layer">卷积层（Convolutional Layer）</h4>
 <p>卷积是一种数学运算，用于单次处理中对信号进行滤波，寻找信号中的模式等。在卷积层中，所有的神经元都对输入进行卷积运算，因此称为卷积神经元。卷积神经元中最重要的参数是过滤器（filter）的大小，假设我们有一个过滤器大小为5*5*3的层。同样，假设输入到卷积神经元的是一个大小为32*32的输入图像，有3个通道（即R、G、B）。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/289x273xConvolution.png" alt="Convolution in Tensorflow tutorial"></p>
-<p>让我们从图像中选择一个5*5*3（彩色图像中有3个通道）大小的块，然后用过滤器（$w$）计算卷积（点积）。这个卷积运算将得到一个数字作为输出。我们还可以把偏置（$b$）加到这个输出中。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/268x125xconvolve2.png" alt="convolution explained during Tensorflow tutorial"></p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/289x273xConvolution.png" alt><figcaption>Convolution in Tensorflow tutorial</figcaption>
+</figure>
+<p>让我们从图像中选择一个5*5*3（彩色图像中有3个通道）大小的块，然后用过滤器（<span class="math inline">\(w\)</span>）计算卷积（点积）。这个卷积运算将得到一个数字作为输出。我们还可以把偏置（<span class="math inline">\(b\)</span>）加到这个输出中。</p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/268x125xconvolve2.png" alt><figcaption>convolution explained during Tensorflow tutorial</figcaption>
+</figure>
 <p>为了计算点积，过滤器的第三维数必须与输入的通道数相同。也就是说，当我们计算点积时，它是一个5*5*3的块与5*5*3的过滤器的矩阵乘法。</p>
 <p>我们将在整个输入图像上滑动卷积过滤器来计算整个图像的输出，如下图所示：</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/Convolution_schematic.gif" alt="Convolution_schematic"></p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/Convolution_schematic.gif" alt><figcaption>Convolution_schematic</figcaption>
+</figure>
 <p>在本例中，我们每次将窗口滑动1个像素。在某些情况下，会将窗口滑动超过1个像素。这个数字叫做<strong>步长（stride）</strong>。</p>
 <p>如果将所有这些输出连接到2D中，我们将得到一个大小为28*28的输出<strong>激活图（activation map）</strong>（您能想到为什么在过滤器为5*5，步长为1时，是从32*32到28*28？）。如果我们的示例中有6个过滤器，那么输出的大小将是28*28*6。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/Convolution-Case-Conflict.png" alt="Convolution-Case-Conflict"></p>
-<p>正如您所看到的，每次卷积之后，输出的大小都会减小（在本例中，我们将从32*32减小到28*28）。在一个多层的深度神经网络中，这样的输出会变得非常小，但这并不能很好地工作。因此，在输入层的边界上进行0填充是一种标准做法，这样输出的大小就与输入层的大小相同。因此，在这个例子中，如果我们在输入层的两边都添加一个大小为2的填充，那么输出层的大小将是32*32*6，这从实现的目的来看也非常有用。假设您有一个大小为$N*N$的输入，过滤器（filter）的值为$F$，步长（stride）为$S$，有$P​$个0填充，那么输出大小为：<br>
-$$<br>
-(N - F + 2P)/S + 1<br>
-$$</p>
-<h4 id="池化层-pooling-layer"><a class="header-anchor" href="#池化层-pooling-layer">¶</a>池化层（Pooling Layer）</h4>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/Convolution-Case-Conflict.png" alt><figcaption>Convolution-Case-Conflict</figcaption>
+</figure>
+<p>正如您所看到的，每次卷积之后，输出的大小都会减小（在本例中，我们将从32*32减小到28*28）。在一个多层的深度神经网络中，这样的输出会变得非常小，但这并不能很好地工作。因此，在输入层的边界上进行0填充是一种标准做法，这样输出的大小就与输入层的大小相同。因此，在这个例子中，如果我们在输入层的两边都添加一个大小为2的填充，那么输出层的大小将是32*32*6，这从实现的目的来看也非常有用。假设您有一个大小为<span class="math inline">\(N*N\)</span>的输入，过滤器（filter）的值为<span class="math inline">\(F\)</span>，步长（stride）为<span class="math inline">\(S\)</span>，有<span class="math inline">\(P​\)</span>个0填充，那么输出大小为： <span class="math display">\[
+(N - F + 2P)/S + 1
+\]</span></p>
+<h4 id="池化层pooling-layer">池化层（Pooling Layer）</h4>
 <p>在卷积层之后，将接着用池化层，以减小空间大小（只有宽度和高度，没有深度）。这减少了参数的数量，从而减少了计算量。此外，较少的参数避免了过拟合（overfit）（现在不用担心，稍后会详细介绍）。最常见的池的形式是<strong>最大池（max pooling）</strong>，我们取一个大小为F*F的过滤器，并对图像的F*F部分取其最大值。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/300x140xmaxpool.jpg" alt="maxpool"></p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/300x140xmaxpool.jpg" alt><figcaption>maxpool</figcaption>
+</figure>
 <p>如果你用平均值来代替最大值，它会被称为<strong>平均池（average pooling）</strong>，但它不是很流行。</p>
-<p>如果你的输入大小为 $w1<em>h1</em>d1$ ，过滤器的大小为$f<em>f$ ，步长为$S$，那么输出大小为$w2</em>h2*d2$：<br>
-$$<br>
-w2 = (w1 - f)/S + 1 \<br>
-h2 = (h1 - f)/S + 1 \<br>
-d2 = d1<br>
-$$<br>
-最常见的池使用大小为2*2的过滤器，步长为2。正如您可以使用上面的公式来计算，它减少了一半的输入大小。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/211x166xpool-1.jpg" alt="Max pooling with filter size of 2*2 during Tensorflow tutorial"></p>
-<h4 id="全连接层-fully-connected-layer"><a class="header-anchor" href="#全连接层-fully-connected-layer">¶</a>全连接层（Fully Connected Layer）</h4>
+<p>如果你的输入大小为 <span class="math inline">\(w1*h1*d1\)</span> ，过滤器的大小为<span class="math inline">\(f*f\)</span> ，步长为<span class="math inline">\(S\)</span>，那么输出大小为<span class="math inline">\(w2*h2*d2\)</span>： <span class="math display">\[
+w2 = (w1 - f)/S + 1 \\
+h2 = (h1 - f)/S + 1 \\
+d2 = d1
+\]</span> 最常见的池使用大小为2*2的过滤器，步长为2。正如您可以使用上面的公式来计算，它减少了一半的输入大小。</p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/211x166xpool-1.jpg" alt><figcaption>Max pooling with filter size of 2*2 during Tensorflow tutorial</figcaption>
+</figure>
+<h4 id="全连接层fully-connected-layer">全连接层（Fully Connected Layer）</h4>
 <p>如果一层中的每个神经元都接收到上一层所有神经元的输入，那么这一层就称为<strong>全连接层（fully connected layer）</strong>。该层的输出由矩阵乘法和偏置偏移量计算。</p>
-<h3 id="理解训练过程"><a class="header-anchor" href="#理解训练过程">¶</a>理解训练过程</h3>
+<h3 id="理解训练过程">理解训练过程</h3>
 <p>深层神经网络只不过是聪明的数学模型，在一定程度上模拟了人脑。当我们试图训练一个神经网络时，我们需要做2件基本的事情：</p>
-<h4 id="网络的架构"><a class="header-anchor" href="#网络的架构">¶</a>网络的架构</h4>
+<h4 id="网络的架构">网络的架构</h4>
 <p>当设计一个神经网络的架构时，你必须决定：如何安排层？使用哪些层？每一层使用多少个神经元等等？架构设计是一个比较复杂的、高难度的课题，需要大量的研究。有许多标准的架构可以很好地解决许多标准问题。例如AlexNet，GoogleNet，InceptionResnet，VGG等。在刚开始时，您应该只使用标准的网络架构。在您对神经网络有了很多经验之后，您就可以开始设计自己的网络架构了。因此，我们不必担心。</p>
-<h4 id="正确的权重-参数"><a class="header-anchor" href="#正确的权重-参数">¶</a>正确的权重/参数</h4>
-<p>一旦您决定了网络的架构，那么，第二重要的就是权重$w$和偏差$b$或网络参数。<strong>训练目标</strong>是得到所有这些参数的最佳值，从而可靠地解决问题。例如，当我们正在努力构建狗和猫之间的分类器，我们希望找到合适的参数，在所有图片是狗的时候给出狗的概率为1（或者至少高于猫的概率）或者在所有图片是猫的时候，给出猫的概率为1（或者至少高于狗的概率）。</p>
-<p>您可以使用一个称为**反向传播（Backward propagation）**的过程来找到最佳的参数集，也就是说，您从一个随机的参数集开始，并不断更改这些权重，直到对于每个训练图像，我们都能得到正确的输出。有许多优化器（optimizer）可以改变权重，这些优化器可以从数学角度快速地找到正确的权重。梯度下降（Gradient Descent）就是这样一种方法（反向传播和优化器是一个非常复杂的主题，但是我们现在不需要担心它，因为Tensorflow会处理它）。</p>
-<p>因此，假设我们从一些参数的初值开始，并输入1张狗的训练图片（实际上是多张图片一起喂食（feed）），我们计算网络的输出为是狗的概率为0.1，是猫的概率为0.9。现在，我们做反向传播来<strong>缓慢地改变</strong>参数，这样在下一次迭代中，这个图片是狗的概率就会增加。有一个变量是用来控制我们在训练过程中改变网络参数的速度，叫<strong>学习率（learning rate）</strong>。如果您仔细想想，我们利用网络来最大化所有正确的分类（即我们关心整个训练集）。我们希望进行这些更改，使网络正确分类的数量增加。因此，我们定义了一个称为**代价（cost）**的数字，它表示训练是否在正确的方向上进行。<strong>通常，cost的定义是这样的：随着代价的降低，网络的正确率将提高。<strong>因此，我们关注cost，并不断地进行正向或反向传播的多次迭代（有时10s上千次），直到cost停止下降。cost有很多种定义，其中一个简单的是</strong>均方根代价（mean root cost）</strong>。假设$y_{prediction}$是对于所有训练图像网络输出的向量（vector），$y_{actual}$是对于这些标记图像的实际值（也叫ground truth）的向量。所以，如果我们最小化这两个变量之间的距离，这将是一个很好的训练指标。因此，我们将cost定义为所有图像的这些距离的平均值：<br>
-$$<br>
-cost=0.5 \sum_{i=0}^n (y_{actual}-y_{prediction})^2<br>
-$$<br>
-这是cost的一个非常简单的例子，但是在实际的训练中，我们使用了更复杂的cost度量，比如交叉熵代价（cross-entropy cost）。Tensorflow实现了很多这些cost，所以我们现在不需要担心这些cost的细节。</p>
-<p>训练完成后，这些参数和架构将保存在一个二进制文件中（称为模型（model））。在生产设置中，当我们对一个新的狗/猫图像进行分类时，我们将该模型加载到相同的网络架构中，并计算出新图像是猫/狗的概率。这叫做<strong>推理（inference）<strong>或</strong>预测（prediction）</strong>。</p>
+<h4 id="正确的权重参数">正确的权重/参数</h4>
+<p>一旦您决定了网络的架构，那么，第二重要的就是权重<span class="math inline">\(w\)</span>和偏差<span class="math inline">\(b\)</span>或网络参数。<strong>训练目标</strong>是得到所有这些参数的最佳值，从而可靠地解决问题。例如，当我们正在努力构建狗和猫之间的分类器，我们希望找到合适的参数，在所有图片是狗的时候给出狗的概率为1（或者至少高于猫的概率）或者在所有图片是猫的时候，给出猫的概率为1（或者至少高于狗的概率）。</p>
+<p>您可以使用一个称为<strong>反向传播（Backward propagation）</strong>的过程来找到最佳的参数集，也就是说，您从一个随机的参数集开始，并不断更改这些权重，直到对于每个训练图像，我们都能得到正确的输出。有许多优化器（optimizer）可以改变权重，这些优化器可以从数学角度快速地找到正确的权重。梯度下降（Gradient Descent）就是这样一种方法（反向传播和优化器是一个非常复杂的主题，但是我们现在不需要担心它，因为Tensorflow会处理它）。</p>
+<p>因此，假设我们从一些参数的初值开始，并输入1张狗的训练图片（实际上是多张图片一起喂食（feed）），我们计算网络的输出为是狗的概率为0.1，是猫的概率为0.9。现在，我们做反向传播来<strong>缓慢地改变</strong>参数，这样在下一次迭代中，这个图片是狗的概率就会增加。有一个变量是用来控制我们在训练过程中改变网络参数的速度，叫<strong>学习率（learning rate）</strong>。如果您仔细想想，我们利用网络来最大化所有正确的分类（即我们关心整个训练集）。我们希望进行这些更改，使网络正确分类的数量增加。因此，我们定义了一个称为<strong>代价（cost）</strong>的数字，它表示训练是否在正确的方向上进行。<strong>通常，cost的定义是这样的：随着代价的降低，网络的正确率将提高。</strong>因此，我们关注cost，并不断地进行正向或反向传播的多次迭代（有时10s上千次），直到cost停止下降。cost有很多种定义，其中一个简单的是<strong>均方根代价（mean root cost）</strong>。假设<span class="math inline">\(y_{prediction}\)</span>是对于所有训练图像网络输出的向量（vector），<span class="math inline">\(y_{actual}\)</span>是对于这些标记图像的实际值（也叫ground truth）的向量。所以，如果我们最小化这两个变量之间的距离，这将是一个很好的训练指标。因此，我们将cost定义为所有图像的这些距离的平均值： <span class="math display">\[
+cost=0.5 \sum_{i=0}^n (y_{actual}-y_{prediction})^2
+\]</span> 这是cost的一个非常简单的例子，但是在实际的训练中，我们使用了更复杂的cost度量，比如交叉熵代价（cross-entropy cost）。Tensorflow实现了很多这些cost，所以我们现在不需要担心这些cost的细节。</p>
+<p>训练完成后，这些参数和架构将保存在一个二进制文件中（称为模型（model））。在生产设置中，当我们对一个新的狗/猫图像进行分类时，我们将该模型加载到相同的网络架构中，并计算出新图像是猫/狗的概率。这叫做<strong>推理（inference）</strong>或<strong>预测（prediction）</strong>。</p>
 <p>为了计算简单，并不是所有的训练数据都同时被输入到网络中。假设，我们共有1600张图片，我们把它们分成小批，比如16张或32张，称为<strong>批大小（batch-size）</strong>。因此，将需要100或50轮（迭代）才能获得用于训练的完整数据。这被称为一个<strong>历元（epoch）</strong>，即在一个历元中，网络可以一次看到所有的训练图像。我们还需要做一些其他事情来提高准确性，但是我们现在不需要担心这些事情。</p>
-<h2 id="第2部分：tensorflow教程-构建一个基于图像分类器的小型神经网络"><a class="header-anchor" href="#第2部分：tensorflow教程-构建一个基于图像分类器的小型神经网络">¶</a>第2部分：Tensorflow教程-&gt;构建一个基于图像分类器的小型神经网络</h2>
+<h2 id="第2部分tensorflow教程-构建一个基于图像分类器的小型神经网络">第2部分：Tensorflow教程-&gt;构建一个基于图像分类器的小型神经网络</h2>
 <p>在本教程中，我们将实现一个更小、更简单（与用于解决实际问题的网络相比）的网络，因此您也可以在cpu上训练它。在训练过程中，两个类别（狗/猫）的图像都被输入到一个卷积层，这个卷积层后面还有两个卷积层。在经过卷积层之后，我们将输出平化（flatten），并在最后添加两个完全连接层。第二个完全连接层只有两个输出，表示图像是猫或狗的概率。</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/xTensorflow-tutorial-2-1.jpg" alt="Tensorflow tutorial"></p>
-<h3 id="先决条件"><a class="header-anchor" href="#先决条件">¶</a>先决条件</h3>
-<h4 id="opencv"><a class="header-anchor" href="#opencv">¶</a>OpenCV</h4>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/xTensorflow-tutorial-2-1.jpg" alt><figcaption>Tensorflow tutorial</figcaption>
+</figure>
+<h3 id="先决条件">先决条件</h3>
+<h4 id="opencv">OpenCV</h4>
 <p>我们使用OpenCV读取猫/狗的图像，所以你必须安装它。</p>
-<h4 id="形状函数-shape-function"><a class="header-anchor" href="#形状函数-shape-function">¶</a>形状函数（shape function）</h4>
+<h4 id="形状函数shape-function">形状函数（shape function）</h4>
 <p>如果你的TF中有多维张量，你可以这样做来得到它的形状：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = tf.truncated_normal([<span class="number">16</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">3</span>])</span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(tf.initialize_all_variables())</span><br><span class="line">sess.run(tf.shape(a))</span><br></pre></td></tr></table></figure>
-<p>输出：<code>array([ 16, 128, 128, 3], dtype=int32)</code></p>
-<p>你可以把它重塑成一个形状为[16  128*128*3]= [16 49152].新的二维张量。</p>
+<p>输出：<code>array([ 16, 128, 128,   3], dtype=int32)</code></p>
+<p>你可以把它重塑成一个形状为[16 128*128*3]= [16 49152].新的二维张量。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b=tf.reshape(a,[<span class="number">16</span>,<span class="number">49152</span>])</span><br><span class="line">sess.run(tf.shape(b))</span><br></pre></td></tr></table></figure>
 <p>输出：<code>array([16, 49152], dtype=int32)</code></p>
-<h4 id="softmax"><a class="header-anchor" href="#softmax">¶</a>Softmax</h4>
-<p>Softmax是一个函数，它将包含实值的k维向量$x$转换为$(0,1)$范围内实值的相同形状的向量，其和为1。我们将把softmax函数应用到卷积神经网络的输出中，以便将输出转换为每个类别的概率。<br>
-$$<br>
-o(x)<em>{j}= \frac{e^{x</em>{i}}}{ \sum_{n=1}^N e^{x_{n}}}    ,, for  , j=1….N<br>
-$$</p>
-<h3 id="获取输入"><a class="header-anchor" href="#获取输入">¶</a>获取输入</h3>
+<h4 id="softmax">Softmax</h4>
+<p>Softmax是一个函数，它将包含实值的k维向量<span class="math inline">\(x\)</span>转换为<span class="math inline">\((0,1)\)</span>范围内实值的相同形状的向量，其和为1。我们将把softmax函数应用到卷积神经网络的输出中，以便将输出转换为每个类别的概率。 <span class="math display">\[
+o(x)_{j}= \frac{e^{x_{i}}}{ \sum_{n=1}^N e^{x_{n}}}    \,\, for  \, j=1….N
+\]</span></p>
+<h3 id="获取输入">获取输入</h3>
 <p>本文使用了来自<a href="https://www.kaggle.com/c/dogs-vs-cats" target="_blank" rel="noopener">Kaggle dataset</a>的2000张狗和猫的图片，但是您可以使用任何n个包含不同类型对象的图片文件夹。通常，我们将输入数据分为3部分：</p>
-<ol>
+<ol type="1">
 <li><strong>训练数据（training data）</strong>：我们将使用80%即1600张图像进行训练。</li>
 <li><strong>验证数据（validation data）</strong>：20%的图像将用于验证。这些图像是从训练数据中提取出来的，在训练过程中独立计算精度。</li>
 <li><strong>测试集（test set）</strong>：独立的测试数据，其中约有400张图像。有时因为<strong>过拟合（overfitting）</strong>——经过训练后，神经网络开始对训练数据（非常相似的图像）非常好地工作着，即cost变得非常小，但它们不能很好地适应其他图像。例如，如果你在训练狗和猫之间的分类器，你从一个拍摄所有白色背景图片的人那里得到训练数据。您的网络可能在这个验证数据集上运行得很好，但是如果您试图在一个背景混乱的图像上运行它，那么很可能会失败。所以，这就是为什么我们试图从一个独立的源获取我们的测试集。</li>
@@ -733,8 +736,8 @@ $$</p>
 <p>dataset是我创建的一个类，用于读取输入数据。这是一个简单的python代码，从提供的训练和测试数据文件夹中读取图像。</p>
 <p>我们的训练目标是：在网络中所有的神经元学习正确的权重/偏差值，这些神经元负责对狗和猫进行分类。这些权重的初值可以取任何值，但如果取正态分布（均值为零，方差较小），效果会更好。初始化网络还有其他方法，但正态分布更为普遍。让我们通过指定形状创建函数来快速初始化权重（请记住，我们在<a href="https://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow/tensorflow-tutorial/" target="_blank" rel="noopener">前面的文章</a>中讨论过<code>truncated_normal</code>函数）。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_weights</span><span class="params">(shape)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.Variable(tf.truncated_normal(shape, stddev=<span class="number">0.05</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_biases</span><span class="params">(size)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.Variable(tf.constant(<span class="number">0.05</span>, shape=[size]))</span><br></pre></td></tr></table></figure>
-<h3 id="创建网络层"><a class="header-anchor" href="#创建网络层">¶</a>创建网络层</h3>
-<h4 id="在tensorflow中建立卷积层-convolution-layer"><a class="header-anchor" href="#在tensorflow中建立卷积层-convolution-layer">¶</a>在TensorFlow中建立卷积层（convolution layer）</h4>
+<h3 id="创建网络层">创建网络层</h3>
+<h4 id="在tensorflow中建立卷积层convolution-layer">在TensorFlow中建立卷积层（convolution layer）</h4>
 <p><code>tf.nn.conv2d</code>函数可以用来构建一个卷积层，它接受以下输入：</p>
 <ul>
 <li><code>input</code>=上一层的输出(激活)。这应该是一个4维张量。通常，在第一个卷积层中，你传递n张大小为width*height*num_channels的图像，然后这个图像的大小为<code>[n, width, height, num_channels]</code></li>
@@ -745,31 +748,31 @@ $$</p>
 <p>卷积之后，我们给神经元加上偏置（bias），这也是可以学习的/可训练的。我们还是从随机正态分布开始，然后在训练中学习这些值。</p>
 <p>现在，我们通过<code>tf.nn.max_pool</code>函数应用最大池化，该函数与conv2d函数具有非常相似的形状。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.max_pool(value=layer, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br></pre></td></tr></table></figure>
-<p>注意，我们使用2*2的k_size/filter_size，在x和y方向上的步长都是2。如果使用前面提到的公式$w2= (w1-f)/S +1;h2=(h1-f)/S +1$，我们可以看到输出恰好是输入的一半。这些是最大池化时最常用的值。</p>
+<p>注意，我们使用2*2的k_size/filter_size，在x和y方向上的步长都是2。如果使用前面提到的公式<span class="math inline">\(w2= (w1-f)/S +1;h2=(h1-f)/S +1\)</span>，我们可以看到输出恰好是输入的一半。这些是最大池化时最常用的值。</p>
 <p>最后，我们使用一个RELU作为我们的激活函数，它只接受max_pool的输出，通过<code>tf.nn.relu</code>来应用RELU。</p>
 <p>所有这些操作都是在一个卷积层中完成的。让我们创建一个函数来定义一个完整的卷积层。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_convolutional_layer</span><span class="params">(input,</span></span></span><br><span class="line"><span class="function"><span class="params">               num_input_channels, </span></span></span><br><span class="line"><span class="function"><span class="params">               conv_filter_size,        </span></span></span><br><span class="line"><span class="function"><span class="params">               num_filters)</span>:</span>  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">## We shall define the weights that will be trained using create_weights function.</span></span><br><span class="line">    weights = create_weights(shape=[conv_filter_size, conv_filter_size, num_input_channels, num_filters])</span><br><span class="line">    <span class="comment">## We create biases using the create_biases function. These are also trained.</span></span><br><span class="line">    biases = create_biases(num_filters)</span><br><span class="line"></span><br><span class="line">    <span class="comment">## Creating the convolutional layer</span></span><br><span class="line">    layer = tf.nn.conv2d(input=input,</span><br><span class="line">                     filter=weights,</span><br><span class="line">                     strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                     padding=<span class="string">'SAME'</span>)</span><br><span class="line"></span><br><span class="line">    layer += biases</span><br><span class="line"></span><br><span class="line">    <span class="comment">## We shall be using max-pooling.  </span></span><br><span class="line">    layer = tf.nn.max_pool(value=layer,</span><br><span class="line">                            ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">                            strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">                            padding=<span class="string">'SAME'</span>)</span><br><span class="line">    <span class="comment">## Output of pooling is fed to Relu which is the activation function for us.</span></span><br><span class="line">    layer = tf.nn.relu(layer)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> layer</span><br></pre></td></tr></table></figure>
-<h4 id="平层-flattening-layer"><a class="header-anchor" href="#平层-flattening-layer">¶</a>平层（FLattening layer）</h4>
+<h4 id="平层flattening-layer">平层（FLattening layer）</h4>
 <p>卷积层的输出是一个多维张量。我们想把它转换成一维张量。这是在平层中完成的。我们只需要使用<code>reshape</code>来创建一个定义如下的一维张量：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_flatten_layer</span><span class="params">(layer)</span>:</span></span><br><span class="line">    layer_shape = layer.get_shape()</span><br><span class="line">    num_features = layer_shape[<span class="number">1</span>:<span class="number">4</span>].num_elements()</span><br><span class="line">    layer = tf.reshape(layer, [<span class="number">-1</span>, num_features])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> layer</span><br></pre></td></tr></table></figure>
-<h4 id="全连接层-fully-connected-layer-v2"><a class="header-anchor" href="#全连接层-fully-connected-layer-v2">¶</a>全连接层（Fully connected layer）</h4>
-<p>现在，让我们定义一个函数来创建一个全连接层。和其他层一样，我们将权重和偏置声明为随机正态分布。在全连接层中，我们取所有的输入，对其进行标准的$z=wx+b$运算。此外，有时还需要添加一个非线性（RELU）。因此，让我们添加一个允许调用者向层添加RELU条件。</p>
+<h4 id="全连接层fully-connected-layer-1">全连接层（Fully connected layer）</h4>
+<p>现在，让我们定义一个函数来创建一个全连接层。和其他层一样，我们将权重和偏置声明为随机正态分布。在全连接层中，我们取所有的输入，对其进行标准的<span class="math inline">\(z=wx+b\)</span>运算。此外，有时还需要添加一个非线性（RELU）。因此，让我们添加一个允许调用者向层添加RELU条件。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_fc_layer</span><span class="params">(input,          </span></span></span><br><span class="line"><span class="function"><span class="params">             num_inputs,    </span></span></span><br><span class="line"><span class="function"><span class="params">             num_outputs,</span></span></span><br><span class="line"><span class="function"><span class="params">             use_relu=True)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#Let's define trainable weights and biases.</span></span><br><span class="line">    weights = create_weights(shape=[num_inputs, num_outputs])</span><br><span class="line">    biases = create_biases(num_outputs)</span><br><span class="line"></span><br><span class="line">    layer = tf.matmul(input, weights) + biases</span><br><span class="line">    <span class="keyword">if</span> use_relu:</span><br><span class="line">        layer = tf.nn.relu(layer)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> layer</span><br></pre></td></tr></table></figure>
 <p>现在，我们已经定义好了网络的构建代码块。</p>
-<h4 id="占位符-placeholder-和输入-input"><a class="header-anchor" href="#占位符-placeholder-和输入-input">¶</a>占位符（placeholder）和输入（input）</h4>
+<h4 id="占位符placeholder和输入input">占位符（placeholder）和输入（input）</h4>
 <p>现在，让我们创建一个占位符来保存输入的训练图像。所有输入的图像都在<code>dataset.py</code>文件中读取，并将大小调整为128 x 128 x 3。输入占位符<code>x</code>的形状是<code>[None, 128, 128, 3]</code>。第一个维度为None意味着可以向它传递任意数量的图像。在这个程序中，我们将以批大小为16来输入图像，即<code>[16, 128, 128, 3]</code>。类似地，我们创建一个占位符<code>y_true</code>来存储预测值。对于每个图像，我们有两个输出，即每个类类别的概率（狗的概率和猫的概率）。因此<code>y_pred</code>的形状是<code>[None, 2]</code>（对于批大小为16的数据，它将是<code>[16, 2]</code>）。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(tf.float32, shape=[<span class="keyword">None</span>, img_size,img_size,num_channels], name=<span class="string">'x'</span>)</span><br><span class="line"></span><br><span class="line">y_true = tf.placeholder(tf.float32, shape=[<span class="keyword">None</span>, num_classes], name=<span class="string">'y_true'</span>)</span><br><span class="line">y_true_cls = tf.argmax(y_true, dimension=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="网络设计"><a class="header-anchor" href="#网络设计">¶</a>网络设计</h4>
+<h4 id="网络设计">网络设计</h4>
 <p>我们使用上面定义的函数来创建网络的各个层。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">layer_conv1 = create_convolutional_layer(input=x,</span><br><span class="line">               num_input_channels=num_channels,</span><br><span class="line">               conv_filter_size=filter_size_conv1,</span><br><span class="line">               num_filters=num_filters_conv1)</span><br><span class="line"></span><br><span class="line">layer_conv2 = create_convolutional_layer(input=layer_conv1,</span><br><span class="line">               num_input_channels=num_filters_conv1,</span><br><span class="line">               conv_filter_size=filter_size_conv2,</span><br><span class="line">               num_filters=num_filters_conv2)</span><br><span class="line"></span><br><span class="line">layer_conv3= create_convolutional_layer(input=layer_conv2,</span><br><span class="line">               num_input_channels=num_filters_conv2,</span><br><span class="line">               conv_filter_size=filter_size_conv3,</span><br><span class="line">               num_filters=num_filters_conv3)</span><br><span class="line">          </span><br><span class="line">layer_flat = create_flatten_layer(layer_conv3)</span><br><span class="line"></span><br><span class="line">layer_fc1 = create_fc_layer(input=layer_flat,</span><br><span class="line">                     num_inputs=layer_flat.get_shape()[<span class="number">1</span>:<span class="number">4</span>].num_elements(),</span><br><span class="line">                     num_outputs=fc_layer_size,</span><br><span class="line">                     use_relu=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">layer_fc2 = create_fc_layer(input=layer_fc1,</span><br><span class="line">                     num_inputs=fc_layer_size,</span><br><span class="line">                     num_outputs=num_classes,</span><br><span class="line">                     use_relu=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="预测"><a class="header-anchor" href="#预测">¶</a>预测</h4>
+<h4 id="预测">预测</h4>
 <p>如上所述，通过将softmax应用于全连接层的输出上，这样可以得到每个类的概率。</p>
-<p><code>y_pred = tf.nn.softmax(layer_fc2,name=&quot;y_pred&quot;)</code></p>
+<p><code>y_pred = tf.nn.softmax(layer_fc2,name="y_pred")</code></p>
 <p><code>y_pred</code>包含着每个类别对每个输入图像的预测概率。具有较高概率的类别是对网络的预测。</p>
 <p><code>y_pred_cls = tf.argmax(y_pred, dimension=1)</code></p>
 <p>现在，让我们定义最小的代价来取得权重的最优值。我们将使用一个简单的代价，它将使用Tensorflow的<code>softmax_cross_entropy_with_logits</code>函数来计算，softmax_cross_entropy_with_logits使用上一个全连接层的输出和实际标记值来计算交叉熵（cross_entropy），其平均值将是代价。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=layer_fc2,</span><br><span class="line">                                                    labels=y_true)</span><br><span class="line">cost = tf.reduce_mean(cross_entropy)</span><br></pre></td></tr></table></figure>
-<h4 id="最优化"><a class="header-anchor" href="#最优化">¶</a>最优化</h4>
+<h4 id="最优化">最优化</h4>
 <p>Tensorflow实现了大部分最优化算法。我们将使用AdamOptimizer进行梯度计算和权重优化。我们将明确指出，我们正试图以0.0001的学习率来最小化代价。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.AdamOptimizer(learning_rate=<span class="number">1e-4</span>).minimize(cost)</span><br></pre></td></tr></table></figure>
 <p>译文：如您所知，如果我们为了计算代价值，要在<code>session.run()</code>中运行优化器操作，则必须运行整个网络，并在<code>feed_dict</code>中传递训练图像（这有意义吗？想想看，你需要在代码中用什么变量来计算代价并保持上升）。在每次迭代中，以批大小（batch_size）为16的形式传递训练图像。</p>
@@ -787,11 +790,13 @@ $$</p>
 <p>这是完整的训练函数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(num_iteration)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> total_iterations</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(total_iterations, total_iterations + num_iteration):</span><br><span class="line">        x_batch, y_true_batch, _, cls_batch = data.train.next_batch(batch_size)</span><br><span class="line">        x_valid_batch, y_valid_batch, _, valid_cls_batch = data.valid.next_batch(batch_size)</span><br><span class="line">        </span><br><span class="line">        feed_dict_tr = &#123;x: x_batch, y_true: y_true_batch&#125;</span><br><span class="line">        feed_dict_val = &#123;x: x_valid_batch, y_true: y_valid_batch&#125;</span><br><span class="line"></span><br><span class="line">        session.run(optimizer, feed_dict=feed_dict_tr)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> i % int(data.train.num_examples/batch_size) == <span class="number">0</span>: </span><br><span class="line">            val_loss = session.run(cost, feed_dict=feed_dict_val)</span><br><span class="line">            epoch = int(i / int(data.train.num_examples/batch_size))    </span><br><span class="line">            </span><br><span class="line">            show_progress(epoch, feed_dict_tr, feed_dict_val, val_loss)</span><br><span class="line">            saver.save(session, <span class="string">'dogs-cats-model'</span>) </span><br><span class="line"></span><br><span class="line">    total_iterations += num_iteration</span><br></pre></td></tr></table></figure>
 <p>译文：因为这是一个真实的例子，所以这段代码有点长。那么，请到<a href="https://github.com/sankit1/cv-tricks.com" target="_blank" rel="noopener">这里</a>克隆代码并运行train.py文件来开始训练。这是输出的结果：</p>
-<p><img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/xtraining_example_tensorflow_tutorial.png" alt="Tensorflow tutorial using convolutional neural networks"></p>
+<figure>
+<img src="/2019/04/Tensorflow-Tutorial-Image-Classifier-using-Convolutional-Neural-Network/assets/xtraining_example_tensorflow_tutorial.png" alt><figcaption>Tensorflow tutorial using convolutional neural networks</figcaption>
+</figure>
 <p>这是一个小型的网络，也并不是最先进的方式去建立一个图像分类器，但它是非常好的学习例子，特别是当你刚刚开始。在我们的训练中，验证集上有80%以上的准确率。由于我们在训练中保存了模型，接下来将用在我们自己的图像上运行。</p>
-<h3 id="预测-v2"><a class="header-anchor" href="#预测-v2">¶</a>预测</h3>
+<h3 id="预测-1">预测</h3>
 <p>当你训练完后，你会注意到文件夹中有很多新文件：</p>
-<ol>
+<ol type="1">
 <li>dogs-cats-model.meta</li>
 <li>dogs-cats-model.data-00000-of-00001</li>
 <li>dogs-cats-model.index</li>
@@ -1125,7 +1130,7 @@ $$</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Tensorflow教程：使用卷积神经网络的图像分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1部分：卷积神经网络-cnn-基础"><span class="nav-number">1.1.</span> <span class="nav-text">¶第1部分：卷积神经网络（CNN）基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经层"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶神经层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经层的类型"><span class="nav-number">1.1.2.</span> <span class="nav-text">¶神经层的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积层-convolutional-layer"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">¶卷积层（Convolutional Layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#池化层-pooling-layer"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">¶池化层（Pooling Layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层-fully-connected-layer"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">¶全连接层（Fully Connected Layer）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理解训练过程"><span class="nav-number">1.1.3.</span> <span class="nav-text">¶理解训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络的架构"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">¶网络的架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正确的权重-参数"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">¶正确的权重/参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2部分：tensorflow教程-构建一个基于图像分类器的小型神经网络"><span class="nav-number">1.2.</span> <span class="nav-text">¶第2部分：Tensorflow教程-&gt;构建一个基于图像分类器的小型神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先决条件"><span class="nav-number">1.2.1.</span> <span class="nav-text">¶先决条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#opencv"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">¶OpenCV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#形状函数-shape-function"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">¶形状函数（shape function）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#softmax"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">¶Softmax</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取输入"><span class="nav-number">1.2.2.</span> <span class="nav-text">¶获取输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建网络层"><span class="nav-number">1.2.3.</span> <span class="nav-text">¶创建网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在tensorflow中建立卷积层-convolution-layer"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">¶在TensorFlow中建立卷积层（convolution layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平层-flattening-layer"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">¶平层（FLattening layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层-fully-connected-layer-v2"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">¶全连接层（Fully connected layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#占位符-placeholder-和输入-input"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">¶占位符（placeholder）和输入（input）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络设计"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">¶网络设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预测"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">¶预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最优化"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">¶最优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测-v2"><span class="nav-number">1.2.4.</span> <span class="nav-text">¶预测</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tensorflow教程使用卷积神经网络的图像分类器"><span class="nav-number">1.</span> <span class="nav-text">Tensorflow教程：使用卷积神经网络的图像分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1部分卷积神经网络cnn基础"><span class="nav-number">1.1.</span> <span class="nav-text">第1部分：卷积神经网络（CNN）基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经层"><span class="nav-number">1.1.1.</span> <span class="nav-text">神经层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经层的类型"><span class="nav-number">1.1.2.</span> <span class="nav-text">神经层的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积层convolutional-layer"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">卷积层（Convolutional Layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#池化层pooling-layer"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">池化层（Pooling Layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层fully-connected-layer"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">全连接层（Fully Connected Layer）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理解训练过程"><span class="nav-number">1.1.3.</span> <span class="nav-text">理解训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络的架构"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">网络的架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正确的权重参数"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">正确的权重/参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2部分tensorflow教程-构建一个基于图像分类器的小型神经网络"><span class="nav-number">1.2.</span> <span class="nav-text">第2部分：Tensorflow教程-&gt;构建一个基于图像分类器的小型神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先决条件"><span class="nav-number">1.2.1.</span> <span class="nav-text">先决条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#opencv"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">OpenCV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#形状函数shape-function"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">形状函数（shape function）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#softmax"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Softmax</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取输入"><span class="nav-number">1.2.2.</span> <span class="nav-text">获取输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建网络层"><span class="nav-number">1.2.3.</span> <span class="nav-text">创建网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在tensorflow中建立卷积层convolution-layer"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">在TensorFlow中建立卷积层（convolution layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平层flattening-layer"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">平层（FLattening layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层fully-connected-layer-1"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">全连接层（Fully connected layer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#占位符placeholder和输入input"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">占位符（placeholder）和输入（input）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络设计"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">网络设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预测"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最优化"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">最优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">预测</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1160,7 +1165,7 @@ $$</p>
     
       <span class="post-meta-item-text">Symbols count total: </span>
     
-    <span title="Symbols count total">140k</span>
+    <span title="Symbols count total">139k</span>
   
 
   

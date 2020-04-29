@@ -2,7 +2,9 @@ User-agent: *
 Allow: /
 Allow: /archives/
 Allow: /categories/
-Allow: /tags/ 
+Allow: /tags/
+Allow: /2019nCoV/
+Allow: /ciasi/
 
 Disallow: /about/
 Disallow: /vendors/
