@@ -620,11 +620,11 @@
       
 
       
-        <h2 id="intent"><a class="markdownIt-Anchor" href="#intent"></a> Intent</h2>
+        <h2 id="intent">Intent</h2>
 <p>Separate the construction of a complex object from its representation so that the same construction process can create different representations.</p>
 <p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
 <a id="more"></a>
-<h2 id="code"><a class="markdownIt-Anchor" href="#code"></a> Code</h2>
+<h2 id="code">Code</h2>
 <p>Code can be found on <a href="https://github.com/xiyusullos/design-pattern" target="_blank" rel="noopener">Github</a></p>
 <p>src/Creational/Builder/Director.php</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by PhpStorm.</span></span><br><span class="line"><span class="comment"> * User: xiyusullos</span></span><br><span class="line"><span class="comment"> * Date: 2017/3/21</span></span><br><span class="line"><span class="comment"> * Time: 19:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">xiyusullos</span>\<span class="title">Creational</span>\<span class="title">Builder</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">xiyusullos</span>\<span class="title">Creational</span>\<span class="title">Builder</span>\<span class="title">Parts</span>\<span class="title">Vehicle</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Class Director</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@package</span> xiyusullos\Creational\Builder</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Director</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> BuilderInterface $builder</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Vehicle</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">build</span><span class="params">(BuilderInterface $builder)</span>: <span class="title">Vehicle</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $builder-&gt;createVehicle();</span><br><span class="line">        $builder-&gt;addDoors();</span><br><span class="line">        $builder-&gt;addEngine();</span><br><span class="line">        $builder-&gt;addWheel();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $builder-&gt;getVehicle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -958,7 +958,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#intent"><span class="nav-number">1.</span> <span class="nav-text"> Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">2.</span> <span class="nav-text"> Code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#intent"><span class="nav-number">1.</span> <span class="nav-text">Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">2.</span> <span class="nav-text">Code</span></a></li></ol></div>
             
 
           </div>
@@ -993,7 +993,7 @@
     
       <span class="post-meta-item-text">Symbols count total: </span>
     
-    <span title="Symbols count total">140k</span>
+    <span title="Symbols count total">139k</span>
   
 
   
