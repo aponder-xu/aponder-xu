@@ -19,7 +19,7 @@
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-    <title>2019 nCoV</title>
+    <title>南通认证题库</title>
 
     <style>
       .el-radio {
@@ -107,7 +107,7 @@
           if (correctAnswer === false) {
             correctAnswer = '错误';
           }
-          if (a === q.answer) {
+          if (a === correctAnswer) {
             console.log('true')
             this.$message({
               message: '正确！',
