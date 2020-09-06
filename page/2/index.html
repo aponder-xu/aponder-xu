@@ -123,13 +123,13 @@
 
   <meta name="description" content="from 0 to 1">
 <meta property="og:type" content="website">
-<meta property="og:title" content="aponder&#39;s blog">
+<meta property="og:title" content="aponder blog">
 <meta property="og:url" content="https://blog.aponder.top/page/2/index.html">
-<meta property="og:site_name" content="aponder&#39;s blog">
+<meta property="og:site_name" content="aponder blog">
 <meta property="og:description" content="from 0 to 1">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="aponder&#39;s blog">
+<meta name="twitter:title" content="aponder blog">
 <meta name="twitter:description" content="from 0 to 1">
 
 
@@ -148,7 +148,7 @@
   };
 </script>
 
-  <title>aponder's blog</title>
+  <title>aponder blog</title>
   
 
 
@@ -208,7 +208,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">aponder's blog</span>
+        <span class="site-title">aponder blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -346,7 +346,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">23</span></a>
 
   </li>
         
@@ -471,6 +471,261 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.aponder.top/2018/03/RESTful的安全性和幂等性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="aponder">
+      <meta itemprop="description" content="from 0 to 1">
+      <meta itemprop="image" content="http://blog.media.aponder.top/avatar200.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="aponder blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/03/RESTful的安全性和幂等性/" class="post-title-link" itemprop="url">RESTful的安全性和幂等性</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-03-01 13:41:00" itemprop="dateCreated datePublished" datetime="2018-03-01T13:41:00+08:00">2018-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-02-09 19:47:11" itemprop="dateModified" datetime="2020-02-09T19:47:11+08:00">2020-02-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2018/03/RESTful的安全性和幂等性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/RESTful的安全性和幂等性/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/03/RESTful的安全性和幂等性/" class="leancloud_visitors" data-flag-title="RESTful的安全性和幂等性">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">200</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">1 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">安全</th>
+<th style="text-align:center">幂等</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">HEAD</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">OPTIONS</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/03/RESTful的安全性和幂等性/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.aponder.top/2017/09/用chrome真机调试微信网页/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -480,7 +735,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -585,7 +840,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">305</span>
+                <span title="Symbols count in article">298</span>
               
 
               
@@ -620,10 +875,7 @@
 
       
         
-          <h2 id="开发微信页面chrome与安卓安卓44真机调试"><a class="markdownIt-Anchor" href="#开发微信页面chrome与安卓安卓44真机调试"></a> 开发微信页面，chrome与安卓（安卓4.4+）真机调试</h2>
-<p>1、手机中打开【设置】-&gt;【开发人员选项】-&gt;【USB调试】<br>
-2、用 Android 机在微信内访问 <a href="http://debugx5.qq.com" target="_blank" rel="noopener">http://debugx5.qq.com</a><br>
-3、在打开的网页中选择【信息】-&gt;【TBS settings】，勾选【是否打开 TBS 内核 Inspector 调试功能】，重启微信</p>
+          <h2 id="开发微信页面，chrome与安卓（安卓4-4-）真机调试"><a href="#开发微信页面，chrome与安卓（安卓4-4-）真机调试" class="headerlink" title="开发微信页面，chrome与安卓（安卓4.4+）真机调试"></a>开发微信页面，chrome与安卓（安卓4.4+）真机调试</h2><p>1、手机中打开【设置】-&gt;【开发人员选项】-&gt;【USB调试】<br>2、用 Android 机在微信内访问 <a href="http://debugx5.qq.com" target="_blank" rel="noopener">http://debugx5.qq.com</a><br>3、在打开的网页中选择【信息】-&gt;【TBS settings】，勾选【是否打开 TBS 内核 Inspector 调试功能】，重启微信<br>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -635,7 +887,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -696,7 +948,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -801,7 +1053,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">1.1k</span>
+                <span title="Symbols count in article">1k</span>
               
 
               
@@ -836,8 +1088,7 @@
 
       
         
-          <h2 id="step-0-prerequisites"><a class="markdownIt-Anchor" href="#step-0-prerequisites"></a> Step 0: prerequisites</h2>
-<ul>
+          <h2 id="Step-0-prerequisites"><a href="#Step-0-prerequisites" class="headerlink" title="Step 0: prerequisites"></a>Step 0: prerequisites</h2><ul>
 <li>download <a href="https://get.docker.com/builds/Linux/x86_64/docker-17.05.0-ce.tgz" target="_blank" rel="noopener">docker binary</a></li>
 <li>download <a href="https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64" target="_blank" rel="noopener">docker-compose binary</a></li>
 <li>download <a href="https://github.com/laradock/laradock/archive/master.zip" target="_blank" rel="noopener">laradock</a></li>
@@ -916,7 +1167,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -1021,7 +1272,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">263</span>
+                <span title="Symbols count in article">258</span>
               
 
               
@@ -1056,10 +1307,8 @@
 
       
         
-          <h2 id="intent"><a class="markdownIt-Anchor" href="#intent"></a> Intent</h2>
-<p>Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.</p>
-<p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。 Factory Method使一个类的<br>
-实例化延迟到其子类。</p>
+          <h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><p>Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.</p>
+<p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。 Factory Method使一个类的<br>实例化延迟到其子类。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1132,7 +1381,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -1272,8 +1521,7 @@
 
       
         
-          <h2 id="intent"><a class="markdownIt-Anchor" href="#intent"></a> Intent</h2>
-<p>Separate the construction of a complex object from its representation so that the same construction process can create different representations.</p>
+          <h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><p>Separate the construction of a complex object from its representation so that the same construction process can create different representations.</p>
 <p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
           <!--noindex-->
           
@@ -1347,7 +1595,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -1487,8 +1735,7 @@
 
       
         
-          <h2 id="intent"><a class="markdownIt-Anchor" href="#intent"></a> Intent</h2>
-<p>Provide an interface for creating families of related or dependent objects without specifying their concrete classes.</p>
+          <h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><p>Provide an interface for creating families of related or dependent objects without specifying their concrete classes.</p>
 <p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p>
           <!--noindex-->
           
@@ -1562,7 +1809,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -1667,7 +1914,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">501</span>
+                <span title="Symbols count in article">497</span>
               
 
               
@@ -1702,8 +1949,7 @@
 
       
         
-          <h2 id="override-function-validatepk-name-product-licensekey"><a class="markdownIt-Anchor" href="#override-function-validatepk-name-product-licensekey"></a> Override <code>function validate(PK, name, product, licenseKey)</code></h2>
-<p>Find where is your StarUML installed and edit the <code>LicenseManagerDomain.js</code> file whicd locates in  <code>{INSTALL_PATH}/www/license/node/</code>. For instance, <code>C:\Program Files (x86)\StarUML\www\license\node\LicenseManagerDomain.js</code></p>
+          <h2 id="Override-function-validate-PK-name-product-licenseKey"><a href="#Override-function-validate-PK-name-product-licenseKey" class="headerlink" title="Override function validate(PK, name, product, licenseKey)"></a>Override <code>function validate(PK, name, product, licenseKey)</code></h2><p>Find where is your StarUML installed and edit the <code>LicenseManagerDomain.js</code> file whicd locates in  <code>{INSTALL_PATH}/www/license/node/</code>. For instance, <code>C:\Program Files (x86)\StarUML\www\license\node\LicenseManagerDomain.js</code><br>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1715,7 +1961,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1776,7 +2022,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -1881,7 +2127,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">2.6k</span>
+                <span title="Symbols count in article">2.4k</span>
               
 
               
@@ -1916,8 +2162,7 @@
 
       
         
-          <h2 id="creational-创建型模式"><a class="markdownIt-Anchor" href="#creational-创建型模式"></a> Creational (创建型模式)</h2>
-<p>In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.</p>
+          <h2 id="Creational-创建型模式"><a href="#Creational-创建型模式" class="headerlink" title="Creational (创建型模式)"></a>Creational (创建型模式)</h2><p>In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1990,7 +2235,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -2127,7 +2372,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">761</span>
+                <span title="Symbols count in article">747</span>
               
 
               
@@ -2162,8 +2407,7 @@
 
       
         
-          <h2 id="step-1-download-the-package"><a class="markdownIt-Anchor" href="#step-1-download-the-package"></a> Step 1: <a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz" target="_blank" rel="noopener">download the package</a></h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz</span><br></pre></td></tr></table></figure>
+          <h2 id="Step-1-download-the-package"><a href="#Step-1-download-the-package" class="headerlink" title="Step 1: download the package"></a>Step 1: <a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz" target="_blank" rel="noopener">download the package</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2236,7 +2480,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
+      <meta itemprop="name" content="aponder blog">
     </span>
 
     
@@ -2408,257 +2652,11 @@
 
       
         
-          <h2 id="step-1-download-the-package"><a class="markdownIt-Anchor" href="#step-1-download-the-package"></a> Step 1: <a href="http://download.redis.io/releases/redis-3.2.8.tar.gz" target="_blank" rel="noopener">download the package</a></h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.2.8.tar.gz</span><br></pre></td></tr></table></figure>
+          <h2 id="Step-1-download-the-package"><a href="#Step-1-download-the-package" class="headerlink" title="Step 1: download the package"></a>Step 1: <a href="http://download.redis.io/releases/redis-3.2.8.tar.gz" target="_blank" rel="noopener">download the package</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.2.8.tar.gz</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2017/03/Install-Redis-on-CentOS-7/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.aponder.top/2017/03/Doctrine2-Tutorial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="aponder">
-      <meta itemprop="description" content="from 0 to 1">
-      <meta itemprop="image" content="http://blog.media.aponder.top/avatar200.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aponder's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/Doctrine2-Tutorial/" class="post-title-link" itemprop="url">Doctrine2 Tutorial</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-03-11 12:39:26" itemprop="dateCreated datePublished" datetime="2017-03-11T12:39:26+08:00">2017-03-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-02-12 18:28:07" itemprop="dateModified" datetime="2020-02-12T18:28:07+08:00">2020-02-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/Doctrine/" itemprop="url" rel="index"><span itemprop="name">Doctrine</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2017/03/Doctrine2-Tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/03/Doctrine2-Tutorial/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2017/03/Doctrine2-Tutorial/" class="leancloud_visitors" data-flag-title="Doctrine2 Tutorial">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">47k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">58 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="getting-started-with-doctrine"><a class="markdownIt-Anchor" href="#getting-started-with-doctrine"></a> Getting Started with Doctrine</h2>
-<p>This guide covers getting started with the Doctrine ORM. After working through the guide you should know:</p>
-<ul>
-<li>How to install and configure Doctrine by connecting it to a database</li>
-<li>Mapping PHP objects to database tables</li>
-<li>Generating a database schema from PHP objects</li>
-<li>Using the <code>EntityManager</code> to insert, update, delete and find objects in the database.</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/03/Doctrine2-Tutorial/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2751,7 +2749,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
